@@ -2,8 +2,12 @@
 Tsetlin Machine experiments on bAbI tasks
 
 # Dataset
- wget http://www.thespermwhale.com/jaseweston/babi/tasks_1-20_v1-2.tar.gz
- 
+```
+cd data
+wget http://www.thespermwhale.com/jaseweston/babi/tasks_1-20_v1-2.tar.gz
+tar -xvzf tasks_1-20_v1-2.tar.gz
+```
+
 # Task 1 : Single Supporting Fact
 The file format for the task is as follows:
 ```
