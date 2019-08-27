@@ -99,8 +99,18 @@ for inp in queries_test:
 
 new_queries_test= np.asarray(new_queries_test)
 
+match_train = []
+for q in new_queries_train:
+    for s in new_inputs_train:
+        m=np.dot([input_encoded_m, question_encoded], axes=-1, normalize=False)
+        match_train.append(m)
+match_train=np.asarray(match_train)
+print(match_train.shape)
+
+'''
 tm = MultiClassTsetlinMachine(800, 40, 5.0)
 tm.fit(new_inputs_train, new_queries_train, epochs=1)
 tm_results=tm.predict(X_test) == Y_test).mean()
 
 print(tm_results)
+'''
