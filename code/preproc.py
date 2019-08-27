@@ -1,3 +1,5 @@
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2' 
 import re
 from functools import reduce
 from keras.preprocessing.sequence import pad_sequences

@@ -60,7 +60,20 @@ for inp in inputs_train:
   for w in inp:
     t=list(bin(int(w))[2:].zfill(bitlength))
     ip+=t
+  ip=[int(t) for t in ip]
   new_inputs_train.append(ip)
   
-np.asarray(new_inputs_train)
-print(new_inputs_train.shape)
+new_inputs_train= np.asarray(new_inputs_train)
+
+bitlength=query_maxlen.bit_length()
+new_queries_train=[]
+for inp in queries_train:
+  ip=[]
+  for w in inp:
+    t=list(bin(int(w))[2:].zfill(bitlength))
+    ip+=t
+  ip=[int(t) for t in ip]
+  new_queries_train.append(ip)
+
+new_queries_train= np.asarray(new_queries_train)
+
