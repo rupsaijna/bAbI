@@ -28,3 +28,4 @@ Each sentence is provided with an ID. The IDs for a given “story” start at 1
 8 Sandra journeyed to the bathroom.
 9 Where is Daniel?      hallway         4
 ```
+Above example can be seen in **data/tasks_1-20_v1-2/en/qa1_single-supporting-fact_train.txt**
