@@ -12,7 +12,7 @@ import re
 np.random.seed(1337)
 
 challenge = '../data/tasks_1-20_v1-2/en/qa1_single-supporting-fact_{}.txt'
-print('Extracting stories for the challenge: single_supporting_fact')
+print('\nExtracting stories for the challenge: single_supporting_fact')
 
 def tokenize(sent):
     '''Return the tokens of a sentence including punctuation.
@@ -82,7 +82,7 @@ SENT_HIDDEN_SIZE = 100
 QUERY_HIDDEN_SIZE = 100
 BATCH_SIZE = 32
 EPOCHS = 20
-print('RNN / Embed / Sent / Query = {}, {}, {}, {}'.format(RNN, EMBED_HIDDEN_SIZE, SENT_HIDDEN_SIZE, QUERY_HIDDEN_SIZE))
+print('\nRNN / Embed / Sent / Query = {}, {}, {}, {}'.format(RNN, EMBED_HIDDEN_SIZE, SENT_HIDDEN_SIZE, QUERY_HIDDEN_SIZE))
 
 train = get_stories(challenge.format('train'))
 test = get_stories(challenge.format('test'))
@@ -97,7 +97,7 @@ query_maxlen = max(map(len, (x for _, x, _ in train + test)))
 X, Xq, Y = vectorize_stories(train)
 tX, tXq, tY = vectorize_stories(test)
 
-print('vocab = {}'.format(vocab))
+print('\n\nvocab = {}'.format(vocab))
 print('X.shape = {}'.format(X.shape))
 print('Xq.shape = {}'.format(Xq.shape))
 print('Y.shape = {}'.format(Y.shape))
