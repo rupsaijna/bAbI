@@ -80,8 +80,8 @@ BATCH_SIZE = 32
 EPOCHS = 20
 print('RNN / Embed / Sent / Query = {}, {}, {}, {}'.format(RNN, EMBED_HIDDEN_SIZE, SENT_HIDDEN_SIZE, QUERY_HIDDEN_SIZE))
 
-train = get_stories(tar.extractfile(challenge.format('train')))
-test = get_stories(tar.extractfile(challenge.format('test')))
+train = get_stories(challenge.format('train'))
+test = get_stories(challenge.format('test'))
 
 vocab = sorted(reduce(lambda x, y: x | y, (set(story + q + [answer]) for story, q, answer in train + test)))
 # Reserve 0 for masking via pad_sequences
