@@ -1,3 +1,10 @@
+from keras.datasets.data_utils import get_file
+from keras.layers.embeddings import Embedding
+from keras.layers.core import Dense, Merge
+from keras.layers import recurrent
+from keras.models import Sequential
+from keras.preprocessing.sequence import pad_sequences
+
 import numpy as np
 import re
 np.random.seed(1337)
