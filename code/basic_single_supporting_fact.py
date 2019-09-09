@@ -1,4 +1,3 @@
-from keras.datasets.data_utils import get_file
 from keras.layers.embeddings import Embedding
 from keras.layers.core import Dense, Merge
 from keras.layers import recurrent
