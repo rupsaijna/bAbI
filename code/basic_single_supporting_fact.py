@@ -1,9 +1,11 @@
 from keras.layers.embeddings import Embedding
 #from keras.layers.core import Dense, Merge
 from keras.layers import recurrent
-from keras.models import Sequential
+#from keras.models import Sequential
 from keras.preprocessing.sequence import pad_sequences
 
+import warnings
+warnings.filterwarnings("ignore", category=FutureWarning)
 from functools import reduce
 import numpy as np
 import re
