@@ -4,6 +4,7 @@ from keras.layers import recurrent
 from keras.models import Sequential
 from keras.preprocessing.sequence import pad_sequences
 
+from functools import reduce
 import numpy as np
 import re
 np.random.seed(1337)
