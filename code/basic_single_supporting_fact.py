@@ -48,10 +48,11 @@ def parse_stories(lines, only_supporting=False):
             story.append(sent)
     return data
     
-def get_stories(f, only_supporting=False, max_length=None):
+def get_stories(fn, only_supporting=False, max_length=None):
     '''Given a file name, read the file, retrieve the stories, and then convert the sentences into a single story.
     If max_length is supplied, any stories longer than max_length tokens will be discarded.
     '''
+    f=open(fn)
     data = parse_stories(f.readlines(), only_supporting=only_supporting)
     flatten = lambda data: reduce(lambda x, y: x + y, data)
     data = [(flatten(story), q, answer) for story, q, answer in data if not max_length or len(flatten(story)) < max_length]
