@@ -1,5 +1,5 @@
 from keras.layers.embeddings import Embedding
-from keras.layers.core import Dense, Merge
+#from keras.layers.core import Dense, Merge
 from keras.layers import recurrent
 from keras.models import Sequential
 from keras.preprocessing.sequence import pad_sequences
