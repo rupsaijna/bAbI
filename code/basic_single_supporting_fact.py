@@ -104,4 +104,4 @@ print('Y.shape = {}'.format(Y.shape))
 print('story_maxlen, query_maxlen = {}, {}'.format(story_maxlen, query_maxlen))
 
 
-print(train[0], X[0])
+print(train[0], X[0], Xq[0],Y[0])
