@@ -100,7 +100,7 @@ query_maxlen = max(map(len, (x for _, x, _ in train + test)))
 X, Xq, Y = vectorize_stories(train)
 tX, tXq, tY = vectorize_stories(test)
 
-bitlength=vocab_size..bit_length()
+bitlength=vocab_size.bit_length()
 X=binarize(X,bitlength)
 Xq=binarize(Xq,bitlength)
 tX=binarize(tX,bitlength)
