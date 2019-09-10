@@ -76,14 +76,17 @@ def vectorize_stories(data):
         Y.append(y)
     return pad_sequences(X, maxlen=story_maxlen), pad_sequences(Xq, maxlen=query_maxlen), np.array(Y)
 
-RNN = recurrent.GRU
-EMBED_HIDDEN_SIZE = 50
-SENT_HIDDEN_SIZE = 100
-QUERY_HIDDEN_SIZE = 100
-BATCH_SIZE = 32
-EPOCHS = 20
-print('\nRNN / Embed / Sent / Query = {}, {}, {}, {}'.format(RNN, EMBED_HIDDEN_SIZE, SENT_HIDDEN_SIZE, QUERY_HIDDEN_SIZE))
-
+def binarize(listy, bitlength):
+    new_listy=[]
+    for ls in listy:
+        ns=[]
+        for w in ls:
+            t=list(bin(int(w))[2:].zfill(bitlength))
+            ns+=t
+        ns=[int(t) for t in ns]
+        new_listy.append(ns)
+    return new_listy
+           
 train = get_stories(challenge.format('train'))
 test = get_stories(challenge.format('test'))
 
@@ -96,6 +99,11 @@ query_maxlen = max(map(len, (x for _, x, _ in train + test)))
 
 X, Xq, Y = vectorize_stories(train)
 tX, tXq, tY = vectorize_stories(test)
+
+X=binarize(X,story_maxlen.bit_length())
+Xq=binarize(Xq,query_maxlen.bit_length())
+tX=binarize(tX,story_maxlen.bit_length())
+tXq=binarize(tXq,query_maxlen.bit_length())
 
 print('\n\nvocab = {}'.format(vocab))
 print('X.shape = {}'.format(X.shape))
