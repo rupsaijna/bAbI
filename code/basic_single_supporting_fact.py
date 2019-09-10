@@ -116,6 +116,6 @@ print('story_maxlen, query_maxlen = {}, {}'.format(story_maxlen, query_maxlen))
 
 print(train[0], X[0], Xq[0],Y[0])
 
-concat_XXq=np.concat(X,Xq)
-concat_tXXq=np.concat(tX,tXq)
+concat_XXq=np.concatenate(X,Xq)
+concat_tXXq=np.concatenate(tX,tXq)
 print('\nconcat_XXq.shape = {}'.format(concat_XXq.shape))
