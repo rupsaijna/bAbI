@@ -74,7 +74,7 @@ def vectorize_stories(data):
         X.append(x)
         Xq.append(xq)
         Y.append(y)
-    return pad_sequences(X, maxlen=story_maxlen), pad_sequences(Xq, maxlen=query_maxlen), np.array(Y)
+    return pad_sequences(X, maxlen=story_maxlen), pad_sequences(Xq, maxlen=query_maxlen), np.array(Y).astype(int)
 
 def binarize(listy, bitlength):
     new_listy=[]
@@ -105,8 +105,7 @@ X=binarize(X,bitlength)
 Xq=binarize(Xq,bitlength)
 tX=binarize(tX,bitlength)
 tXq=binarize(tXq,bitlength)
-Y=[int(y) for y in Y]
-tY=[int(y) for y in tY]
+
 
 print('\n\nvocab = {}'.format(vocab))
 print('X.shape = {}'.format(X.shape))
