@@ -123,5 +123,5 @@ print('\nconcat_XXq.shape = {}'.format(concat_XXq.shape))
 
 tm = MultiClassTsetlinMachine(800, 40, 5.0)
 tm.fit(concat_XXq, Y, epochs=1)
-tm_results=tm.predict(concat_tXXq) == tY).mean()
+tm_results=(tm.predict(concat_tXXq) == tY).mean()
 print(tm_results)
