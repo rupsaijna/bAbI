@@ -85,7 +85,7 @@ def binarize(listy, bitlength):
             ns+=t
         ns=[int(t) for t in ns]
         new_listy.append(ns)
-    return new_listy
+    return np.asarray(new_listy)
            
 train = get_stories(challenge.format('train'))
 test = get_stories(challenge.format('test'))
