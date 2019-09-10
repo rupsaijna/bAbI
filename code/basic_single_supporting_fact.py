@@ -102,3 +102,6 @@ print('X.shape = {}'.format(X.shape))
 print('Xq.shape = {}'.format(Xq.shape))
 print('Y.shape = {}'.format(Y.shape))
 print('story_maxlen, query_maxlen = {}, {}'.format(story_maxlen, query_maxlen))
+
+
+print(train[0], X[0])
