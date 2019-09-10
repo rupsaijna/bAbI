@@ -105,6 +105,8 @@ X=binarize(X,bitlength)
 Xq=binarize(Xq,bitlength)
 tX=binarize(tX,bitlength)
 tXq=binarize(tXq,bitlength)
+Y=[int(y) for y in Y]
+tY=[int(y) for y in tY]
 
 print('\n\nvocab = {}'.format(vocab))
 print('X.shape = {}'.format(X.shape))
