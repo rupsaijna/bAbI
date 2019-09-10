@@ -3,6 +3,7 @@ from keras.layers.embeddings import Embedding
 from keras.layers import recurrent
 #from keras.models import Sequential
 from keras.preprocessing.sequence import pad_sequences
+from pyTsetlinMachine.tm import MultiClassTsetlinMachine
 
 import warnings
 warnings.filterwarnings("ignore", category=FutureWarning)
