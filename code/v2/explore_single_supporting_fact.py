@@ -14,5 +14,8 @@ print('Number of test stories:', len(test_stories))
 print('Story 1:', train_stories[0])
 
 print()
-print(story_to_features(train_stories[0]))
+f=story_to_features(train_stories[0])
+
+for ff in f:
+	print(ff)
 
