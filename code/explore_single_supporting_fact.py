@@ -11,7 +11,8 @@ test_stories = get_stories(challenge.format('test'))
 print('Number of training stories:', len(train_stories))
 print('Number of test stories:', len(test_stories))
 print('Story 1:', train_stories[0])
-
+print('Story 2:', train_stories[1])
+dsf
 
 # creating vocabulary of words in train and test set
 vocab = set()
