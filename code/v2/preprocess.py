@@ -8,6 +8,7 @@ gram_base=["pos_", "tag_", "ent_type_", "is_alpha", "is_stop", "is_digit", "is_l
 padbe_2=[False if gb.startswith('is') else 'None' for gb in gram_base]
 padb_1=['<BEG>',-1]
 pade_1=['<END>',-1]
+padbe_3=[0,0]
 
 def create_features_headers(headertype=1,embeddingdim=0,context_length=0):
 	'''
@@ -68,9 +69,9 @@ def story_to_gram_features(story):
 		sent_features=[s+[1] if s[0] in answer else s+[0] for s in sent_features] ##answer
 		#print('A ',sent_features)
 		story_features+=sent_features
-	padb=padb_1+padbe_2
+	padb=padb_1+padbe_2+padbe_3
 	padb[0]=padb[0].replace('BEG','STORY_BEG')
-	pade=pade_1+padbe_2
+	pade=pade_1+padbe_2+padbe_3
 	pade[0]=pade[0].replace('END','STORY_END')
 	story_features=[padb]+story_features+[pade]
 	return story_features
