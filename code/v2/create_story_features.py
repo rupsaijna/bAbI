@@ -19,8 +19,11 @@ for trs in train_stories:
 	print('Story:',counter,' ',trs)
 	train_features_gram+=story_to_gram_features(trs)
 	counter+=1
+	break
 	
 print(len(train_features_gram), len(train_features_gram[0]), len(gram_headers))
+print(train_features_gram[0])
+asdf
 train_features_gram=pd.DataFrame(train_features_gram, columns=gram_headers)
 savename='../../pickles/spacy/nonbinarized_features_'+ftype
 train_features_gram.to_pickle(savename+'_gram.pkl')
