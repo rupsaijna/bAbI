@@ -39,8 +39,10 @@ def story_to_features(story):
 	answer=story[1]
 	story=story[2]
 	sents=story.split('<END><BEG>')
+	print('Sents', sents)
 	for sentence in sents:
 		sentence=sentence.replace('<BEG>','').replace('<END>','')
+		print('Sentence',sentence)
 		sent_features=sent_to_gram_features(sentence)
 		print(sent_features)
 		padb=padb_1+padbe_2
