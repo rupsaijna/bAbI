@@ -22,7 +22,7 @@ for trs in train_stories:
 	
 print(len(train_features_gram), len(train_features_gram[0]), len(gram_headers))
 train_features_gram=pd.DataFrame(train_features_gram, columns=gram_headers)
-savename='../pickles/spacy/nonbinarized_features_'+ftype
+savename='../../pickles/spacy/nonbinarized_features_'+ftype
 train_features_gram.to_pickle(savename+'_gram.pkl')
 print('Saved: ',savename+'_gram.pkl')
 
@@ -40,6 +40,6 @@ for trs in test_stories:
 	counter+=1
   
 test_features_gram=pd.DataFrame(test_features_gram, columns=gram_headers)
-savename='../pickles/spacy/nonbinarized_features_'+ftype
+savename='../../pickles/spacy/nonbinarized_features_'+ftype
 test_features_gram.to_pickle(savename+'_gram.pkl')
 print('Saved: ',savename+'_gram.pkl')
