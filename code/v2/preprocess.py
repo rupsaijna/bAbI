@@ -24,7 +24,7 @@ def parse_stories(lines):
             # this line is tab separated Q, A &amp;amp;amp;amp;amp; support fact ID
             q, a, supporting = line.split('\t')
             # tokenize the words of question
-            q = tokenize(q)
+            #q = tokenize(q)
             # Provide all the sub-stories till this question
             substory = [x for x in story if x]
             # A story ends and is appended to global story data-set
