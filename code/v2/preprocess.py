@@ -9,7 +9,12 @@ padbe_2=[False if gb.startswith('is') else 'None' for gb in gram_base]
 padb_1=['<BEG>',-1]
 pade_1=['<END>',-1]
 
-def create_features_headers(EMBEDDING_DIM,context_length):
+def create_features_headers(headertype=1,embeddingdim=0,context_length=0):
+	'''
+	headertype=1 == grammatical headers
+	
+	headertype=2 == glove headers
+	'''
 	context_headers_gram=["text","word_idx"]
 	
 	context_headers_glove=['text','word_idx']
@@ -24,6 +29,11 @@ def create_features_headers(EMBEDDING_DIM,context_length):
 	for cl in range(1,context_length+1):
 		context_headers_glove+=['g_'+str(i)+'_wa'+str(cl) for i in range(0,EMBEDDING_DIM)]
 		context_headers_gram+=[i+'_wa'+str(cl) for i in gram_base]
+	
+	if headertype==1:
+		return context_headers_gram
+	if headertype==2:
+		return context_headers_glove
 		
 def sent_to_gram_features(sent):
 	doc = nlp(sent)
