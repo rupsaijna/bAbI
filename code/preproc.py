@@ -80,4 +80,4 @@ def vectorize_stories(data, word_idx, story_maxlen, query_maxlen):
         Xq.append(xq)
         Y.append(y)
     return (pad_sequences(X, maxlen=story_maxlen),
-            pad_sequences(Xq, maxlen=query_maxlen), np.array(Y), pad_sequences(Xq, maxlen=story_maxlen))
+            pad_sequences(Xq, maxlen=query_maxlen), np.array(Y))
