@@ -6,7 +6,8 @@ context_length=2
 challenge = '../../data/tasks_1-20_v1-2/en/qa1_single-supporting-fact_{}.txt'
 print('Extracting stories for the challenge: single_supporting_fact')
 
-
+print(create_features_headers(headertype=1))
+zxc
 ftype='train'
 # Extracting train stories
 train_stories = get_stories(challenge.format(ftype))
@@ -17,7 +18,8 @@ for trs in train_stories:
 	print('Story:',counter,' ',trs)
 	train_features_gram+=story_to_gram_features(trs)
 	counter+=1
-
+	
+train_features_gram=pd.DataFrame(train_features_gram, columns=context_headers)
 savename='../pickles/spacy/nonbinarized_features_'+ftype
 train_features_gram.to_pickle(savename+'_gram.pkl')
 print('Saved: ',savename+'_gram.pkl')
