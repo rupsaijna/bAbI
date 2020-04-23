@@ -5,9 +5,9 @@ import spacy
 nlp = spacy.load("en_core_web_sm")
 
 gram_base=["pos_", "tag_", "ent_type_", "is_alpha", "is_stop", "is_digit", "is_lower", "is_upper","is_punct", "is_left_punct", "is_right_punct", "is_bracket", "is_quote", "dep_", "head.pos_", "head.head.pos_"]
-padbe_b=[False if gb.startswith('is') else 'None' for gb in gram_base]
-padb_a=['<BEG>',-1]
-pade_a=['<END>',-1]
+padbe_2=[False if gb.startswith('is') else 'None' for gb in gram_base]
+padb_1=['<BEG>',-1]
+pade_1=['<END>',-1]
 
 def create_features_headers(EMBEDDING_DIM,context_length):
 	context_headers_gram=["text","word_idx"]
@@ -42,8 +42,8 @@ def story_to_features(story):
 	for sentence in sents:
 		sentence=sentence.replace('<BEG>','').replace('<END>','')
 		sent_features=sent_to_gram_features(sentence)
-		padb=padb_a+padbe_b
-		pade=padb_e+padbe_b
+		padb=padb_1+padbe_2
+		pade=pade_1+padbe_2
 		sent_features=[padb]+sent_features+[pade]
 		sent_features=[s.append(1) if s[0] in query else s.append(0) for s in sent_features]  ##query
 		sent_features=[s.append(1) if s[0] in answer else s.append(0) for s in sent_features]  ##answer
