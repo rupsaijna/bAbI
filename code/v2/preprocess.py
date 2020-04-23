@@ -8,7 +8,7 @@ padbe_b=[False if gb.startswith('is') else 'None' for gb in gram_base]
 padb_a=['<BEG>',-1]
 pade_a=['<END>',-1]
 
-def features(EMBEDDING_DIM,context_length)
+def create_features_headers(EMBEDDING_DIM,context_length):
 	context_headers_gram=["text","word_idx"]
 	
 	context_headers_glove=['text','word_idx']
