@@ -32,7 +32,7 @@ def parse_stories(lines):
             story.append('')
         else:
             # this line is a sentence of story
-            sent=line #sent = tokenize(line)
+            sent='<BEG>'+line+'<END>' #sent = tokenize(line)
             story.append(sent)
     return data
  
