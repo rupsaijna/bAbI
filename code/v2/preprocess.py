@@ -55,6 +55,11 @@ def story_to_features(story):
 		sent_features=[s+[1] if s[0] in answer else s+[0] for s in sent_features] ##answer
 		#print('A ',sent_features)
 		story_features+=sent_features
+	padb=padb_1+padbe_2
+	padb[0]=padb[0].replace('BEG','STORY_BEG')
+	pade=pade_1+padbe_2
+	pade[0]=pade[0].replace('BEG','STORY_BEG')
+	story_features=[padb]+sent_features+[pade]
 	return story_features
 
 def parse_stories(lines):
