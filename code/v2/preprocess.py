@@ -49,11 +49,11 @@ def story_to_features(story):
 		pade=pade_1+padbe_2
 		sent_features=[padb]+sent_features+[pade]
 		print(sent_features)
-		sent_features=[s.append(1) if s[0] in query else s.append(0) for s in sent_features]  ##query
+		sent_features=[s+[1] if s[0] in query else s+[0] for s in sent_features]  ##query
 		print(sent_features)
 
 		sent_features=[s.append(1) if s[0] in answer else s.append(0) for s in sent_features]  ##answer
-		
+		print(sent_features)
 		story_features.append(sent_features)
 	return story_features
 
