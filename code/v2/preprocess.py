@@ -33,7 +33,7 @@ def sent_to_gram_features(sent):
 		sentfeatures.append(tokfeatures)
 	return(sentfeatures)	
 
-def story_to_features(story):
+def story_to_gram_features(story):
 	story_features=[]
 	query=story[1]
 	answer=story[2]
