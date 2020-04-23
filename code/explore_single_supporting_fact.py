@@ -12,6 +12,8 @@ print('Number of training stories:', len(train_stories))
 print('Number of test stories:', len(test_stories))
 print('Story 1:', train_stories[0])
 print('Story 2:', train_stories[1])
+print('Story 3:', train_stories[2])
+
 dsf
 
 # creating vocabulary of words in train and test set
