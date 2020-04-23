@@ -2,6 +2,7 @@ import re
 from functools import reduce
 import numpy as np
 import spacy
+nlp = spacy.load("en_core_web_sm")
 
 gram_base=["pos_", "tag_", "ent_type_", "is_alpha", "is_stop", "is_digit", "is_lower", "is_upper","is_punct", "is_left_punct", "is_right_punct", "is_bracket", "is_quote", "dep_", "head.pos_", "head.head.pos_"]
 padbe_b=[False if gb.startswith('is') else 'None' for gb in gram_base]
