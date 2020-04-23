@@ -1,2 +1,40 @@
+from preprocess import *
+
 EMBEDDING_DIM = 100
 context_length=2
+
+challenge = '../../data/tasks_1-20_v1-2/en/qa1_single-supporting-fact_{}.txt'
+print('Extracting stories for the challenge: single_supporting_fact')
+
+
+ftype='train'
+# Extracting train stories
+train_stories = get_stories(challenge.format(ftype))
+print('Number of training stories:', len(train_stories))
+train_features_gram=[]
+counter=1
+for trs in train_stories:
+	print('Story:',counter,' ',trs)
+	train_features_gram+=story_to_gram_features(trs)
+	counter+=1
+
+savename='../pickles/spacy/nonbinarized_features_'+ftype
+train_features_gram.to_pickle(savename+'_gram.pkl')
+print('Saved: ',savename+'_gram.pkl')
+
+################################################################
+
+# Extracting test stories
+ftype='test'
+test_stories = get_stories(challenge.format(ftype))
+print('Number of test stories:', len(test_stories))
+test_features_gram=[]
+counter=1
+for trs in test_stories:
+	print('Story:',counter,' ',trs)
+	test_features_gram+=story_to_gram_features(trs)
+	counter+=1
+  
+savename='../pickles/spacy/nonbinarized_features_'+ftype
+test_features_gram.to_pickle(savename+'_gram.pkl')
+print('Saved: ',savename+'_gram.pkl')
