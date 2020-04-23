@@ -39,7 +39,7 @@ def story_to_features(story):
 	answer=story[2]
 	story=story[0]
 	sents=story.split('<END><BEG>')
-	print('Sents', sents)
+	#print('Sents', sents)
 	for sentence in sents:
 		sentence=sentence.replace('<BEG>','').replace('<END>','')
 		#print('Sentence',sentence)
