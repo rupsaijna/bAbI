@@ -1,7 +1,31 @@
 import re
 from functools import reduce
 import numpy as np
+import spacy
 
+def features(EMBEDDING_DIM,context_length)
+	context_headers_gram=["text","word_idx"]
+	gram_base=["pos_", "tag_", "ent_type_", "is_alpha", "is_stop", "is_digit", "is_lower", "is_upper","is_punct", "is_left_punct", "is_right_punct", "is_bracket", "is_quote", "dep_", "head.pos_", "head.head.pos_"]
+	context_headers_glove=['text','word_idx']
+
+	for cl in range(context_length,0,-1):
+		context_headers_glove+=['g_'+str(i)+'_wb'+str(cl) for i in range(0,EMBEDDING_DIM)]
+		context_headers_gram+=[i+'_wb'+str(cl) for i in gram_base]
+
+	context_headers_glove+=['g_'+str(i)+'_w' for i in range(0,EMBEDDING_DIM)]
+	context_headers_gram+=[i+'_w' for i in gram_base]
+
+	for cl in range(1,context_length+1):
+		context_headers_glove+=['g_'+str(i)+'_wa'+str(cl) for i in range(0,EMBEDDING_DIM)]
+		context_headers_gram+=[i+'_wa'+str(cl) for i in gram_base]
+		
+def sent_to_ner_features(sent):
+	doc = nlp(sent)
+	sentfeatures=[]
+	for token in doc:
+		tokfeatures=[sent[indx], token.idx, token.pos_, token.tag_, token.ent_type_, token.is_alpha, token.is_stop, token.is_digit, token.is_lower, token.is_upper,token.is_punct, token.is_left_punct, token.is_right_punct, token.is_bracket, token.is_quote, token.dep_, token.head.pos_, token.head.head.pos_]
+		sentfeatures.append(tokfeatures)
+	return(sentfeatures)	
 
 def parse_stories(lines):
     '''
@@ -49,3 +73,14 @@ def get_stories(f):
     # creating list of tuples for each story
     data = [(flatten(story), q, answer) for story, q, answer in data]
     return data
+
+def load_meanbinarized_glove(EMBEDDING_DIM):
+    glove_file="../data/glove/glove.6B."+str(EMBEDDING_DIM)+"d.txt"
+
+	print('loading glove, takes time...')
+	words = pd.read_csv(glove_file, sep=" ", index_col=0, header=None, quoting=csv.QUOTE_NONE)
+	mean=words.mean(axis = 0)
+	for c in words.columns:
+		words[c] = (words[c] <= mean[c]).astype(int)
+	print('GloVe loaded')
+	return words
