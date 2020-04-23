@@ -52,7 +52,7 @@ def story_to_features(story):
 		sent_features=[s+[1] if s[0] in query else s+[0] for s in sent_features]  ##query
 		print('Q ',sent_features)
 
-		sent_features=[s.append(1) if s[0] in answer else s.append(0) for s in sent_features]  ##answer
+		sent_features=[s+[1] if s[0] in query else s+[0] for s in answer] ##answer
 		print('A ',sent_features)
 		story_features.append(sent_features)
 	return story_features
