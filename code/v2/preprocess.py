@@ -98,7 +98,7 @@ def get_stories(f):
     return data
 
 def load_meanbinarized_glove(EMBEDDING_DIM):
-    glove_file="../data/glove/glove.6B."+str(EMBEDDING_DIM)+"d.txt"
+	glove_file="../data/glove/glove.6B."+str(EMBEDDING_DIM)+"d.txt"
 
 	print('loading glove, takes time...')
 	words = pd.read_csv(glove_file, sep=" ", index_col=0, header=None, quoting=csv.QUOTE_NONE)
