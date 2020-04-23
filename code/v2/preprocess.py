@@ -42,9 +42,11 @@ def story_to_features(story):
 	for sentence in sents:
 		sentence=sentence.replace('<BEG>','').replace('<END>','')
 		sent_features=sent_to_gram_features(sentence)
+		print(sent_features)
 		padb=padb_1+padbe_2
 		pade=pade_1+padbe_2
 		sent_features=[padb]+sent_features+[pade]
+		print(sent_features)
 		sent_features=[s.append(1) if s[0] in query else s.append(0) for s in sent_features]  ##query
 		sent_features=[s.append(1) if s[0] in answer else s.append(0) for s in sent_features]  ##answer
 		
