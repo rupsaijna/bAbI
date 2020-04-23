@@ -35,9 +35,9 @@ def sent_to_gram_features(sent):
 
 def story_to_features(story):
 	story_features=[]
-	query=story[0]
-	answer=story[1]
-	story=story[2]
+	query=story[1]
+	answer=story[2]
+	story=story[0]
 	sents=story.split('<END><BEG>')
 	print('Sents', sents)
 	for sentence in sents:
