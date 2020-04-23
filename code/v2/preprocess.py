@@ -3,9 +3,14 @@ from functools import reduce
 import numpy as np
 import spacy
 
+gram_base=["pos_", "tag_", "ent_type_", "is_alpha", "is_stop", "is_digit", "is_lower", "is_upper","is_punct", "is_left_punct", "is_right_punct", "is_bracket", "is_quote", "dep_", "head.pos_", "head.head.pos_"]
+padbe_b=[False if gb.startswith('is') else 'None' for gb in gram_base]
+padb_a=['<BEG>',-1]
+pade_a=['<END>',-1]
+
 def features(EMBEDDING_DIM,context_length)
 	context_headers_gram=["text","word_idx"]
-	gram_base=["pos_", "tag_", "ent_type_", "is_alpha", "is_stop", "is_digit", "is_lower", "is_upper","is_punct", "is_left_punct", "is_right_punct", "is_bracket", "is_quote", "dep_", "head.pos_", "head.head.pos_"]
+	
 	context_headers_glove=['text','word_idx']
 
 	for cl in range(context_length,0,-1):
@@ -19,13 +24,31 @@ def features(EMBEDDING_DIM,context_length)
 		context_headers_glove+=['g_'+str(i)+'_wa'+str(cl) for i in range(0,EMBEDDING_DIM)]
 		context_headers_gram+=[i+'_wa'+str(cl) for i in gram_base]
 		
-def sent_to_ner_features(sent):
+def sent_to_gram_features(sent):
 	doc = nlp(sent)
 	sentfeatures=[]
 	for token in doc:
 		tokfeatures=[sent[indx], token.idx, token.pos_, token.tag_, token.ent_type_, token.is_alpha, token.is_stop, token.is_digit, token.is_lower, token.is_upper,token.is_punct, token.is_left_punct, token.is_right_punct, token.is_bracket, token.is_quote, token.dep_, token.head.pos_, token.head.head.pos_]
 		sentfeatures.append(tokfeatures)
 	return(sentfeatures)	
+
+def story_to_features(story):
+	story_features=[]
+	query=story[1]
+	answer=story[2]
+	story=story[3]
+	sents=story.split('<END><BEG>')
+	for sentence in sents:
+		sentence=sentence.replace('<BEG>','').replace('<END>','')
+		sent_features=sent_to_gram_features(sentence)
+		padb=padb_a+padbe_b
+		pade=padb_e+padbe_b
+		sent_features=[padb]+sent_features+[pade]
+		sent_features=[s.append(1) if s[0] in query else s.append(0) for s in sent_features]  ##query
+		sent_features=[s.append(1) if s[0] in answer else s.append(0) for s in sent_features]  ##answer
+		
+		story_features.append(sent_features)
+	return story_features
 
 def parse_stories(lines):
     '''
