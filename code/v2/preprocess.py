@@ -29,7 +29,7 @@ def sent_to_gram_features(sent):
 	doc = nlp(sent)
 	sentfeatures=[]
 	for token in doc:
-		tokfeatures=[sent[indx], token.idx, token.pos_, token.tag_, token.ent_type_, token.is_alpha, token.is_stop, token.is_digit, token.is_lower, token.is_upper,token.is_punct, token.is_left_punct, token.is_right_punct, token.is_bracket, token.is_quote, token.dep_, token.head.pos_, token.head.head.pos_]
+		tokfeatures=[token.text, token.idx, token.pos_, token.tag_, token.ent_type_, token.is_alpha, token.is_stop, token.is_digit, token.is_lower, token.is_upper,token.is_punct, token.is_left_punct, token.is_right_punct, token.is_bracket, token.is_quote, token.dep_, token.head.pos_, token.head.head.pos_]
 		sentfeatures.append(tokfeatures)
 	return(sentfeatures)	
 
