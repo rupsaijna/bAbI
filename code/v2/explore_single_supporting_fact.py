@@ -17,7 +17,7 @@ for trs in train_stories:
 	print('Story:', trs)
 	temp=story_to_features(train_stories[0])
 	train_features+=temp
-	xzvd
+	break
 
 print()
 
