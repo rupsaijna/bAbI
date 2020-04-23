@@ -42,19 +42,19 @@ def story_to_features(story):
 	print('Sents', sents)
 	for sentence in sents:
 		sentence=sentence.replace('<BEG>','').replace('<END>','')
-		print('Sentence',sentence)
+		#print('Sentence',sentence)
 		sent_features=sent_to_gram_features(sentence)
-		print('Orig',sent_features)
+		#print('Orig',sent_features)
 		padb=padb_1+padbe_2
 		pade=pade_1+padbe_2
 		sent_features=[padb]+sent_features+[pade]
-		print('Pad',sent_features)
+		#print('Pad',sent_features)
 		sent_features=[s+[1] if s[0] in query else s+[0] for s in sent_features]  ##query
-		print('Q ',sent_features)
+		#print('Q ',sent_features)
 
 		sent_features=[s+[1] if s[0] in answer else s+[0] for s in sent_features] ##answer
-		print('A ',sent_features)
-		story_features.append(sent_features)
+		#print('A ',sent_features)
+		story_features+=sent_features
 	return story_features
 
 def parse_stories(lines):
