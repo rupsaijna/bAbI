@@ -58,7 +58,7 @@ def story_to_features(story):
 	padb=padb_1+padbe_2
 	padb[0]=padb[0].replace('BEG','STORY_BEG')
 	pade=pade_1+padbe_2
-	pade[0]=pade[0].replace('BEG','STORY_BEG')
+	pade[0]=pade[0].replace('END','STORY_END')
 	story_features=[padb]+sent_features+[pade]
 	return story_features
 
