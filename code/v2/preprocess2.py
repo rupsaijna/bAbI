@@ -91,17 +91,17 @@ def story_to_gram_features(story,context_length):
 	story_features=[padb]+story_features+[pade]'''
 	padded_story_features=[]
 	for cl in range(context_length-1):
-		padded_story_features+=[padb]
+		padded_story_features+=[padb+padbe_3]
 	padded_story_features+=story_features
 	for cl in range(context_length-1):
-		padded_story_features+=[pade]
+		padded_story_features+=[pade+padbe_3]
 	print('Story ',len(padded_story_features),len(padded_story_features[0]) )
 	context_story_features=[]
 	for word_idx in range(context_length,context_length+len(story_features)-2):
 		tempwf=padded_story_features[word_idx][:2]
 		print('target: ',word_idx,padded_story_features[word_idx][0],len(tempwf))
 		for prev_word_idx in range(word_idx-context_length,word_idx):
-			print('prev: ',prev_word_idx,padded_story_features[prev_word_idx][0], len(tempwf))
+			print('prev: ',prev_word_idx,padded_story_features[prev_word_idx][0], len(tempwf), len(padded_story_features[prev_word_idx][2:-1]))
 			tempwf+=padded_story_features[prev_word_idx][2:-1]
 		print('word: ',word_idx,padded_story_features[word_idx][0],len(tempwf))
 		tempwf+=padded_story_features[word_idx][2:-1]
