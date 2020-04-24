@@ -241,8 +241,9 @@ for i in range(5):
 	result_train = 100*(res_train == labels_train).mean()
 	
 	if(sum(res_train)>0):
-		pz=zip(grammar_features_train['text'],grammar_features_train['label'],res_train)
-		print(list(pz))
+		pz=list(zip(grammar_features_train['text'],grammar_features_train['label'],res_train))
+		for p in pz:
+			print (p)
 
 	prf_test=precision_recall_fscore_support(res_test, labels_test, average='macro')
 	prf_train=precision_recall_fscore_support(res_train, labels_train, average='macro')
