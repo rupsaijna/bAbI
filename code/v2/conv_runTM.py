@@ -15,6 +15,7 @@ from sklearn.metrics import precision_recall_fscore_support
 from sklearn.model_selection import train_test_split
 from time import time
 
+oplabels=['0','1']
 context_length=2
 qr=['query_word']
 gram_base=["pos_", "tag_", "ent_type_", "is_alpha", "is_stop", "is_digit", "is_lower", "is_upper","is_punct", "is_left_punct", "is_right_punct", "is_bracket", "is_quote", "dep_", "head.pos_", "head.head.pos_"]
@@ -239,17 +240,25 @@ for i in range(5):
 	start_testing = time()
 	res_test=tm.predict(X_test3)
 	res_train=tm.predict(X_train3) 
+	stop_testing = time()
+
 	result_test = 100*(res_test == labels_test).mean()
 	result_train = 100*(res_train == labels_train).mean()
 	prf_test=precision_recall_fscore_support(res_test, labels_test, average='macro')
+	prf_train=precision_recall_fscore_support(res_train, labels_train, average='macro')
+	prf_detail_test=precision_recall_fscore_support(res_test, labels_test, average=None)
+	prf_detail_train=precision_recall_fscore_support(res_train, labels_train, average=None)
 	prf_test=[str(p) for p in prf_test]
 	prf_test=' '.join(prf_test)
-	prf_train=precision_recall_fscore_support(res_train, labels_train, average='macro')
 	prf_train=[str(p) for p in prf_train]
 	prf_train=' '.join(prf_train)
 
-	stop_testing = time()
 
-	print("\n\n#%d Testing Accuracy: %.2f%% Training Accuracy: %.2f%% Training Time: %.2fs Testing Time: %.2fs" % (i+1, result_test, result_train, stop_training-start_training, stop_testing-start_testing))
+	print("\n\n#%d Convolutional Testing Accuracy: %.2f%% Training Accuracy: %.2f%% Training Time: %.2fs Testing Time: %.2fs" % (i+1, result_test, result_train, stop_training-start_training, stop_testing-start_testing))
 	print("\n#Testing PRF: %s%%\nTraining PRF: %s%%" % (prf_test, prf_train))
+	print("\n#Classwise Testing  & Training PRFS:\n")
+	for clidx in range(len(oplabels)):
+		print(oplabels[clidx]+": "+str(prf_detail_test[0][clidx])+" ; "+str(prf_detail_test[1][clidx])+" ; "+str(prf_detail_test[2][clidx])+" ; "+str(prf_detail_test[3][clidx])+" || "+str(prf_detail_train[0][clidx])+" ; "+str(prf_detail_train[1][clidx])+" ; "+str(prf_detail_train[2][clidx])+" ; "+str(prf_detail_train[3][clidx])+'\n')
+	
+	
 	
