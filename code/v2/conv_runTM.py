@@ -80,14 +80,18 @@ b=set(grammar_features_test.columns.tolist())
 gram_headers=list(a.intersection(b))'''
 
 assert(grammar_features_train['label'].tolist()==glove_features_train['label'].tolist())
-labels_train=grammar_features_train['label']
-dsf
-print('gram',grammar_features_train.shape)
-print('glove',glove_features_train.shape)
-				 
-print('gram',grammar_features_test.shape)
-print('glove',glove_features_test.shape)
+assert(grammar_features_test['label'].tolist()==glove_features_test['label'].tolist())
 
+labels_train=grammar_features_train['label']
+labels_test=grammar_features_test['label']
+
+
+print('gram',grammar_features_train.shape, len(labels_train))
+print('glove',glove_features_train.shape, len(labels_train))
+				 
+print('gram',grammar_features_test.shape, len(labels_test))
+print('glove',glove_features_test.shape, len(labels_test))
+fz
 #########Grammar##########
 print("Grammar")
 
