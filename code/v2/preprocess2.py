@@ -25,16 +25,23 @@ def create_features_headers(headertype=1,embeddingdim=0,context_length=0):
 	for cl in range(context_length,0,-1):
 		context_headers_glove+=['g_'+str(i)+'_wb'+str(cl) for i in range(0,embeddingdim)]
 		context_headers_gram+=[i+'_wb'+str(cl) for i in gram_base]
+		context_headers_glove+=['query_word'+'_wb'+str(cl)]
+		context_headers_gram+=['query_word'+'_wb'+str(cl)]
 
 	context_headers_glove+=['g_'+str(i)+'_wt' for i in range(0,embeddingdim)]
+	context_headers_glove+=['query_word'+'_wt']
 	context_headers_gram+=[i+'_wt' for i in gram_base]
+	context_headers_gram+=['query_word'+'_wt']
+	
 
 	for cl in range(1,context_length+1):
 		context_headers_glove+=['g_'+str(i)+'_wa'+str(cl) for i in range(0,embeddingdim)]
 		context_headers_gram+=[i+'_wa'+str(cl) for i in gram_base]
+		context_headers_glove+=['query_word'+'_wa'+str(cl)]
+		context_headers_gram+=['query_word'+'_wa'+str(cl)]
 	
-	context_headers_glove+=['query_word','label']
-	context_headers_gram+=['query_word','label']
+	context_headers_glove+=['label']
+	context_headers_gram+=['label']
 	
 	if headertype==1:
 		return context_headers_gram
