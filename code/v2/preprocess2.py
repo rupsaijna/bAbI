@@ -110,7 +110,8 @@ def story_to_gram_features(story,context_length):
 			tempwf+=padded_story_features[next_word_idx][2:-1]
 		print()
 		tempwf+=[padded_story_features[word_idx][-1]]
-		context_story_features.append(tempwf)
+		if !(tempwf[0] in ['<BEG>', '<END>']):
+			context_story_features.append(tempwf)
 	print('Story_context ',len(context_story_features),len(context_story_features[0]) )
 	return context_story_features
 
