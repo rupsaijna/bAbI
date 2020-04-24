@@ -53,10 +53,11 @@ def sent_to_glove_features(sent, glove_embeddings, embeddingdim):
 	doc = nlp(sent)
 	sentfeatures=[]
 	for token in doc:
+		tempglove=[token.text, token.idx]
 		try:
-			tempglove= glove_embeddings.loc[token.text.lower()].values.tolist()
+			tempglove+= glove_embeddings.loc[token.text.lower()].values.tolist()
 		except Exception as e:
-			tempglove=[0]*embeddingdim
+			tempglove+=[0]*embeddingdim
 		sentfeatures.append(tempglove)
 	return(sentfeatures)	
 
