@@ -239,7 +239,7 @@ for i in range(5):
 
 	result_test = 100*(res_test == labels_test).mean()
 	result_train = 100*(res_train == labels_train).mean()
-	print(result_train)
+	print(res_test, sum(res_test))
 	ds
 	prf_test=precision_recall_fscore_support(res_test, labels_test, average='macro')
 	prf_train=precision_recall_fscore_support(res_train, labels_train, average='macro')
