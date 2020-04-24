@@ -74,11 +74,14 @@ grammar_features_train=pd.read_pickle('../../pickles/spacy/nonbinarized_features
 glove_features_test=pd.read_pickle('../../pickles/spacy/nonbinarized_features_context2_test_glove.pkl')
 grammar_features_test=pd.read_pickle('../../pickles/spacy/nonbinarized_features_context2_test_gram.pkl')
 
-
+'''
 a=set(grammar_features_train.columns.tolist())
 b=set(grammar_features_test.columns.tolist())
-gram_headers=list(a.intersection(b))
+gram_headers=list(a.intersection(b))'''
 
+assert(grammar_features_train['label']==glove_features_train['label'])
+labels_train=grammar_features_train['label']
+dsf
 print('gram',grammar_features_train.shape)
 print('glove',glove_features_train.shape)
 				 
