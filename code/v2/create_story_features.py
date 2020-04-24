@@ -7,6 +7,9 @@ context_length=2
 challenge = '../../data/tasks_1-20_v1-2/en/qa1_single-supporting-fact_{}.txt'
 print('Extracting stories for the challenge: single_supporting_fact')
 
+
+glove_embeddings=load_meanbinarized_glove(EMBEDDING_DIM) #load_binarized_glove()
+
 gram_headers=create_features_headers(headertype=1)
 glove_headers=create_features_headers(headertype=2)
 
