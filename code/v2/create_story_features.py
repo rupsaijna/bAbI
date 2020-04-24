@@ -21,7 +21,7 @@ train_features_gram=[]
 train_features_glove=[]
 counter=1
 for trs in train_stories:
-	print('Story:',counter)
+	print('Train Story:',counter)
 	train_features_gram+=story_to_gram_features(trs)
 	train_features_glove+=story_to_glove_features(trs,glove_embeddings, EMBEDDING_DIM)
 	counter+=1
@@ -48,7 +48,7 @@ test_features_gram=[]
 test_features_glove=[]
 counter=1
 for trs in test_stories:
-	print('Story:',counter)
+	print('Test Story:',counter)
 	test_features_gram+=story_to_gram_features(trs)
 	test_features_glove+=story_to_glove_features(trs,glove_embeddings, EMBEDDING_DIM)
 	counter+=1
