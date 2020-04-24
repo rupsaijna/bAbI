@@ -184,8 +184,7 @@ X_test2 = combo_test.reshape((combo_test.shape[0],5,1,int(combo_train.shape[1]/5
 print('reshaped train',X_train2.shape)
 print('reshaped test',X_test2.shape)
 				 
-kkkk
-# Setup
+'''# Setup
 tm = MultiClassConvolutionalTsetlinMachine2D(CLAUSES, T, s, (motif_length, 1), weighted_clauses=weighting)
 
 # Training
@@ -209,7 +208,7 @@ for i in range(5):
 	stop_testing = time()
 
 	print("\n\n#%d Testing Accuracy: %.2f%% Training Accuracy: %.2f%% Training Time: %.2fs Testing Time: %.2fs" % (i+1, result_test, result_train, stop_training-start_training, stop_testing-start_testing))
-	print("\n#Testing PRF: %s%%\nTraining PRF: %s%%" % (prf_test, prf_train))
+	print("\n#Testing PRF: %s%%\nTraining PRF: %s%%" % (prf_test, prf_train))'''
 
 	
 #########Combo##########
@@ -221,7 +220,7 @@ X_test3 = np.concatenate((X_test,X_test2), axis=3)
 print('reshaped train',X_train3.shape)
 print('reshaped test',X_test3.shape)
 				 
-
+kkkkk
 # Setup
 tm = MultiClassConvolutionalTsetlinMachine2D(CLAUSES, T, s, (motif_length, 1), weighted_clauses=weighting)
 
