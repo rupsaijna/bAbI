@@ -33,7 +33,7 @@ def find_uniques_length(df, ignoreheaders):
 	uniques=[]
 	columns=[]
 	dfcols=df.columns
-	for col in baselist_gram:
+	for col in gram_base:
 		this_cols=[col+ad for ad in addendum_context]
 		uset=set(df[this_cols].values.T.ravel())
 		#columns+=[col]
@@ -49,7 +49,7 @@ def binarize(df, list_uniques, list_columns):
 	newX=np.zeros((df.shape[0], sum_size*len(addendum_context)), dtype=np.int32)
 	startind=0
 	for contextid in addendum_context:
-		for colname_base in baselist_gram:
+		for colname_base in gram_base:
 			colname=colname_base+contextid
 			ul=list(list_uniques[baselist_gram.index(colname_base)])
 			tempx=np.zeros((df.shape[0], len(ul)), dtype=np.int32)
