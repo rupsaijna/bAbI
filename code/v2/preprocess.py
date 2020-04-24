@@ -90,7 +90,7 @@ def story_to_gram_features(story):
 	return story_features
 
 def story_to_glove_features(story, glove_embeddings, embeddingdim):
-	padg_2=[0]*emeddingdim
+	padg_2=[0]*embeddingdim
 	story_features=[]
 	query=story[1]
 	answer=story[2]
