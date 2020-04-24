@@ -27,7 +27,7 @@ CLAUSES=10000
 T=15000
 s=27.0
 weighting = True
-motif_length=3
+motif_length=5
 
 
 def find_uniques_length(df, ignoreheaders):
