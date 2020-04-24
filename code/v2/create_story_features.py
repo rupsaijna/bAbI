@@ -10,9 +10,12 @@ print('Extracting stories for the challenge: single_supporting_fact')
 
 glove_embeddings=load_meanbinarized_glove(EMBEDDING_DIM) #load_binarized_glove()
 
-gram_headers=create_features_headers(headertype=1)
-glove_headers=create_features_headers(headertype=2,embeddingdim=EMBEDDING_DIM)
+gram_headers=create_features_headers(headertype=1,context_length=2)
+glove_headers=create_features_headers(headertype=2,embeddingdim=EMBEDDING_DIM,context_length=2)
 
+print(gram_headers)
+print(len(gram_headers), len(glove_headers))
+dsa
 ftype='train'
 # Extracting train stories
 train_stories = get_stories(challenge.format(ftype))
@@ -22,8 +25,8 @@ train_features_glove=[]
 counter=1
 for trs in train_stories:
 	print('Train Story:',counter)
-	train_features_gram+=story_to_gram_features(trs)
-	train_features_glove+=story_to_glove_features(trs,glove_embeddings, EMBEDDING_DIM)
+	train_features_gram+=story_to_gram_features(trs,context_length=2)
+	train_features_glove+=story_to_glove_features(trs,glove_embeddings, EMBEDDING_DIM,context_length=2)
 	counter+=1
 	
 train_features_gram=pd.DataFrame(train_features_gram, columns=gram_headers)
