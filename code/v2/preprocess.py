@@ -3,6 +3,7 @@ from functools import reduce
 import numpy as np
 import spacy
 import pandas as pd
+import csv
 nlp = spacy.load("en_core_web_sm")
 
 gram_base=["pos_", "tag_", "ent_type_", "is_alpha", "is_stop", "is_digit", "is_lower", "is_upper","is_punct", "is_left_punct", "is_right_punct", "is_bracket", "is_quote", "dep_", "head.pos_", "head.head.pos_"]
