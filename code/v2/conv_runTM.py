@@ -126,7 +126,7 @@ X_test = Xtest.reshape((Xtest.shape[0],len(addendum_context),1,usum))
 
 print('reshaped train',X_train.shape)
 print('reshaped test',X_test.shape)
-kkjkk				 
+
 #np.save('x_train_conv', Xtrain)
 #np.save('x_test_conv', Xtest)
 				 
@@ -184,7 +184,7 @@ X_test2 = combo_test.reshape((combo_test.shape[0],5,1,int(combo_train.shape[1]/5
 print('reshaped train',X_train2.shape)
 print('reshaped test',X_test2.shape)
 				 
-
+kkkk
 # Setup
 tm = MultiClassConvolutionalTsetlinMachine2D(CLAUSES, T, s, (motif_length, 1), weighted_clauses=weighting)
 
