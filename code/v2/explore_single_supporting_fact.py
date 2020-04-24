@@ -1,4 +1,4 @@
-from preprocess import *
+from preprocess2 import *
 
 EMBEDDING_DIM = 100
 challenge = '../../data/tasks_1-20_v1-2/en/qa1_single-supporting-fact_{}.txt'
@@ -18,7 +18,8 @@ print('Number of test stories:', len(test_stories))
 train_features=[]
 for trs in train_stories:
 	print('Story:', trs)
-	temp=story_to_glove_features(trs, glove_embeddings, EMBEDDING_DIM)
+	#temp=story_to_glove_features(trs, glove_embeddings, EMBEDDING_DIM)
+	temp=story_to_glove_features(trs,context_length=2)
 	train_features+=temp
 	break
 
