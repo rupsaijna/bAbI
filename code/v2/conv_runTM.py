@@ -91,7 +91,7 @@ print('glove',glove_features_train.shape, len(labels_train))
 				 
 print('gram',grammar_features_test.shape, len(labels_test))
 print('glove',glove_features_test.shape, len(labels_test))
-fz
+
 #########Grammar##########
 print("Grammar")
 
@@ -227,7 +227,6 @@ X_test3 = np.concatenate((X_test,X_test2), axis=3)
 print('reshaped train',X_train3.shape)
 print('reshaped test',X_test3.shape)
 				 
-kkkkk
 # Setup
 tm = MultiClassConvolutionalTsetlinMachine2D(CLAUSES, T, s, (motif_length, 1), weighted_clauses=weighting)
 
