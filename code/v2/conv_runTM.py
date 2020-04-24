@@ -79,7 +79,7 @@ a=set(grammar_features_train.columns.tolist())
 b=set(grammar_features_test.columns.tolist())
 gram_headers=list(a.intersection(b))'''
 
-assert(grammar_features_train['label']==glove_features_train['label'])
+assert(grammar_features_train['label'].tolist()==glove_features_train['label'].tolist())
 labels_train=grammar_features_train['label']
 dsf
 print('gram',grammar_features_train.shape)
