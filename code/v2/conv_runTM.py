@@ -4,7 +4,7 @@ from sklearn.feature_selection import chi2
 import sys
 import os
 import time
-sys.path.append('../../pyTsetlinMachineMT/')
+sys.path.append('../../pyTsetlinMachineParallel/')
 from tm import MultiClassConvolutionalTsetlinMachine2D
 import numpy as np
 import re
