@@ -80,8 +80,7 @@ assert(grammar_features_test['label'].tolist()==glove_features_test['label'].tol
 
 labels_train=grammar_features_train['label']
 labels_test=grammar_features_test['label']
-print(labels_train)
-fdas
+
 
 print('gram',grammar_features_train.shape, len(labels_train))
 print('glove',glove_features_train.shape, len(labels_train))
@@ -240,6 +239,8 @@ for i in range(5):
 
 	result_test = 100*(res_test == labels_test).mean()
 	result_train = 100*(res_train == labels_train).mean()
+	print(result_train, sum(result_train))
+	ds
 	prf_test=precision_recall_fscore_support(res_test, labels_test, average='macro')
 	prf_train=precision_recall_fscore_support(res_train, labels_train, average='macro')
 	prf_detail_test=precision_recall_fscore_support(res_test, labels_test, average=None)
