@@ -75,6 +75,8 @@ grammar_features_train=pd.read_pickle('../../pickles/spacy/nonbinarized_features
 glove_features_test=pd.read_pickle('../../pickles/spacy/nonbinarized_features_context2_test_glove.pkl')
 grammar_features_test=pd.read_pickle('../../pickles/spacy/nonbinarized_features_context2_test_gram.pkl')
 
+print(glove_features_train)
+bdkjf
 '''
 a=set(grammar_features_train.columns.tolist())
 b=set(grammar_features_test.columns.tolist())
