@@ -105,7 +105,7 @@ def story_to_gram_features(story,context_length):
 			tempwf+=padded_story_features[prev_word_idx][2:-1]
 		print('word: ',word_idx,padded_story_features[word_idx][0])
 		tempwf+=padded_story_features[word_idx][2:-1]
-		for next_word_idx in range(word_idx+1,word_idx+context_length):
+		for next_word_idx in range(word_idx+1,word_idx+context_length+1):
 			print('next: ',next_word_idx,padded_story_features[next_word_idx][0])
 			tempwf+=padded_story_features[next_word_idx][2:-1]
 		print()
