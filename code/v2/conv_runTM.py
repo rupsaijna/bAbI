@@ -115,14 +115,14 @@ list_of_uniques=find_uniques_length(combo_train, remheaders)
 usum=np.sum([len(s) for s in list_of_uniques])
 #print('sum', usum, 'totsum', usum*5)	
 
-Xtrain=binarize(combo_train, list_of_uniques, baselist_gram)
-Xtest=binarize(combo_test, list_of_uniques, baselist_gram)
+Xtrain=binarize(combo_train, list_of_uniques, gram_base)
+Xtest=binarize(combo_test, list_of_uniques, gram_base)
 
 print('binarized train',Xtrain.shape)
 print('binarized test',Xtest.shape)
 
-X_train = Xtrain.reshape((Xtrain.shape[0],5,1,usum))
-X_test = Xtest.reshape((Xtest.shape[0],5,1,usum))
+X_train = Xtrain.reshape((Xtrain.shape[0],len(addendum_context),1,usum))
+X_test = Xtest.reshape((Xtest.shape[0],len(addendum_context),1,usum))
 
 print('reshaped train',X_train.shape)
 print('reshaped test',X_test.shape)
