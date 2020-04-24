@@ -243,7 +243,8 @@ for i in range(5):
 	if(sum(res_train)>0):
 		pz=list(zip(grammar_features_train['text'],grammar_features_train['label'],res_train))
 		for p in pz:
-			print (p)
+			if p[2]==1 or p[1]==1:
+				print (p)
 
 	prf_test=precision_recall_fscore_support(res_test, labels_test, average='macro')
 	prf_train=precision_recall_fscore_support(res_train, labels_train, average='macro')
