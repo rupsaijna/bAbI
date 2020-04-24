@@ -47,6 +47,17 @@ def sent_to_gram_features(sent):
 		sentfeatures.append(tokfeatures)
 	return(sentfeatures)	
 
+def sent_to_glove_features(sent, glove_embeddings, embeddingdim):
+	doc = nlp(sent)
+	sentfeatures=[]
+	for token in doc:
+		try:
+			tempglove= glove_embeddings.loc[token.text.lower()].values.tolist()
+		except Exception as e:
+			tempglove=[0]*embeddingdim
+		sentfeatures.append(tempglove)
+	return(sentfeatures)	
+
 def story_to_gram_features(story):
 	story_features=[]
 	query=story[1]
@@ -72,6 +83,36 @@ def story_to_gram_features(story):
 	padb=padb_1+padbe_2+padbe_3
 	padb[0]=padb[0].replace('BEG','STORY_BEG')
 	pade=pade_1+padbe_2+padbe_3
+	pade[0]=pade[0].replace('END','STORY_END')
+	story_features=[padb]+story_features+[pade]
+	return story_features
+
+def story_to_glove_features(story, glove_embeddings, embeddingdim):
+	padg_2=[0]*emeddingdim
+	story_features=[]
+	query=story[1]
+	answer=story[2]
+	story=story[0]
+	sents=story.split('<END><BEG>')
+	print('Sents', sents)
+	for sentence in sents:
+		sentence=sentence.replace('<BEG>','').replace('<END>','')
+		print('Sentence',sentence)
+		sent_features=sent_to_glove_features(sentence,glove_embeddings, embeddingdim)
+		print('Orig',sent_features)
+		padb=padb_1+padg_2
+		pade=pade_1+padg_2
+		sent_features=[padb]+sent_features+[pade]
+		print('Pad',sent_features)
+		sent_features=[s+[1] if s[0] in query else s+[0] for s in sent_features]  ##query
+		print('Q ',sent_features)
+
+		sent_features=[s+[1] if s[0] in answer else s+[0] for s in sent_features] ##answer
+		print('A ',sent_features)
+		story_features+=sent_features
+	padb=padb_1+padg_2+padbe_3
+	padb[0]=padb[0].replace('BEG','STORY_BEG')
+	pade=pade_1+padg_2+padbe_3
 	pade[0]=pade[0].replace('END','STORY_END')
 	story_features=[padb]+story_features+[pade]
 	return story_features
