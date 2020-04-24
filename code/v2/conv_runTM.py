@@ -127,7 +127,7 @@ X_test = Xtest.reshape((Xtest.shape[0],5,1,usum))
 
 print('reshaped train',X_train.shape)
 print('reshaped test',X_test.shape)
-				 
+kkjkk				 
 #np.save('x_train_conv', Xtrain)
 #np.save('x_test_conv', Xtest)
 				 
