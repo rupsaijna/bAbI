@@ -83,31 +83,31 @@ def story_to_gram_features(story,context_length):
 		sent_features=[s+[1] if s[0] in answer else s+[0] for s in sent_features] ##answer
 		#print('A ',len(sent_features),len(sent_features[0]) )
 		story_features+=sent_features
-	print('Story ',len(story_features),len(story_features[0]) )
+	#print('Story ',len(story_features),len(story_features[0]) )
 	padded_story_features=[]
 	for cl in range(context_length-1):
 		padded_story_features+=[padb+padbe_3]
 	padded_story_features+=story_features
 	for cl in range(context_length-1):
 		padded_story_features+=[pade+padbe_3]
-	print('Story ',len(padded_story_features),len(padded_story_features[0]) )
+	#print('Story ',len(padded_story_features),len(padded_story_features[0]) )
 	context_story_features=[]
 	for word_idx in range(context_length,context_length+len(story_features)-2):
 		tempwf=padded_story_features[word_idx][:2]
-		print('target: ',word_idx,padded_story_features[word_idx][0],len(tempwf))
+		#print('target: ',word_idx,padded_story_features[word_idx][0],len(tempwf))
 		for prev_word_idx in range(word_idx-context_length,word_idx):
-			print('prev: ',prev_word_idx,padded_story_features[prev_word_idx][0], len(tempwf), len(padded_story_features[prev_word_idx][2:-1]))
+			#print('prev: ',prev_word_idx,padded_story_features[prev_word_idx][0], len(tempwf), len(padded_story_features[prev_word_idx][2:-1]))
 			tempwf+=padded_story_features[prev_word_idx][2:-1]
-		print('word: ',word_idx,padded_story_features[word_idx][0],len(tempwf))
+		#print('word: ',word_idx,padded_story_features[word_idx][0],len(tempwf))
 		tempwf+=padded_story_features[word_idx][2:-1]
 		for next_word_idx in range(word_idx+1,word_idx+context_length+1):
-			print('next: ',next_word_idx,padded_story_features[next_word_idx][0],len(tempwf))
+			#print('next: ',next_word_idx,padded_story_features[next_word_idx][0],len(tempwf))
 			tempwf+=padded_story_features[next_word_idx][2:-1]
-		print()
+		#print()
 		tempwf+=[padded_story_features[word_idx][-1]]
 		if (tempwf[0] not in ['<BEG>', '<END>']):
 			context_story_features.append(tempwf)
-	print('Story_context ',len(context_story_features),len(context_story_features[0]) )
+	#print('Story_context ',len(context_story_features),len(context_story_features[0]) )
 	return context_story_features
 
 def story_to_glove_features(story, glove_embeddings, embeddingdim,context_length):
@@ -122,42 +122,42 @@ def story_to_glove_features(story, glove_embeddings, embeddingdim,context_length
 		sentence=sentence.replace('<BEG>','').replace('<END>','')
 		#print('Sentence',sentence)
 		sent_features=sent_to_glove_features(sentence,glove_embeddings, embeddingdim)
-		print('Orig',len(sent_features),len(sent_features[0]))
+		#print('Orig',len(sent_features),len(sent_features[0]))
 		padb=padb_1+padg_2
 		pade=pade_1+padg_2
 		sent_features=[padb]+sent_features+[pade]
-		print('Pad',len(sent_features),len(sent_features[0]))
+		#print('Pad',len(sent_features),len(sent_features[0]))
 		sent_features=[s+[1] if s[0] in query else s+[0] for s in sent_features]  ##query
-		print('Q ',len(sent_features),len(sent_features[0]) )
+		#print('Q ',len(sent_features),len(sent_features[0]) )
 
 		sent_features=[s+[1] if s[0] in answer else s+[0] for s in sent_features] ##answer
-		print('A ',len(sent_features),len(sent_features[0]) )
+		#print('A ',len(sent_features),len(sent_features[0]) )
 		story_features+=sent_features
-	print('Story ',len(story_features),len(story_features[0]) )
+	#print('Story ',len(story_features),len(story_features[0]) )
 	padded_story_features=[]
 	for cl in range(context_length-1):
 		padded_story_features+=[padb+padbe_3]
 	padded_story_features+=story_features
 	for cl in range(context_length-1):
 		padded_story_features+=[pade+padbe_3]
-	print('Story ',len(padded_story_features),len(padded_story_features[0]) )
+	#print('Story ',len(padded_story_features),len(padded_story_features[0]) )
 	context_story_features=[]
 	for word_idx in range(context_length,context_length+len(story_features)-2):
 		tempwf=padded_story_features[word_idx][:2]
-		print('target: ',word_idx,padded_story_features[word_idx][0],len(tempwf))
+		#print('target: ',word_idx,padded_story_features[word_idx][0],len(tempwf))
 		for prev_word_idx in range(word_idx-context_length,word_idx):
-			print('prev: ',prev_word_idx,padded_story_features[prev_word_idx][0], len(tempwf), len(padded_story_features[prev_word_idx][2:-1]))
+			#print('prev: ',prev_word_idx,padded_story_features[prev_word_idx][0], len(tempwf), len(padded_story_features[prev_word_idx][2:-1]))
 			tempwf+=padded_story_features[prev_word_idx][2:-1]
-		print('word: ',word_idx,padded_story_features[word_idx][0],len(tempwf))
+		#print('word: ',word_idx,padded_story_features[word_idx][0],len(tempwf))
 		tempwf+=padded_story_features[word_idx][2:-1]
 		for next_word_idx in range(word_idx+1,word_idx+context_length+1):
-			print('next: ',next_word_idx,padded_story_features[next_word_idx][0],len(tempwf))
+			#print('next: ',next_word_idx,padded_story_features[next_word_idx][0],len(tempwf))
 			tempwf+=padded_story_features[next_word_idx][2:-1]
-		print()
+		#print()
 		tempwf+=[padded_story_features[word_idx][-1]]
 		if (tempwf[0] not in ['<BEG>', '<END>']):
 			context_story_features.append(tempwf)
-	print('Story_context ',len(context_story_features),len(context_story_features[0]) )
+	#print('Story_context ',len(context_story_features),len(context_story_features[0]) )
 	return context_story_features
 
 
