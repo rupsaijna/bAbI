@@ -63,7 +63,7 @@ def binarize(df, list_uniques, list_columns):
 			startind=endind
 	temp_cols=np.array(temp_cols)
 	print(temp_cols.shape)
-	t=temp_cols.reshape(5,1,17)
+	t=temp_cols.reshape(len(addendum_context),1,len(gram_base))
 	print(t.shape)
 	print(t)
 	return newX	
