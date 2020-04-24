@@ -21,10 +21,9 @@ gram_base=["pos_", "tag_", "ent_type_", "is_alpha", "is_stop", "is_digit", "is_l
 gram_base+=qr
 addendum_context=['_wb'+str(l) for l in range(context_length,0,-1)]+['_wt']+['_wa'+str(l) for l in range(1,context_length+1)]
 exf=['text','word_idx','label']
-print(addendum_context)
-dfkk
-CLAUSES=10000
-T=15000
+
+CLAUSES=1000
+T=1500
 s=27.0
 weighting = True
 motif_length=3
@@ -69,15 +68,12 @@ def binarize(df, list_uniques, list_columns):
 	print(t)
 	return newX	
 
-glove_features_train=pd.read_pickle('../pickles/spacy/nonbinarized_2context_features_train_glove.pkl')
-grammar_features_train=pd.read_pickle('../pickles/spacy/nonbinarized_2context_features_train_gram.pkl')
-with open('../pickles/spacy/nonbinarized_2context_features_train_labels.pkl', 'rb') as pickle_file:
-	labels_train=pickle.load(pickle_file)
+glove_features_train=pd.read_pickle('../../pickles/spacy/nonbinarized_features_context2_train_glove.pkl')
+grammar_features_train=pd.read_pickle('../../pickles/spacy/nonbinarized_features_context2_train_gram.pkl')
 
-glove_features_test=pd.read_pickle('../pickles/spacy/nonbinarized_2context_features_validate_glove.pkl')
-grammar_features_test=pd.read_pickle('../pickles/spacy/nonbinarized_2context_features_validate_gram.pkl')
-with open('../pickles/spacy/nonbinarized_2context_features_validate_labels.pkl', 'rb') as pickle_file:
-	labels_test=pickle.load(pickle_file)
+glove_features_test=pd.read_pickle('../../pickles/spacy/nonbinarized_features_context2_test_glove.pkl')
+grammar_features_test=pd.read_pickle('../../pickles/spacy/nonbinarized_features_context2_test_gram.pkl')
+
 
 a=set(grammar_features_train.columns.tolist())
 b=set(grammar_features_test.columns.tolist())
@@ -89,7 +85,7 @@ print('glove',glove_features_train.shape)
 print('gram',grammar_features_test.shape)
 print('glove',glove_features_test.shape)
 
-
+ASC
 #########Grammar##########
 print("Grammar")
 
