@@ -15,9 +15,14 @@ from sklearn.metrics import precision_recall_fscore_support
 from sklearn.model_selection import train_test_split
 from time import time
 
-oplabels=['O','B-ORG','I-ORG','B-MISC','I-MISC','B-PER','I-PER','B-LOC','I-LOC']
-baselist_gram=['pos_', 'tag_', 'is_alpha', 'is_stop', 'is_digit', 'is_lower', 'is_upper', 'is_punct', 'is_left_punct', 'is_right_punct', 'is_bracket', 'is_quote', 'dep_', 'head.pos_', 'head.head.pos_', 'info1', 'info2']
-addendum_context=['_wb2','_wb1','_w','_wa1','_wa2']	
+context_length=2
+qr=['query_word']
+gram_base=["pos_", "tag_", "ent_type_", "is_alpha", "is_stop", "is_digit", "is_lower", "is_upper","is_punct", "is_left_punct", "is_right_punct", "is_bracket", "is_quote", "dep_", "head.pos_", "head.head.pos_"]
+gram_base+=qr
+addendum_context=['_wb'+str(l) for l in range(context_length,0,-1)]+['_wt']+['_wa'+str(l) for l in range(1,context_length+1)]
+exf=['text',,'word_idx','label']
+print(addendum_context)
+dfkk
 CLAUSES=10000
 T=15000
 s=27.0
@@ -83,6 +88,7 @@ print('glove',glove_features_train.shape)
 				 
 print('gram',grammar_features_test.shape)
 print('glove',glove_features_test.shape)
+
 
 #########Grammar##########
 print("Grammar")
