@@ -85,7 +85,6 @@ print('glove',glove_features_train.shape)
 print('gram',grammar_features_test.shape)
 print('glove',glove_features_test.shape)
 
-ASC
 #########Grammar##########
 print("Grammar")
 
