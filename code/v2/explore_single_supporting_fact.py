@@ -27,5 +27,5 @@ print()
 for ff in train_features:
 	print(ff)
 	
-print(len(ff), len(ff[0]))
+print(len(train_features), len(train_features[0]))
 
