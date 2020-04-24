@@ -61,7 +61,7 @@ def sent_to_glove_features(sent, glove_embeddings, embeddingdim):
 		sentfeatures.append(tempglove)
 	return(sentfeatures)	
 
-def story_to_gram_features(story):
+def story_to_gram_features(story,context_length):
 	story_features=[]
 	query=story[1]
 	answer=story[2]
@@ -72,25 +72,47 @@ def story_to_gram_features(story):
 		sentence=sentence.replace('<BEG>','').replace('<END>','')
 		#print('Sentence',sentence)
 		sent_features=sent_to_gram_features(sentence)
-		#print('Orig',sent_features)
+		print('Orig',len(sent_features),len(sent_features[0]))
 		padb=padb_1+padbe_2
 		pade=pade_1+padbe_2
 		sent_features=[padb]+sent_features+[pade]
-		#print('Pad',sent_features)
+		print('Pad',len(sent_features),len(sent_features[0]))
 		sent_features=[s+[1] if s[0] in query else s+[0] for s in sent_features]  ##query
-		#print('Q ',sent_features)
+		print('Q ',len(sent_features),len(sent_features[0]) )
 
 		sent_features=[s+[1] if s[0] in answer else s+[0] for s in sent_features] ##answer
-		#print('A ',sent_features)
+		print('A ',len(sent_features),len(sent_features[0]) )
 		story_features+=sent_features
-	padb=padb_1+padbe_2+padbe_3
+	print('Story ',len(story_features),len(story_features[0]) )
+	'''padb=padb_1+padg_2+padbe_3
 	padb[0]=padb[0].replace('BEG','STORY_BEG')
-	pade=pade_1+padbe_2+padbe_3
+	pade=pade_1+padg_2+padbe_3
 	pade[0]=pade[0].replace('END','STORY_END')
-	story_features=[padb]+story_features+[pade]
-	return story_features
+	story_features=[padb]+story_features+[pade]'''
+	padded_story_features=[]
+	for cl in range(context_length-1):
+		padded_story_features+=[padb]
+	padded_story_features+=story_features
+	for cl in range(context_length-1):
+		padded_story_features+=[pade]
+	context_story_features=[]
+	for word_idx in range(context_length,context_length+len(story_features)-2):
+		tempwf=padded_story_features[word_idx][:2]
+		print('target: ',padded_story_features[word_idx][0])
+		for prev_word_idx in range(word_idx-context_length,word_idx):
+			print('prev: ',padded_story_features[prev_word_idx][0])
+			tempwf+=padded_story_features[prev_word_idx][2:-1]
+		print('word: ',padded_story_features[prev_word_idx][0])
+		tempwf+=padded_story_features[prev_word_idx][2:-1]
+		for next_word_idx in range(word_idx,word_idx+context_length):
+			print('next: ',padded_story_features[next_word_idx][0])
+			tempwf+=padded_story_features[next_word_idx][2:-1]
+		tempwf+=[padded_story_features[word_idx][-1]]
+		context_story_features.append(tempwf)
+	print('Story_context ',len(context_story_features),len(context_story_features[0]) )
+	return context_story_features
 
-def story_to_glove_features(story, glove_embeddings, embeddingdim):
+def story_to_glove_features(story, glove_embeddings, embeddingdim,context_length):
 	padg_2=[0]*embeddingdim
 	story_features=[]
 	query=story[1]
