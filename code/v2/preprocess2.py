@@ -99,15 +99,16 @@ def story_to_gram_features(story,context_length):
 	context_story_features=[]
 	for word_idx in range(context_length,context_length+len(story_features)-2):
 		tempwf=padded_story_features[word_idx][:2]
-		print('target: ',wordidx,padded_story_features[word_idx][0])
+		print('target: ',word_idx,padded_story_features[word_idx][0])
 		for prev_word_idx in range(word_idx-context_length,word_idx):
-			print('prev: ',padded_story_features[prev_word_idx][0])
+			print('prev: ',prev_word_idx,padded_story_features[prev_word_idx][0])
 			tempwf+=padded_story_features[prev_word_idx][2:-1]
-		print('word: ',padded_story_features[prev_word_idx][0])
+		print('word: ',prev_word_idx,padded_story_features[prev_word_idx][0])
 		tempwf+=padded_story_features[prev_word_idx][2:-1]
 		for next_word_idx in range(word_idx,word_idx+context_length):
-			print('next: ',padded_story_features[next_word_idx][0])
+			print('next: ',next_word_idx,padded_story_features[next_word_idx][0])
 			tempwf+=padded_story_features[next_word_idx][2:-1]
+		print()
 		tempwf+=[padded_story_features[word_idx][-1]]
 		context_story_features.append(tempwf)
 	print('Story_context ',len(context_story_features),len(context_story_features[0]) )
