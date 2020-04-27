@@ -27,8 +27,8 @@ CLAUSES=150
 T=90
 s=2.9
 weighting = True
-motif_length=3
-training_epoch=20
+motif_length=2
+training_epoch=5
 
 
 def find_uniques_length(df, ignoreheaders):
@@ -63,11 +63,11 @@ def binarize(df, list_uniques, list_columns):
 			temp_cols.append(colname)
 			newX[:,startind:endind]=tempx
 			startind=endind
-	temp_cols=np.array(temp_cols)
+	'''temp_cols=np.array(temp_cols)
 	print(temp_cols.shape)
 	t=temp_cols.reshape(len(addendum_context),1,len(gram_base))
 	print(t.shape)
-	print(t)
+	print(t)'''
 	return newX	
 
 glove_features_train=pd.read_pickle('../../pickles/spacy/nonbinarized_features_context'+str(context_length)+'_train_glove.pkl')
@@ -268,8 +268,8 @@ for i in range(5):
 
 	print("\n\n#%d Convolutional Testing Accuracy: %.2f%% Training Accuracy: %.2f%% Training Time: %.2fs Testing Time: %.2fs" % (i+1, result_test, result_train, stop_training-start_training, stop_testing-start_testing))
 	print("\nActual Testing Accuracy: %.2f%% Training Accuracy: %.2f%%" % (result_test2, result_train2))
-	print("\n#Testing PRF: %s%%\nTraining PRF: %s%%" % (prf_test, prf_train))
-	print("\n#Classwise Testing  & Training PRFS:\n")
+	print("#Testing PRF: %s%%\nTraining PRF: %s%%" % (prf_test, prf_train))
+	print("#Classwise Testing  & Training PRFS:\n")
 	for clidx in range(len(oplabels)):
 		print(oplabels[clidx]+": "+str(prf_detail_test[0][clidx])+" ; "+str(prf_detail_test[1][clidx])+" ; "+str(prf_detail_test[2][clidx])+" ; "+str(prf_detail_test[3][clidx])+" || "+str(prf_detail_train[0][clidx])+" ; "+str(prf_detail_train[1][clidx])+" ; "+str(prf_detail_train[2][clidx])+" ; "+str(prf_detail_train[3][clidx])+'\n')
 	
