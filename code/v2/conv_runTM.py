@@ -28,7 +28,7 @@ T=90
 s=2.9
 weighting = True
 motif_length=2
-training_epoch=5
+training_epoch=20
 RUNS=10
 
 
