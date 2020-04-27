@@ -241,7 +241,7 @@ for i in range(5):
 	
 	res_test_indx=np.where(res_test==1)
 	res_train_indx=np.where(res_train==1)
-	print(set(list(res_test_indx)))
+	print(list(res_test_indx))
 	print(set(list(labels_test_indx)))
 	      
 	
