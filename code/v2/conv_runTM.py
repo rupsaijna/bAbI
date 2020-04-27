@@ -23,8 +23,8 @@ gram_base+=qr
 addendum_context=['_wb'+str(l) for l in range(context_length,0,-1)]+['_wt']+['_wa'+str(l) for l in range(1,context_length+1)]
 exf=['text','word_idx','label']
 
-CLAUSES=150
-T=90
+CLAUSES=250
+T=190
 s=2.7
 weighting = True
 motif_length=3
