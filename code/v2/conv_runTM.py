@@ -28,6 +28,7 @@ T=90
 s=2.9
 weighting = True
 motif_length=3
+training_epoch=20
 
 
 def find_uniques_length(df, ignoreheaders):
@@ -231,7 +232,7 @@ labels_train_indx=np.where(labels_train==1)
 # Training
 for i in range(5):
 	start_training = time()
-	tm.fit(X_train3, labels_train, epochs=10, incremental=True)
+	tm.fit(X_train3, labels_train, epochs=training_epoch, incremental=True)
 	stop_training = time()
 
 	start_testing = time()
