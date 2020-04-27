@@ -23,11 +23,11 @@ gram_base+=qr
 addendum_context=['_wb'+str(l) for l in range(context_length,0,-1)]+['_wt']+['_wa'+str(l) for l in range(1,context_length+1)]
 exf=['text','word_idx','label']
 
-CLAUSES=100
-T=150
-s=2.5
+CLAUSES=20
+T=15
+s=7
 weighting = True
-motif_length=5
+motif_length=3
 
 
 def find_uniques_length(df, ignoreheaders):
