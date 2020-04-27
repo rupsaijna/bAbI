@@ -240,6 +240,11 @@ for i in range(5):
 	stop_testing = time()
 	
 	res_test_indx=np.where(res_test==1)
+	res_train_indx=np.where(res_train==1)
+	print(set(list(res_test_indx)))
+	print(set(list(labels_test_indx)))
+	      
+	
 	result_test2=100*len(set(list(res_test_indx)).intersection(set(list(labels_test_indx))))/len(list(labels_test_indx))
 	result_train2=100*len(set(list(res_train_indx)).intersection(set(list(labels_train_indx))))/len(list(labels_train_indx))
 	
