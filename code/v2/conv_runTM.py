@@ -16,7 +16,7 @@ from sklearn.model_selection import train_test_split
 from time import time
 
 oplabels=['0','1']
-context_length=2
+context_length=4
 qr=['query_word']
 gram_base=["pos_", "tag_", "ent_type_", "is_alpha", "is_stop", "is_digit", "is_lower", "is_upper","is_punct", "is_left_punct", "is_right_punct", "is_bracket", "is_quote", "dep_", "head.pos_", "head.head.pos_"]
 gram_base+=qr
@@ -240,11 +240,11 @@ for i in range(5):
 	result_test = 100*(res_test == labels_test).mean()
 	result_train = 100*(res_train == labels_train).mean()
 	
-	if(sum(res_train)>0):
+	'''if(sum(res_train)>0):
 		pz=list(zip(grammar_features_train['text'],grammar_features_train['label'],res_train))
 		for p in pz:
 			if p[2]==1 or p[1]==1:
-				print (p)
+				print (p)'''
 
 	prf_test=precision_recall_fscore_support(res_test, labels_test, average='macro')
 	prf_train=precision_recall_fscore_support(res_train, labels_train, average='macro')
