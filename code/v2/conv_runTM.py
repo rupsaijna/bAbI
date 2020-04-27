@@ -27,7 +27,7 @@ CLAUSES=160
 T=90
 s=2.7
 weighting = True
-motif_length=4
+motif_length=5
 training_epoch=30
 RUNS=10
 
