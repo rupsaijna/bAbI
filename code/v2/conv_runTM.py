@@ -225,6 +225,8 @@ print('reshaped test',X_test3.shape)
 				 
 # Setup
 tm = MultiClassConvolutionalTsetlinMachine2D(CLAUSES, T, s, (motif_length, 1), weighted_clauses=weighting)
+labels_test_indx=np.where(labels_test==1)
+labels_train_indx=np.where(labels_train==1)
 
 # Training
 for i in range(5):
@@ -236,6 +238,11 @@ for i in range(5):
 	res_test=tm.predict(X_test3)
 	res_train=tm.predict(X_train3) 
 	stop_testing = time()
+	
+	res_test_indx=np.where(res_test==1)
+	result_test2=100*len(set(list(res_test_indx)).intersection(set(list(labels_test_indx))))/len(list(labels_test_indx))
+	result_train2=100*len(set(list(res_train_indx)).intersection(set(list(labels_train_indx))))/len(list(labels_train_indx))
+	
 
 	result_test = 100*(res_test == labels_test).mean()
 	result_train = 100*(res_train == labels_train).mean()
@@ -257,6 +264,7 @@ for i in range(5):
 
 
 	print("\n\n#%d Convolutional Testing Accuracy: %.2f%% Training Accuracy: %.2f%% Training Time: %.2fs Testing Time: %.2fs" % (i+1, result_test, result_train, stop_training-start_training, stop_testing-start_testing))
+	print("\n\n#%d Convolutional Testing Accuracy: %.2f%% Training Accuracy: %.2f%% Training Time: %.2fs Testing Time: %.2fs" % (i+1, result_test2, result_train2, stop_training-start_training, stop_testing-start_testing))
 	print("\n#Testing PRF: %s%%\nTraining PRF: %s%%" % (prf_test, prf_train))
 	print("\n#Classwise Testing  & Training PRFS:\n")
 	for clidx in range(len(oplabels)):
