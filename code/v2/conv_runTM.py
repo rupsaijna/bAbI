@@ -69,11 +69,11 @@ def binarize(df, list_uniques, list_columns):
 	print(t)
 	return newX	
 
-glove_features_train=pd.read_pickle('../../pickles/spacy/nonbinarized_features_context2_train_glove.pkl')
-grammar_features_train=pd.read_pickle('../../pickles/spacy/nonbinarized_features_context2_train_gram.pkl')
+glove_features_train=pd.read_pickle('../../pickles/spacy/nonbinarized_features_context'+str(context_length)+'_train_glove.pkl')
+grammar_features_train=pd.read_pickle('../../pickles/spacy/nonbinarized_features_context'+str(context_length)+'_train_gram.pkl')
 
-glove_features_test=pd.read_pickle('../../pickles/spacy/nonbinarized_features_context2_test_glove.pkl')
-grammar_features_test=pd.read_pickle('../../pickles/spacy/nonbinarized_features_context2_test_gram.pkl')
+glove_features_test=pd.read_pickle('../../pickles/spacy/nonbinarized_features_context'+str(context_length)+'_test_glove.pkl')
+grammar_features_test=pd.read_pickle('../../pickles/spacy/nonbinarized_features_context'+str(context_length)+'_test_gram.pkl')
 
 assert(grammar_features_train['label'].tolist()==glove_features_train['label'].tolist())
 assert(grammar_features_test['label'].tolist()==glove_features_test['label'].tolist())
