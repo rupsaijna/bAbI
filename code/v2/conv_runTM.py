@@ -29,6 +29,7 @@ s=2.9
 weighting = True
 motif_length=2
 training_epoch=5
+RUNS=10
 
 
 def find_uniques_length(df, ignoreheaders):
