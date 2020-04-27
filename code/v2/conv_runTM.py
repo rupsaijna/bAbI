@@ -229,8 +229,11 @@ tm = MultiClassConvolutionalTsetlinMachine2D(CLAUSES, T, s, (motif_length, 1), w
 labels_test_indx=np.where(labels_test==1)
 labels_train_indx=np.where(labels_train==1)
 
+acc=[]
+
 # Training
-for i in range(5):
+for run in range(RUNS):
+	print(run)
 	start_training = time()
 	tm.fit(X_train3, labels_train, epochs=training_epoch, incremental=True)
 	stop_training = time()
@@ -266,12 +269,15 @@ for i in range(5):
 	prf_train=' '.join(prf_train)
 
 
-	print("\n\n#%d Convolutional Testing Accuracy: %.2f%% Training Accuracy: %.2f%% Training Time: %.2fs Testing Time: %.2fs" % (i+1, result_test, result_train, stop_training-start_training, stop_testing-start_testing))
+	'''print("\n\n#%d Convolutional Testing Accuracy: %.2f%% Training Accuracy: %.2f%% Training Time: %.2fs Testing Time: %.2fs" % (run+1, result_test, result_train, stop_training-start_training, stop_testing-start_testing))
 	print("\nActual Testing Accuracy: %.2f%% Training Accuracy: %.2f%%" % (result_test2, result_train2))
 	print("#Testing PRF: %s%%\nTraining PRF: %s%%" % (prf_test, prf_train))
 	print("#Classwise Testing  & Training PRFS:\n")
 	for clidx in range(len(oplabels)):
 		print(oplabels[clidx]+": "+str(prf_detail_test[0][clidx])+" ; "+str(prf_detail_test[1][clidx])+" ; "+str(prf_detail_test[2][clidx])+" ; "+str(prf_detail_test[3][clidx])+" || "+str(prf_detail_train[0][clidx])+" ; "+str(prf_detail_train[1][clidx])+" ; "+str(prf_detail_train[2][clidx])+" ; "+str(prf_detail_train[3][clidx])+'\n')
+	'''
+	acc.append(result_test2)
 	
+print('Max Acc:', max(acc))
 	
 	
