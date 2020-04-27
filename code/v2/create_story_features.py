@@ -2,7 +2,7 @@ from preprocess2 import *
 import pandas as pd
 
 EMBEDDING_DIM = 100
-CONTEXT_LENGTH=2
+CONTEXT_LENGTH=4
 
 challenge = '../../data/tasks_1-20_v1-2/en/qa1_single-supporting-fact_{}.txt'
 print('Extracting stories for the challenge: single_supporting_fact')
