@@ -27,9 +27,9 @@ CLAUSES=160
 T=90
 s=2.7
 weighting = True
-motif_length=6
+motif_length=7
 training_epoch=35
-RUNS=20
+RUNS=40
 
 
 def find_uniques_length(df, ignoreheaders):
@@ -280,5 +280,7 @@ for run in range(RUNS):
 	acc.append(result_test2)
 	
 print('Max Acc:', max(acc))
+print('Min Acc:', min(acc))
+print('Avg Acc:', sum(acc)/len(acc))
 	
 	
