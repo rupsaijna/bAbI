@@ -25,7 +25,7 @@ exf=['text','word_idx','label']
 
 CLAUSES=150
 T=240
-s=2.7
+s=27
 weighting = True
 motif_length=3
 
