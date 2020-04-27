@@ -24,7 +24,7 @@ addendum_context=['_wb'+str(l) for l in range(context_length,0,-1)]+['_wt']+['_w
 exf=['text','word_idx','label']
 
 CLAUSES=150
-T=240
+T=140
 s=2.7
 weighting = True
 motif_length=3
