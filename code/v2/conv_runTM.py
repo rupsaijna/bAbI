@@ -181,8 +181,8 @@ combo_test=combo_test[combo_headers].to_numpy()
 print('\ncombo train',combo_train.shape)
 print('combo test',combo_test.shape)
 
-X_train2 = combo_train.reshape((combo_train.shape[0],5,1,int(combo_train.shape[1]/5)))
-X_test2 = combo_test.reshape((combo_test.shape[0],5,1,int(combo_train.shape[1]/5)))
+X_train2 = combo_train.reshape((combo_train.shape[0],(context_length*2+1),1,int(combo_train.shape[1]/(context_length*2+1))))
+X_test2 = combo_test.reshape((combo_test.shape[0],(context_length*2+1),1,int(combo_train.shape[1]/(context_length*2+1))))
 
 print('reshaped train',X_train2.shape)
 print('reshaped test',X_test2.shape)
