@@ -12,8 +12,9 @@ padb_1=['<BEG>',-1]
 pade_1=['<END>',-1]
 padbe_3=[0,0]
 
-def pad_stories(gram_f, glove_f, maxlen):
+def pad_stories(gram_f, glove_f, embeddingdim,maxlen):
 	new_gram_f=[]
+	padg_2=[0]*embeddingdim
 	padblank_gram=padb_1+padbe_2+[0]
 	padblank_gram[0]='<PAD>'
 	padblank_glove=padb_1+padg_2
