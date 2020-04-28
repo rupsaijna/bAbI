@@ -106,7 +106,7 @@ def story_to_gram_features_sentwise(story):
 			sent_features+=padblank'''
 		sent_features=[s+[1] if s[0] in query else s+[0] for s in sent_features]  ##query
 		story_features+=sent_features
-	return story_features, answer, len(sent_features)
+	return story_features, answer, len(story_features)
 	
 def story_to_glove_features_sentwise(story, glove_embeddings, embeddingdim):
 	padg_2=[0]*embeddingdim
@@ -127,7 +127,7 @@ def story_to_glove_features_sentwise(story, glove_embeddings, embeddingdim):
 			sent_features+=padblank'''
 		sent_features=[s+[1] if s[0] in query else s+[0] for s in sent_features]  ##query
 		story_features+=sent_features
-	return story_features, answer, len(sent_features)
+	return story_features, answer, len(story_features)
 	
 
 def story_to_gram_features(story,context_length):
