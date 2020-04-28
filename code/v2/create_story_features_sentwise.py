@@ -26,8 +26,6 @@ MAXLEN=0
 counter=1
 for trs in train_stories:
 	temp_features, temp_answer, temp_len=story_to_gram_features_sentwise(trs)
-	if counter>3:
-		break
 	print('Train Story:',counter)
 	train_features_gram+=[temp_features]
 	train_labels.append(temp_answer)
@@ -50,8 +48,6 @@ test_labels=[]
 counter=1
 for trs in test_stories:
 	print('Test Story:',counter)
-	if counter>3:
-		break
 	temp_features, temp_answer, temp_len=story_to_gram_features_sentwise(trs)
 	test_features_gram+=[temp_features]
 	test_labels.append(temp_answer)
