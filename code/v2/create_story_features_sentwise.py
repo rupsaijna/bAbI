@@ -2,7 +2,7 @@ from preprocess2 import *
 import pandas as pd
 
 EMBEDDING_DIM = 100
-CONTEXT_LENGTH=4
+MAXLEN = max(map(len, (x for x, _, _ in train_stories + test_stories)))
 
 challenge = '../../data/tasks_1-20_v1-2/en/qa1_single-supporting-fact_{}.txt'
 print('Extracting stories for the challenge: single_supporting_fact')
@@ -16,14 +16,22 @@ glove_headers=create_features_headers(headertype=2,embeddingdim=EMBEDDING_DIM,co
 ftype='train'
 # Extracting train stories
 train_stories = get_stories(challenge.format(ftype))
+test_stories = get_stories(challenge.format('test'))
+
 print('Number of training stories:', len(train_stories))
+
+
+MAXLEN = max(map(len, (x for x, _, _ in train_stories + test_stories)))
+
+print(MAXLEN)
+fhgf
 train_features_gram=[]
 train_features_glove=[]
 counter=1
 for trs in train_stories:
 	print('Train Story:',counter)
-	train_features_gram+=story_to_gram_features(trs,context_length=CONTEXT_LENGTH)
-	train_features_glove+=story_to_glove_features(trs,glove_embeddings, EMBEDDING_DIM,context_length=CONTEXT_LENGTH)
+	train_features_gram+=story_to_gram_features_sentwise(trs,MAXLEN)
+	train_features_glove+=story_to_glove_features_sentwise(trs,glove_embeddings, EMBEDDING_DIM,MAXLEN)
 	counter+=1
 	
 train_features_gram=pd.DataFrame(train_features_gram, columns=gram_headers)
@@ -42,15 +50,14 @@ print('Saved: ',savename+'_glove.pkl')
 
 # Extracting test stories
 ftype='test'
-test_stories = get_stories(challenge.format(ftype))
 print('Number of test stories:', len(test_stories))
 test_features_gram=[]
 test_features_glove=[]
 counter=1
 for trs in test_stories:
 	print('Test Story:',counter)
-	test_features_gram+=story_to_gram_features(trs,context_length=CONTEXT_LENGTH)
-	test_features_glove+=story_to_glove_features(trs,glove_embeddings, EMBEDDING_DIM,context_length=CONTEXT_LENGTH)
+	test_features_gram+=story_to_gram_features_sentwise(trs,MAXLEN)
+	test_features_glove+=story_to_glove_features_sentwise(trs,glove_embeddings, EMBEDDING_DIM,MAXLEN)
 	counter+=1
   
 test_features_gram=pd.DataFrame(test_features_gram, columns=gram_headers)
