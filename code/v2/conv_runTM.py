@@ -29,7 +29,7 @@ s=2.7
 weighting = True
 motif_length=7
 training_epoch=35
-RUNS=40
+RUNS=20
 
 
 def find_uniques_length(df, ignoreheaders):
@@ -135,11 +135,16 @@ print('reshaped test',X_test.shape)
 #np.save('x_train_conv', Xtrain)
 #np.save('x_test_conv', Xtest)
 				 
-'''# Setup
+# Setup
 tm = MultiClassConvolutionalTsetlinMachine2D(CLAUSES, T, s, (motif_length, 1), weighted_clauses=weighting)
+labels_test_indx=np.where(labels_test==1)
+labels_train_indx=np.where(labels_train==1)
+
+acc=[]
 
 # Training
 for i in range(5):
+	print(i)
 	start_training = time()
 	tm.fit(X_train, labels_train, epochs=1, incremental=True)
 	stop_training = time()
@@ -147,6 +152,13 @@ for i in range(5):
 	start_testing = time()
 	res_test=tm.predict(X_test)
 	res_train=tm.predict(X_train) 
+	
+	res_test_indx=np.where(res_test==1)
+	res_train_indx=np.where(res_train==1)	      
+	
+	result_test2=100*len(set(list(res_test_indx[0])).intersection(set(list(labels_test_indx[0]))))/len(list(labels_test_indx[0]))
+	result_train2=100*len(set(list(res_train_indx[0])).intersection(set(list(labels_train_indx[0]))))/len(list(labels_train_indx[0]))
+	
 	result_test = 100*(res_test == labels_test).mean()
 	result_train = 100*(res_train == labels_train).mean()
 	prf_test=precision_recall_fscore_support(res_test, labels_test, average='macro')
@@ -158,8 +170,14 @@ for i in range(5):
 
 	stop_testing = time()
 
-	print("\n\n#%d Testing Accuracy: %.2f%% Training Accuracy: %.2f%% Training Time: %.2fs Testing Time: %.2fs" % (i+1, result_test, result_train, stop_training-start_training, stop_testing-start_testing))
+	'''print("\n\n#%d Testing Accuracy: %.2f%% Training Accuracy: %.2f%% Training Time: %.2fs Testing Time: %.2fs" % (i+1, result_test, result_train, stop_training-start_training, stop_testing-start_testing))
 	print("\n#Testing PRF: %s%%\nTraining PRF: %s%%" % (prf_test, prf_train))'''
+	print("\nActual Testing Accuracy: %.2f%% Training Accuracy: %.2f%%" % (result_test2, result_train2))
+	acc.append(result_test2)
+	
+print('Max Acc:', max(acc))
+print('Min Acc:', min(acc))
+print('Avg Acc:', sum(acc)/len(acc))
 
 #########Glove##########
 print("\n\nGlove")
@@ -189,11 +207,16 @@ X_test2 = combo_test.reshape((combo_test.shape[0],(context_length*2+1),1,int(com
 print('reshaped train',X_train2.shape)
 print('reshaped test',X_test2.shape)
 				 
-'''# Setup
+# Setup
 tm = MultiClassConvolutionalTsetlinMachine2D(CLAUSES, T, s, (motif_length, 1), weighted_clauses=weighting)
+labels_test_indx=np.where(labels_test==1)
+labels_train_indx=np.where(labels_train==1)
+
+acc=[]
 
 # Training
 for i in range(5):
+	print(i)
 	start_training = time()
 	tm.fit(X_train2, labels_train, epochs=1, incremental=True)
 	stop_training = time()
@@ -201,6 +224,13 @@ for i in range(5):
 	start_testing = time()
 	res_test=tm.predict(X_test2)
 	res_train=tm.predict(X_train2) 
+	
+	res_test_indx=np.where(res_test==1)
+	res_train_indx=np.where(res_train==1)	      
+	
+	result_test2=100*len(set(list(res_test_indx[0])).intersection(set(list(labels_test_indx[0]))))/len(list(labels_test_indx[0]))
+	result_train2=100*len(set(list(res_train_indx[0])).intersection(set(list(labels_train_indx[0]))))/len(list(labels_train_indx[0]))
+		
 	result_test = 100*(res_test == labels_test).mean()
 	result_train = 100*(res_train == labels_train).mean()
 	prf_test=precision_recall_fscore_support(res_test, labels_test, average='macro')
@@ -212,8 +242,15 @@ for i in range(5):
 
 	stop_testing = time()
 
-	print("\n\n#%d Testing Accuracy: %.2f%% Training Accuracy: %.2f%% Training Time: %.2fs Testing Time: %.2fs" % (i+1, result_test, result_train, stop_training-start_training, stop_testing-start_testing))
+	'''print("\n\n#%d Testing Accuracy: %.2f%% Training Accuracy: %.2f%% Training Time: %.2fs Testing Time: %.2fs" % (i+1, result_test, result_train, stop_training-start_training, stop_testing-start_testing))
 	print("\n#Testing PRF: %s%%\nTraining PRF: %s%%" % (prf_test, prf_train))'''
+	print("\nActual Testing Accuracy: %.2f%% Training Accuracy: %.2f%%" % (result_test2, result_train2))
+	acc.append(result_test2)
+	
+print('Max Acc:', max(acc))
+print('Min Acc:', min(acc))
+print('Avg Acc:', sum(acc)/len(acc))
+
 
 	
 #########Combo##########
@@ -277,6 +314,7 @@ for run in range(RUNS):
 	for clidx in range(len(oplabels)):
 		print(oplabels[clidx]+": "+str(prf_detail_test[0][clidx])+" ; "+str(prf_detail_test[1][clidx])+" ; "+str(prf_detail_test[2][clidx])+" ; "+str(prf_detail_test[3][clidx])+" || "+str(prf_detail_train[0][clidx])+" ; "+str(prf_detail_train[1][clidx])+" ; "+str(prf_detail_train[2][clidx])+" ; "+str(prf_detail_train[3][clidx])+'\n')
 	'''
+	print("\nActual Testing Accuracy: %.2f%% Training Accuracy: %.2f%%" % (result_test2, result_train2))
 	acc.append(result_test2)
 	
 print('Max Acc:', max(acc))
