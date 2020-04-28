@@ -1,5 +1,6 @@
 from preprocess2 import *
 import pandas as pd
+import pickle
 
 EMBEDDING_DIM = 100
 
@@ -15,58 +16,85 @@ glove_embeddings=load_meanbinarized_glove(EMBEDDING_DIM) #load_binarized_glove()
 ftype='train'
 # Extracting train stories
 train_stories = get_stories(challenge.format(ftype))
-test_stories = get_stories(challenge.format('test'))
 
 print('Number of training stories:', len(train_stories))
 
-
-MAXLEN = max(map(len, (x for x, _, _ in train_stories + test_stories)))
-
-print(MAXLEN)
-fhgf
 train_features_gram=[]
 train_features_glove=[]
+train_labels=[]
+MAXLEN=0
 counter=1
 for trs in train_stories:
 	print('Train Story:',counter)
-	train_features_gram+=story_to_gram_features_sentwise(trs,MAXLEN)
-	train_features_glove+=story_to_glove_features_sentwise(trs,glove_embeddings, EMBEDDING_DIM,MAXLEN)
+	temp_features, temp_answer, temp_len=story_to_gram_features_sentwise(trs)
+	train_features_gram+=temp_features
+	train_labels.append(temp_answer)
+	if temp_len>MAXLEN:
+		MAXLEN=temp_len
+	temp_features, temp_answer, temp_len=story_to_glove_features_sentwise(trs,glove_embeddings, EMBEDDING_DIM)
+	train_features_glove+=temp_features
 	counter+=1
 	
-train_features_gram=pd.DataFrame(train_features_gram, columns=gram_headers)
-train_features_glove=pd.DataFrame(train_features_glove, columns=glove_headers)
-print(train_features_gram.shape)
-print(train_features_glove.shape)
-
-savename='../../pickles/spacy/nonbinarized_features_context'+str(CONTEXT_LENGTH)+'_'+ftype
-train_features_gram.to_pickle(savename+'_gram.pkl')
-print('Saved: ',savename+'_gram.pkl')
-
-train_features_glove.to_pickle(savename+'_glove.pkl')
-print('Saved: ',savename+'_glove.pkl')
 
 ################################################################
 
 # Extracting test stories
 ftype='test'
+test_stories = get_stories(challenge.format('ftype'))
 print('Number of test stories:', len(test_stories))
 test_features_gram=[]
 test_features_glove=[]
+test_labels=[]
 counter=1
 for trs in test_stories:
 	print('Test Story:',counter)
-	test_features_gram+=story_to_gram_features_sentwise(trs,MAXLEN)
-	test_features_glove+=story_to_glove_features_sentwise(trs,glove_embeddings, EMBEDDING_DIM,MAXLEN)
+	temp_features, temp_answer, temp_len=story_to_gram_features_sentwise(trs)
+	test_features_gram+=temp_features
+	test_labels.append(temp_answer)
+	if temp_len>MAXLEN:
+		MAXLEN=temp_len
+	temp_features, temp_answer, temp_len=story_to_glove_features_sentwise(trs,glove_embeddings, EMBEDDING_DIM)
+	test_features_glove+=temp_features
 	counter+=1
-  
-test_features_gram=pd.DataFrame(test_features_gram, columns=gram_headers)
-print(test_features_gram.shape)
-test_features_glove=pd.DataFrame(test_features_glove, columns=glove_headers)
-print(test_features_glove.shape)
+print(len(test_features_gram), len(test_features_gram[0]), len(test_features_gram[0][0]))
+print(len(test_features_glove), len(test_features_glove[0]), len(test_features_glove[0][0]))
+test_features_gram, test_features_glove= pad_stories(test_features_gram, test_features_glove)
+print('padded')
+print(len(test_features_gram), len(test_features_gram[0]), len(test_features_gram[0][0]))
+print(len(test_features_glove), len(test_features_glove[0]), len(test_features_glove[0][0]))
 
-savename='../../pickles/spacy/nonbinarized_features_context'+str(CONTEXT_LENGTH)+'_'+ftype
-test_features_gram.to_pickle(savename+'_gram.pkl')
+savename='../../pickles/spacy/nonbinarized_features_sentence'+'_'+ftype
+with open(savename+'_gram.pkl', 'wb') as f:
+	pickle.dump(test_features_gram, f)
 print('Saved: ',savename+'_gram.pkl')
 
-test_features_glove.to_pickle(savename+'_glove.pkl')
+with open(savename+'_glove.pkl', 'wb') as f:
+	pickle.dump(test_features_glove, f)
 print('Saved: ',savename+'_glove.pkl')
+
+with open(savename+'_labels.pkl', 'wb') as f:
+	pickle.dump(test_labels, f)
+print('Saved: ',savename+'_labels.pkl')
+
+
+ftype='train'
+print(len(train_features_gram), len(train_features_gram[0]), len(train_features_gram[0][0]))
+print(len(train_features_glove), len(train_features_glove[0]), len(train_features_glove[0][0]))
+train_features_gram, train_features_glove= pad_stories(train_features_gram, train_features_glove)
+print('padded')
+print(len(train_features_gram), len(train_features_gram[0]), len(train_features_gram[0][0]))
+print(len(train_features_glove), len(train_features_glove[0]), len(train_features_glove[0][0]))
+
+
+savename='../../pickles/spacy/nonbinarized_features_sentence'+'_'+ftype
+with open(savename+'_gram.pkl', 'wb') as f:
+	pickle.dump(train_features_gram, f)
+print('Saved: ',savename+'_gram.pkl')
+
+with open(savename+'_glove.pkl', 'wb') as f:
+	pickle.dump(train_features_glove, f)
+print('Saved: ',savename+'_glove.pkl')
+
+with open(savename+'_labels.pkl', 'wb') as f:
+	pickle.dump(train_labels, f)
+print('Saved: ',savename+'_labels.pkl')
