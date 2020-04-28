@@ -68,6 +68,50 @@ def sent_to_glove_features(sent, glove_embeddings, embeddingdim):
 		sentfeatures.append(tempglove)
 	return(sentfeatures)	
 
+def story_to_gram_features_sentwise(story, maxlen):
+	story_features=[]
+	query=story[1]
+	answer=story[2]
+	story=story[0]
+	sents=story.split('<END><BEG>')
+	for sentence in sents:
+		sentence=sentence.replace('<BEG>','').replace('<END>','')
+		#print('Sentence',sentence)
+		sent_features=sent_to_gram_features(sentence)
+		padb=padb_1+padbe_2
+		pade=pade_1+padbe_2
+		padblank=padb_1+padbe_2
+		padblank[0]='<PAD>'
+		sent_features=[padb]+sent_features+[pade]
+		for r in range(maxlen-len(sent_features)):
+			sent_features+=padblank
+		sent_features=[s+[1] if s[0] in query else s+[0] for s in sent_features]  ##query
+		story_features+=sent_features
+	return story_features, answer
+	
+def story_to_glove_features_sentwise(story, maxlen):
+	story_features=[]
+	query=story[1]
+	answer=story[2]
+	story=story[0]
+	sents=story.split('<END><BEG>')
+	for sentence in sents:
+		sentence=sentence.replace('<BEG>','').replace('<END>','')
+		#print('Sentence',sentence)
+		sent_features=sent_to_glove_features(sentence,glove_embeddings, embeddingdim)
+		#print('Orig',len(sent_features),len(sent_features[0]))
+		padb=padb_1+padg_2
+		pade=pade_1+padg_2
+		padblank=padb_1+padbe_2
+		padblank[0]='<PAD>'
+		sent_features=[padb]+sent_features+[pade]
+		for r in range(maxlen-len(sent_features)):
+			sent_features+=padblank
+		sent_features=[s+[1] if s[0] in query else s+[0] for s in sent_features]  ##query
+		story_features+=sent_features
+	return story_features, answer
+	
+
 def story_to_gram_features(story,context_length):
 	story_features=[]
 	query=story[1]
