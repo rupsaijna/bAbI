@@ -58,7 +58,7 @@ for trs in test_stories:
 	counter+=1
 print(len(test_features_gram), len(test_features_gram[0]), len(test_features_gram[0][0]))
 print(len(test_features_glove), len(test_features_glove[0]), len(test_features_glove[0][0]))
-test_features_gram, test_features_glove= pad_stories(test_features_gram, test_features_glove)
+test_features_gram, test_features_glove= pad_stories(test_features_gram, test_features_glove, EMBEDDING_DIM, MAXLEN)
 print('padded')
 print(len(test_features_gram), len(test_features_gram[0]), len(test_features_gram[0][0]))
 print(len(test_features_glove), len(test_features_glove[0]), len(test_features_glove[0][0]))
@@ -80,7 +80,7 @@ print('Saved: ',savename+'_labels.pkl')
 ftype='train'
 print(len(train_features_gram), len(train_features_gram[0]), len(train_features_gram[0][0]))
 print(len(train_features_glove), len(train_features_glove[0]), len(train_features_glove[0][0]))
-train_features_gram, train_features_glove= pad_stories(train_features_gram, train_features_glove)
+train_features_gram, train_features_glove= pad_stories(train_features_gram, train_features_glove, EMBEDDING_DIM, MAXLEN)
 print('padded')
 print(len(train_features_gram), len(train_features_gram[0]), len(train_features_gram[0][0]))
 print(len(train_features_glove), len(train_features_glove[0]), len(train_features_glove[0][0]))
