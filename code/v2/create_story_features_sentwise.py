@@ -56,6 +56,8 @@ for trs in test_stories:
 	temp_features, temp_answer, temp_len=story_to_glove_features_sentwise(trs,glove_embeddings, EMBEDDING_DIM)
 	test_features_glove+=[temp_features]
 	counter+=1
+	
+print("MAXLEN", MAXLEN)
 print(len(test_features_gram), len(test_features_gram[0]), len(test_features_gram[0][0]))
 print(len(test_features_glove), len(test_features_glove[0]), len(test_features_glove[0][0]))
 test_features_gram, test_features_glove= pad_stories(test_features_gram, test_features_glove, EMBEDDING_DIM, MAXLEN)
