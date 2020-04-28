@@ -143,7 +143,7 @@ labels_train_indx=np.where(labels_train==1)
 acc=[]
 
 # Training
-for i in range(5):
+for i in range(RUNS):
 	print(i)
 	start_training = time()
 	tm.fit(X_train, labels_train, epochs=1, incremental=True)
@@ -215,7 +215,7 @@ labels_train_indx=np.where(labels_train==1)
 acc=[]
 
 # Training
-for i in range(5):
+for i in range(RUNS):
 	print(i)
 	start_training = time()
 	tm.fit(X_train2, labels_train, epochs=1, incremental=True)
