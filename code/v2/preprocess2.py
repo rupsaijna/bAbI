@@ -68,7 +68,7 @@ def sent_to_glove_features(sent, glove_embeddings, embeddingdim):
 		sentfeatures.append(tempglove)
 	return(sentfeatures)	
 
-def story_to_gram_features_sentwise(story, maxlen):
+def story_to_gram_features_sentwise(story):
 	story_features=[]
 	query=story[1]
 	answer=story[2]
@@ -83,13 +83,13 @@ def story_to_gram_features_sentwise(story, maxlen):
 		padblank=padb_1+padbe_2
 		padblank[0]='<PAD>'
 		sent_features=[padb]+sent_features+[pade]
-		for r in range(maxlen-len(sent_features)):
-			sent_features+=padblank
+		'''for r in range(maxlen-len(sent_features)):
+			sent_features+=padblank'''
 		sent_features=[s+[1] if s[0] in query else s+[0] for s in sent_features]  ##query
 		story_features+=sent_features
-	return story_features, answer
+	return story_features, answer, len(sent_features)
 	
-def story_to_glove_features_sentwise(story, glove_embeddings, embeddingdim, maxlen):
+def story_to_glove_features_sentwise(story, glove_embeddings, embeddingdim):
 	story_features=[]
 	query=story[1]
 	answer=story[2]
@@ -105,11 +105,11 @@ def story_to_glove_features_sentwise(story, glove_embeddings, embeddingdim, maxl
 		padblank=padb_1+padbe_2
 		padblank[0]='<PAD>'
 		sent_features=[padb]+sent_features+[pade]
-		for r in range(maxlen-len(sent_features)):
-			sent_features+=padblank
+		'''for r in range(maxlen-len(sent_features)):
+			sent_features+=padblank'''
 		sent_features=[s+[1] if s[0] in query else s+[0] for s in sent_features]  ##query
 		story_features+=sent_features
-	return story_features, answer
+	return story_features, answer, len(sent_features)
 	
 
 def story_to_gram_features(story,context_length):
