@@ -22,10 +22,11 @@ def pad_stories(gram_f, glove_f, embeddingdim,maxlen):
 	new_glove_f=[]
 	for story in gram_f:
 		temp_story=story
-		print(maxlen,len(story),maxlen-len(story))
-		ds
+		print(maxlen,len(temp_story),maxlen-len(story))
 		for r in range(maxlen-len(story)):
 			temp_story+=padblank_gram
+		print(len(temp_story))
+		sz
 		new_gram_f+=[temp_story]
 	for story in glove_f:
 		temp_story=story
