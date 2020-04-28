@@ -25,8 +25,11 @@ train_labels=[]
 MAXLEN=0
 counter=1
 for trs in train_stories:
-	print('Train Story:',counter)
 	temp_features, temp_answer, temp_len=story_to_gram_features_sentwise(trs)
+	print('Train Story:',counter, trs, temp_len)
+	if counter>3:
+		bejw
+
 	train_features_gram+=[temp_features]
 	train_labels.append(temp_answer)
 	if temp_len>MAXLEN:
