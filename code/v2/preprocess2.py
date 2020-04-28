@@ -12,6 +12,26 @@ padb_1=['<BEG>',-1]
 pade_1=['<END>',-1]
 padbe_3=[0,0]
 
+def pad_stories(gram_f, glove_f, maxlen):
+	new_gram_f=[]
+	padblank_gram=padb_1+padbe_2+[0]
+	padblank_gram[0]='<PAD>'
+	padblank_glove=padb_1+padg_2
+	padblank_glove[0]='<PAD>'
+	new_glove_f=[]
+	for story in gram_f:
+		temp_story=story
+		for r in range(maxlen-len(story)):
+			temp_story+=padblank_gram
+		new_gram_f+=temp_story
+	for story in glove_f:
+		temp_story=story
+		for r in range(maxlen-len(story)):
+			temp_story+=padblank_glove
+		new_glove_f+=temp_story
+	return new_gram_f, new_glove_f
+		
+		
 def create_features_headers(headertype=1,embeddingdim=0,context_length=0):
 	'''
 	headertype=1 == grammatical headers
@@ -79,9 +99,7 @@ def story_to_gram_features_sentwise(story):
 		#print('Sentence',sentence)
 		sent_features=sent_to_gram_features(sentence)
 		padb=padb_1+padbe_2
-		pade=pade_1+padbe_2
-		padblank=padb_1+padbe_2
-		padblank[0]='<PAD>'
+		pade=pade_1+padbe_2		
 		sent_features=[padb]+sent_features+[pade]
 		'''for r in range(maxlen-len(sent_features)):
 			sent_features+=padblank'''
@@ -102,8 +120,6 @@ def story_to_glove_features_sentwise(story, glove_embeddings, embeddingdim):
 		#print('Orig',len(sent_features),len(sent_features[0]))
 		padb=padb_1+padg_2
 		pade=pade_1+padg_2
-		padblank=padb_1+padbe_2
-		padblank[0]='<PAD>'
 		sent_features=[padb]+sent_features+[pade]
 		'''for r in range(maxlen-len(sent_features)):
 			sent_features+=padblank'''
