@@ -40,7 +40,7 @@ for trs in train_stories:
 
 # Extracting test stories
 ftype='test'
-test_stories = get_stories(challenge.format('ftype'))
+test_stories = get_stories(challenge.format(ftype))
 print('Number of test stories:', len(test_stories))
 test_features_gram=[]
 test_features_glove=[]
