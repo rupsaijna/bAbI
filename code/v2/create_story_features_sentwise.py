@@ -27,12 +27,12 @@ counter=1
 for trs in train_stories:
 	print('Train Story:',counter)
 	temp_features, temp_answer, temp_len=story_to_gram_features_sentwise(trs)
-	train_features_gram+=temp_features
+	train_features_gram+=[temp_features]
 	train_labels.append(temp_answer)
 	if temp_len>MAXLEN:
 		MAXLEN=temp_len
 	temp_features, temp_answer, temp_len=story_to_glove_features_sentwise(trs,glove_embeddings, EMBEDDING_DIM)
-	train_features_glove+=temp_features
+	train_features_glove+=[temp_features]
 	counter+=1
 	
 
@@ -49,12 +49,12 @@ counter=1
 for trs in test_stories:
 	print('Test Story:',counter)
 	temp_features, temp_answer, temp_len=story_to_gram_features_sentwise(trs)
-	test_features_gram+=temp_features
+	test_features_gram+=[temp_features]
 	test_labels.append(temp_answer)
 	if temp_len>MAXLEN:
 		MAXLEN=temp_len
 	temp_features, temp_answer, temp_len=story_to_glove_features_sentwise(trs,glove_embeddings, EMBEDDING_DIM)
-	test_features_glove+=temp_features
+	test_features_glove+=[temp_features]
 	counter+=1
 print(len(test_features_gram), len(test_features_gram[0]), len(test_features_gram[0][0]))
 print(len(test_features_glove), len(test_features_glove[0]), len(test_features_glove[0][0]))
