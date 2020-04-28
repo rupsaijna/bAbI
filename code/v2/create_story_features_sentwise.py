@@ -9,8 +9,8 @@ print('Extracting stories for the challenge: single_supporting_fact')
 
 glove_embeddings=load_meanbinarized_glove(EMBEDDING_DIM) #load_binarized_glove()
 
-gram_headers=create_features_headers(headertype=1,context_length=CONTEXT_LENGTH)
-glove_headers=create_features_headers(headertype=2,embeddingdim=EMBEDDING_DIM,context_length=CONTEXT_LENGTH)
+#gram_headers=create_features_headers(headertype=1,context_length=CONTEXT_LENGTH)
+#glove_headers=create_features_headers(headertype=2,embeddingdim=EMBEDDING_DIM,context_length=CONTEXT_LENGTH)
 
 ftype='train'
 # Extracting train stories
