@@ -89,7 +89,7 @@ def story_to_gram_features_sentwise(story, maxlen):
 		story_features+=sent_features
 	return story_features, answer
 	
-def story_to_glove_features_sentwise(story, maxlen):
+def story_to_glove_features_sentwise(story, glove_embeddings, embeddingdim, maxlen):
 	story_features=[]
 	query=story[1]
 	answer=story[2]
