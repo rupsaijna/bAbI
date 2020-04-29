@@ -72,14 +72,14 @@ def binarize(df, list_uniques, list_columns):
 	print(t)'''
 	return newX	
 with open('../../pickles/spacy/nonbinarized_features_sentence_train_glove.pkl','rb') as f:
-	glove_features_train=np.array(pickle.load(f))
+	glove_features_train=pickle.load(f)
 with open('../../pickles/spacy/nonbinarized_features_sentence_train_gram.pkl','rb') as f:
-	grammar_features_train=np.array(pickle.load(f))
+	grammar_features_train=pickle.load(f)
 	
 with open('../../pickles/spacy/nonbinarized_features_sentence_test_glove.pkl','rb') as f:
-	glove_features_test=np.array(pickle.load(f))
+	glove_features_test=pickle.load(f)
 with open('../../pickles/spacy/nonbinarized_features_sentence_test_gram.pkl','rb') as f:
-	grammar_features_test=np.array(pickle.load(f))
+	grammar_features_test=pickle.load(f)
 
 with open('../../pickles/spacy/nonbinarized_features_sentence_train_labels.pkl','rb') as f:
 	labels_train=pickle.load(f)
@@ -87,7 +87,7 @@ with open('../../pickles/spacy/nonbinarized_features_sentence_test_labels.pkl','
 	labels_test=pickle.load(f)
 
 
-print('gram',grammar_features_train.shape, len(labels_train))
+print('gram',len(grammar_features_train), len(grammar_features_train[0]), len(grammar_features_train[0][0]), len(labels_train))
 print('glove',glove_features_train.shape)
 print(glove_features_train)				 
 print('gram',grammar_features_test.shape, len(labels_test))
