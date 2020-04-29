@@ -89,7 +89,7 @@ with open('../../pickles/spacy/nonbinarized_features_sentence_test_labels.pkl','
 
 print('gram',len(grammar_features_train), len(grammar_features_train[0]), len(grammar_features_train[0][0]), len(labels_train))
 print('glove',len(glove_features_train), len(glove_features_train[0]), len(glove_features_train[0][0]), len(labels_train))
-glove_features_train=glove_features_train[:][:][2:]
+glove_features_train=[word[2:] for word in story for story in glove_features_train]
 print('glove',len(glove_features_train), len(glove_features_train[0]), len(glove_features_train[0][0]), len(labels_train))
 
 print(glove_features_train[1])				 
