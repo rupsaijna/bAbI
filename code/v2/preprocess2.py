@@ -17,7 +17,7 @@ def pad_stories(gram_f, glove_f, embeddingdim,maxlen):
 	padg_2=[0]*embeddingdim
 	padblank_gram=padb_1+padbe_2+[0]
 	padblank_gram[0]='<PAD>'
-	padblank_glove=padb_1+padg_2
+	padblank_glove=padb_1+padg_2+[0]
 	padblank_glove[0]='<PAD>'
 	new_glove_f=[]
 	for story in gram_f:
