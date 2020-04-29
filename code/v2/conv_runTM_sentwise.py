@@ -98,16 +98,17 @@ grammar_features_test=grammar_features_test[:,:,2:]
 print('glove',len(glove_features_train), len(glove_features_train[0]), len(glove_features_train[0][0]), len(labels_train))
 #glove_features_train=np.asarray(glove_features_train)
 
+glove_features_train_new=np.array((len(glove_features_train), len(glove_features_train[0]), len(glove_features_train[0][0]-2)))
 for s in range(len(glove_features_train)):
 	print(s)
 	for w in range(len(glove_features_train[s])):
-		glove_features_train[s][w]=np.array(glove_features_train[s][w][2:])
+		glove_features_train_new[s][w]=np.array(glove_features_train[s][w][2:])
 
-glove_features_train=np.asarray(glove_features_train)
-print('glove', glove_features_train.shape)
-print('glove', glove_features_train[0])
+#glove_features_train=np.asarray(glove_features_train)
+print('glove', glove_features_train_new.shape)
+print('glove', glove_features_train_new[0])
 
-print('glove',len(glove_features_train), len(glove_features_train[0]), len(glove_features_train[0][0]), len(labels_train))
+#print('glove',len(glove_features_train), len(glove_features_train[0]), len(glove_features_train[0][0]), len(labels_train))
 
 asd
 print('glove',len(glove_features_train), len(glove_features_train[0]), len(glove_features_train[0][0]), len(labels_train))
