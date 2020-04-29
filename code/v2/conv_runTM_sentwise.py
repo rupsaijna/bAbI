@@ -33,9 +33,10 @@ training_epoch=35
 RUNS=20
 
 
-def find_uniques_length(df, ignoreheaders):
+def find_uniques_length(df):
 	uniques=[]
 	columns=[]
+	
 	dfcols=df.columns
 	for col in gram_base:
 		this_cols=[col+ad for ad in addendum_context]
@@ -88,9 +89,13 @@ with open('../../pickles/spacy/nonbinarized_features_sentence_test_labels.pkl','
 
 
 print('gram',len(grammar_features_train), len(grammar_features_train[0]), len(grammar_features_train[0][0]), len(labels_train))
+grammar_features_train=np.array(grammar_features_train)
+print('gram',grammar_features_train.shape)
+print(grammar_features_train)
+
+asd
 print('glove',len(glove_features_train), len(glove_features_train[0]), len(glove_features_train[0][0]), len(labels_train))
-print(grammar_features_train[1])
-sad
+
 #########Grammar##########
 print("Grammar")
 
