@@ -96,10 +96,9 @@ grammar_features_test=np.asarray(grammar_features_test)
 grammar_features_test=grammar_features_test[:,:,2:]
 
 
-for story in glove_features_train:
-	for word in story:
-		print(word)
-		das
+for r in range(len(glove_features_train)):
+	glove_features_train[r]=np.array(glove_features_train[r])
+print(glove_features_train[0])
 asd
 print('glove',len(glove_features_train), len(glove_features_train[0]), len(glove_features_train[0][0]), len(labels_train))
 
