@@ -15,6 +15,7 @@ from sklearn.metrics import precision_recall_fscore_support
 from sklearn.model_selection import train_test_split
 from time import time
 
+
 oplabels=['0','1']
 context_length=4
 qr=['query_word']
@@ -70,15 +71,20 @@ def binarize(df, list_uniques, list_columns):
 	print(t.shape)
 	print(t)'''
 	return newX	
+with open('../../pickles/spacy/nonbinarized_features_sentence_train_glove.pkl') as f:
+	glove_features_train=np.array(pickle.load(f))
+with open('../../pickles/spacy/nonbinarized_features_sentence_train_gram.pkl') as f:
+	grammar_features_train=np.array(pickle.load(f))
+	
+with open('../../pickles/spacy/nonbinarized_features_sentence_test_glove.pkl') as f:
+	glove_features_test=np.array(pickle.load(f))
+with open('../../pickles/spacy/nonbinarized_features_sentence_test_gram.pkl') as f:
+	grammar_features_test=np.array(pickle.load(f))
 
-glove_features_train=pd.read_pickle('../../pickles/spacy/nonbinarized_features_context'+str(context_length)+'_train_glove.pkl')
-grammar_features_train=pd.read_pickle('../../pickles/spacy/nonbinarized_features_context'+str(context_length)+'_train_gram.pkl')
-
-glove_features_test=pd.read_pickle('../../pickles/spacy/nonbinarized_features_context'+str(context_length)+'_test_glove.pkl')
-grammar_features_test=pd.read_pickle('../../pickles/spacy/nonbinarized_features_context'+str(context_length)+'_test_gram.pkl')
-
-assert(grammar_features_train['label'].tolist()==glove_features_train['label'].tolist())
-assert(grammar_features_test['label'].tolist()==glove_features_test['label'].tolist())
+with open('../../pickles/spacy/nonbinarized_features_sentence_train_labels.pkl') as f:
+	labels_train=pickle.load(f)
+with open('../../pickles/spacy/nonbinarized_features_sentence_test_labels.pkl') as f:
+	labels_test=pickle.load(f)
 
 labels_train=grammar_features_train['label']
 labels_test=grammar_features_test['label']
@@ -89,7 +95,7 @@ print('glove',glove_features_train.shape, len(labels_train))
 				 
 print('gram',grammar_features_test.shape, len(labels_test))
 print('glove',glove_features_test.shape, len(labels_test))
-
+bhmb
 #########Grammar##########
 print("Grammar")
 
