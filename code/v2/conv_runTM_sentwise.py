@@ -95,6 +95,8 @@ grammar_features_train=grammar_features_train[:,:,2:]
 grammar_features_test=np.asarray(grammar_features_test)
 grammar_features_test=grammar_features_test[:,:,2:]
 
+print('glove',len(glove_features_train), len(glove_features_train[0]), len(glove_features_train[0][0]), len(labels_train))
+
 glove_features_train=np.asarray(glove_features_train)
 glove_features_train=glove_features_train[:,:,2:]
 print('glove',len(glove_features_train), len(glove_features_train[0]), len(glove_features_train[0][0]), len(labels_train))
