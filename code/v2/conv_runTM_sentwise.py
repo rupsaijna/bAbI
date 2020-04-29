@@ -86,9 +86,6 @@ with open('../../pickles/spacy/nonbinarized_features_sentence_train_labels.pkl',
 with open('../../pickles/spacy/nonbinarized_features_sentence_test_labels.pkl','rb') as f:
 	labels_test=pickle.load(f)
 
-labels_train=grammar_features_train['label']
-labels_test=grammar_features_test['label']
-
 
 print('gram',grammar_features_train.shape, len(labels_train))
 print('glove',glove_features_train.shape, len(labels_train))
