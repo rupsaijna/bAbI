@@ -105,7 +105,7 @@ glove_features_train_new=np.zeros((a,b,c-2))
 for s in range(len(glove_features_train)):
 	print(s)
 	for w in range(len(glove_features_train[s])):
-		print(len(glove_features_train[s][w]))
+		print(len(glove_features_train[s][w]), glove_features_train[s][w])
 		glove_features_train_new[s][w]=glove_features_train[s][w][2:]
 
 #glove_features_train=np.asarray(glove_features_train)
