@@ -71,19 +71,19 @@ def binarize(df, list_uniques, list_columns):
 	print(t.shape)
 	print(t)'''
 	return newX	
-with open('../../pickles/spacy/nonbinarized_features_sentence_train_glove.pkl') as f:
+with open('../../pickles/spacy/nonbinarized_features_sentence_train_glove.pkl','r') as f:
 	glove_features_train=np.array(pickle.load(f))
-with open('../../pickles/spacy/nonbinarized_features_sentence_train_gram.pkl') as f:
+with open('../../pickles/spacy/nonbinarized_features_sentence_train_gram.pkl','r') as f:
 	grammar_features_train=np.array(pickle.load(f))
 	
-with open('../../pickles/spacy/nonbinarized_features_sentence_test_glove.pkl') as f:
+with open('../../pickles/spacy/nonbinarized_features_sentence_test_glove.pkl','r') as f:
 	glove_features_test=np.array(pickle.load(f))
-with open('../../pickles/spacy/nonbinarized_features_sentence_test_gram.pkl') as f:
+with open('../../pickles/spacy/nonbinarized_features_sentence_test_gram.pkl','r') as f:
 	grammar_features_test=np.array(pickle.load(f))
 
-with open('../../pickles/spacy/nonbinarized_features_sentence_train_labels.pkl') as f:
+with open('../../pickles/spacy/nonbinarized_features_sentence_train_labels.pkl','r') as f:
 	labels_train=pickle.load(f)
-with open('../../pickles/spacy/nonbinarized_features_sentence_test_labels.pkl') as f:
+with open('../../pickles/spacy/nonbinarized_features_sentence_test_labels.pkl','r') as f:
 	labels_test=pickle.load(f)
 
 labels_train=grammar_features_train['label']
