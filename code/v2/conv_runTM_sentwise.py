@@ -90,8 +90,8 @@ with open('../../pickles/spacy/nonbinarized_features_sentence_test_labels.pkl','
 
 print('gram',len(grammar_features_train), len(grammar_features_train[0]), len(grammar_features_train[0][0]), len(labels_train))
 grammar_features_train=np.asarray(grammar_features_train)
-print('gram',grammar_features_train.shape)
-print(grammar_features_train)
+print('gram',grammar_features_train.shape, grammar_features_train[0].shape)
+print(grammar_features_train[0])
 
 asd
 print('glove',len(glove_features_train), len(glove_features_train[0]), len(glove_features_train[0][0]), len(labels_train))
