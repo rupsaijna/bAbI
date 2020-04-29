@@ -71,9 +71,9 @@ def binarize(df, list_uniques, list_columns):
 	print(t.shape)
 	print(t)'''
 	return newX	
-with open('../../pickles/spacy/nonbinarized_features_sentence_train_glove.pkl','r') as f:
+with open('../../pickles/spacy/nonbinarized_features_sentence_train_glove.pkl','rb') as f:
 	glove_features_train=np.array(pickle.load(f))
-with open('../../pickles/spacy/nonbinarized_features_sentence_train_gram.pkl','r') as f:
+with open('../../pickles/spacy/nonbinarized_features_sentence_train_gram.pkl','rb') as f:
 	grammar_features_train=np.array(pickle.load(f))
 	
 with open('../../pickles/spacy/nonbinarized_features_sentence_test_glove.pkl','r') as f:
