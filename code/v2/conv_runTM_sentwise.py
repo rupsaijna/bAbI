@@ -88,8 +88,8 @@ with open('../../pickles/spacy/nonbinarized_features_sentence_test_labels.pkl','
 
 
 print('gram',grammar_features_train.shape, len(labels_train))
-print('glove',glove_features_train.shape, len(labels_train))
-				 
+print('glove',glove_features_train.shape)
+print(glove_features_train)				 
 print('gram',grammar_features_test.shape, len(labels_test))
 print('glove',glove_features_test.shape, len(labels_test))
 bhmb
