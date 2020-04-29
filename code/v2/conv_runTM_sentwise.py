@@ -89,35 +89,13 @@ with open('../../pickles/spacy/nonbinarized_features_sentence_test_labels.pkl','
 
 print('gram',len(grammar_features_train), len(grammar_features_train[0]), len(grammar_features_train[0][0]), len(labels_train))
 print('glove',len(glove_features_train), len(glove_features_train[0]), len(glove_features_train[0][0]), len(labels_train))
-glove_features_train=[word[2:] for word in story for story in glove_features_train]
-print('glove',len(glove_features_train), len(glove_features_train[0]), len(glove_features_train[0][0]), len(labels_train))
-
-print(glove_features_train[1])				 
-print('gram',grammar_features_test.shape, len(labels_test))
-print('glove',glove_features_test.shape, len(labels_test))
-bhmb
+print(grammar_features_train[1])
+sad
 #########Grammar##########
 print("Grammar")
 
 combo_train=grammar_features_train
 combo_test=grammar_features_test
-				 
-#combo_train= pd.concat([grammar_features_train, glove_features_train], axis=1, join='inner')
-#combo_test= pd.concat([grammar_features_test, glove_features_test], axis=1, join='inner')
-#combo_train = combo_train.loc[:,~combo_train.columns.duplicated()]
-#combo_test = combo_test.loc[:,~combo_test.columns.duplicated()]
-#combo_train=combo_train.drop(columns=[ 'info2_wa2'])
-#combo_test=combo_test.drop(columns=[ 'info2_wa2'])
-
-remheaders=['text','label', 'word_idx']
-
-a=set(combo_train.columns.tolist())
-b=set(combo_test.columns.tolist())
-combo_headers=list(a.intersection(b))
-
-print('combo train',combo_train.shape)
-print('combo test',combo_test.shape)
-
 				 
 list_of_uniques=find_uniques_length(combo_train, remheaders)
 #print(list_of_uniques)
