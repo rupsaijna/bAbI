@@ -96,7 +96,7 @@ print("Grammar")
 combo_train=grammar_features_train
 combo_test=grammar_features_test
 				 
-list_of_uniques=find_uniques_length(combo_train, remheaders)
+list_of_uniques=find_uniques_length(combo_train)
 print(list_of_uniques)
 #print('len col',len(baselist_gram))
 
