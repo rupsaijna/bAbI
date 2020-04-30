@@ -109,7 +109,7 @@ print('binarized train',Xtrain.shape)
 print('binarized test',Xtest.shape)
 
 X_train = Xtrain.reshape((Xtrain.shape[0],Xtrain.shape[1],1,usum))
-X_test = Xtest.reshape((Xtest.shape[0],Xtest.shape[0],1,usum))
+X_test = Xtest.reshape((Xtest.shape[0],Xtest.shape[1],1,usum))
 
 print('reshaped train',X_train.shape)
 print('reshaped test',X_test.shape)
