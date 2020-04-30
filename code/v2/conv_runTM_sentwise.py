@@ -17,7 +17,6 @@ from time import time
 
 
 oplabels=['0','1']
-context_length=4
 qr=['query_word']
 gram_base=["pos_", "tag_", "ent_type_", "is_alpha", "is_stop", "is_digit", "is_lower", "is_upper","is_punct", "is_left_punct", "is_right_punct", "is_bracket", "is_quote", "dep_", "head.pos_", "head.head.pos_"]
 gram_base+=qr
@@ -27,8 +26,8 @@ CLAUSES=160
 T=90
 s=2.7
 weighting = True
-motif_length=7
-training_epoch=35
+motif_length=5
+training_epoch=1
 RUNS=20
 
 
@@ -116,7 +115,7 @@ print('reshaped test',X_test.shape)
 
 #np.save('x_train_conv', Xtrain)
 #np.save('x_test_conv', Xtest)
-kjn				 
+
 # Setup
 tm = MultiClassConvolutionalTsetlinMachine2D(CLAUSES, T, s, (motif_length, 1), weighted_clauses=weighting)
 labels_test_indx=np.where(labels_test==1)
