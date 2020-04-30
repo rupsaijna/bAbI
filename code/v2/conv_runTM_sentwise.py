@@ -73,8 +73,10 @@ with open('../../pickles/spacy/nonbinarized_features_sentence_train_labels.pkl',
 with open('../../pickles/spacy/nonbinarized_features_sentence_test_labels.pkl','rb') as f:
 	labels_test=pickle.load(f)
 	
-print(labels_test)
-fgd
+label_set=list(set(labels_train+labels_test))
+labels_train=[label_set[ls] for ls in labels_train]
+labels_test=[label_set[ls] for ls in labels_test]
+
 
 grammar_features_train=np.asarray(grammar_features_train)
 grammar_features_train=grammar_features_train[:,:,2:]
