@@ -162,12 +162,6 @@ combo_test=glove_features_test
 print('combo train',combo_train.shape)
 print('combo test',combo_test.shape)
 
-combo_train=combo_train[combo_headers].to_numpy()
-combo_test=combo_test[combo_headers].to_numpy()
-
-print('\ncombo train',combo_train.shape)
-print('combo test',combo_test.shape)
-
 X_train2 = combo_train
 X_test2 = combo_test
 				 
