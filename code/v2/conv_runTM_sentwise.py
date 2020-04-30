@@ -35,13 +35,10 @@ RUNS=20
 
 def find_uniques_length(df):
 	uniques=[]
-	columns=[]
-	
-	dfcols=df.columns
-	for col in gram_base:
-		this_cols=[col+ad for ad in addendum_context]
-		uset=set(df[this_cols].values.T.ravel())
-		#columns+=[col]
+	num_columns=df.shape[2]
+	#df[:,:,0]
+	for col in range(len(gram_base)):
+		uset=set(df[:,:,col].flatten())
 		if uniques==[]:
 			uniques=[uset]
 		else:
@@ -51,27 +48,18 @@ def find_uniques_length(df):
 def binarize(df, list_uniques, list_columns):
 	temp_cols=[]
 	sum_size=np.sum([len(s) for s in list_uniques])
-	newX=np.zeros((df.shape[0], sum_size*len(addendum_context)), dtype=np.int32)
+	newX=np.zeros((df.shape[0], df.shape[1], sum_size), dtype=np.int32)
 	startind=0
-	for contextid in addendum_context:
-		for colname_base in gram_base:
-			colname=colname_base+contextid
-			ul=list(list_uniques[gram_base.index(colname_base)])
-			tempx=np.zeros((df.shape[0], len(ul)), dtype=np.int32)
-			arr=df[colname].tolist()
-			tempx=[[1]*(ul.index(arr[pos])+1)+[0]*(len(ul)-(ul.index(arr[pos])+1)) for pos in range(len(arr))]
-			tempx=np.reshape(tempx,(df.shape[0], len(ul)))
-			endind=startind+len(ul)
-			#print('name,s,e',colname,startind,endind)
-			temp_cols.append(colname)
-			newX[:,startind:endind]=tempx
-			startind=endind
-	'''temp_cols=np.array(temp_cols)
-	print(temp_cols.shape)
-	t=temp_cols.reshape(len(addendum_context),1,len(gram_base))
-	print(t.shape)
-	print(t)'''
+	for col in range(len(gram_base)):
+		ul=list(list_uniques[col])
+		arr=df[:,:,col].flatten()
+		tempx=[[1]*(ul.index(arr[pos])+1)+[0]*(len(ul)-(ul.index(arr[pos])+1)) for pos in range(len(arr))]
+		tempx=np.reshape(tempx,(df.shape[0],df.shape[1],len(ul)))
+		endind=startind+len(ul)
+		newX[:,:,startind:endind]=tempx
+		startind=endind
 	return newX	
+
 with open('../../pickles/spacy/nonbinarized_features_sentence_train_glove.pkl','rb') as f:
 	glove_features_train=pickle.load(f)
 with open('../../pickles/spacy/nonbinarized_features_sentence_train_gram.pkl','rb') as f:
@@ -87,8 +75,6 @@ with open('../../pickles/spacy/nonbinarized_features_sentence_train_labels.pkl',
 with open('../../pickles/spacy/nonbinarized_features_sentence_test_labels.pkl','rb') as f:
 	labels_test=pickle.load(f)
 
-
-print('gram',len(grammar_features_train), len(grammar_features_train[0]), len(grammar_features_train[0][0]), len(labels_train))
 grammar_features_train=np.asarray(grammar_features_train)
 grammar_features_train=grammar_features_train[:,:,2:]
 
@@ -96,30 +82,13 @@ grammar_features_test=np.asarray(grammar_features_test)
 grammar_features_test=grammar_features_test[:,:,2:]
 
 glove_features_train=np.asarray(glove_features_train)
-print('glove', glove_features_train.shape)
-afds
+glove_features_train=glove_features_train[:,:,2:]
 
-print('glove',len(glove_features_train), len(glove_features_train[0]), len(glove_features_train[0][0]), len(labels_train))
-#glove_features_train=np.asarray(glove_features_train)
-a=len(glove_features_train)
-b=len(glove_features_train[0])
-c=len(glove_features_train[0][0])
-print(a,b,c)
-glove_features_train_new=np.zeros((a,b,c-2))
-for s in range(len(glove_features_train)):
-	print(s)
-	for w in range(len(glove_features_train[s])):
-		print(len(glove_features_train[s][w]), glove_features_train[s][w])
-		glove_features_train_new[s][w]=glove_features_train[s][w][2:]
+glove_features_test=np.asarray(glove_features_test)
+glove_features_test=glove_features_test[:,:,2:]
 
-#glove_features_train=np.asarray(glove_features_train)
-print('glove', glove_features_train_new.shape)
-print('glove', glove_features_train_new[0])
-
-#print('glove',len(glove_features_train), len(glove_features_train[0]), len(glove_features_train[0][0]), len(labels_train))
-
-asd
-print('glove',len(glove_features_train), len(glove_features_train[0]), len(glove_features_train[0][0]), len(labels_train))
+print('glove train', glove_features_train.shape)
+print('grammar train', grammar_features_train.shape)
 
 #########Grammar##########
 print("Grammar")
@@ -128,11 +97,11 @@ combo_train=grammar_features_train
 combo_test=grammar_features_test
 				 
 list_of_uniques=find_uniques_length(combo_train, remheaders)
-#print(list_of_uniques)
+print(list_of_uniques)
 #print('len col',len(baselist_gram))
 
 usum=np.sum([len(s) for s in list_of_uniques])
-#print('sum', usum, 'totsum', usum*5)	
+print('sum', usum)	
 
 Xtrain=binarize(combo_train, list_of_uniques, gram_base)
 Xtest=binarize(combo_test, list_of_uniques, gram_base)
