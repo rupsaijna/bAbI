@@ -22,9 +22,9 @@ gram_base=["pos_", "tag_", "ent_type_", "is_alpha", "is_stop", "is_digit", "is_l
 gram_base+=qr
 exf=['text','word_idx','label']
 
-CLAUSES=160
-T=90
-s=2.7
+CLAUSES=1000
+T=550
+s=15.9
 weighting = True
 motif_length=5
 training_epoch=1
