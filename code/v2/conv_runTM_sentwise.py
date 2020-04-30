@@ -182,12 +182,6 @@ for i in range(RUNS):
 	start_testing = time()
 	res_test=tm.predict(X_test2)
 	res_train=tm.predict(X_train2) 
-	
-	res_test_indx=np.where(res_test==1)
-	res_train_indx=np.where(res_train==1)	      
-	
-	result_test2=100*len(set(list(res_test_indx[0])).intersection(set(list(labels_test_indx[0]))))/len(list(labels_test_indx[0]))
-	result_train2=100*len(set(list(res_train_indx[0])).intersection(set(list(labels_train_indx[0]))))/len(list(labels_train_indx[0]))
 		
 	result_test = 100*(res_test == labels_test).mean()
 	result_train = 100*(res_train == labels_train).mean()
