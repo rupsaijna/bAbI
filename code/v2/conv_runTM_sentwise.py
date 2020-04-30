@@ -26,7 +26,7 @@ CLAUSES=1000
 T=1500
 s=27.5
 weighting = True
-motif_length=5
+motif_length=7
 training_epoch=100
 RUNS=20
 
@@ -121,7 +121,7 @@ print('reshaped test',X_test.shape)
 #np.save('x_train_conv', Xtrain)
 #np.save('x_test_conv', Xtest)
 
-# Setup
+'''# Setup
 tm = MultiClassConvolutionalTsetlinMachine2D(CLAUSES, T, s, (motif_length, 1), weighted_clauses=weighting)
 #labels_test_indx=np.where(labels_test==1)
 #labels_train_indx=np.where(labels_train==1)
@@ -152,20 +152,12 @@ for i in range(RUNS):
 
 	print("\n\n#%d Testing Accuracy: %.2f%% Training Accuracy: %.2f%% Training Time: %.2fs Testing Time: %.2fs" % (i+1, result_test, result_train, stop_training-start_training, stop_testing-start_testing))
 	print("\n#Testing PRF: %s%%\nTraining PRF: %s%%" % (prf_test, prf_train))
-
-jhgjng
+'''
 #########Glove##########
 print("\n\nGlove")
 
 combo_train=glove_features_train
 combo_test=glove_features_test
-
-remheaders=['text','label', 'word_idx']
-
-a=set(combo_train.columns.tolist())
-b=set(combo_test.columns.tolist())
-combo_headers=list(a.intersection(b))
-combo_headers=[ch for ch in combo_headers if ch not in remheaders]
 
 print('combo train',combo_train.shape)
 print('combo test',combo_test.shape)
@@ -176,11 +168,8 @@ combo_test=combo_test[combo_headers].to_numpy()
 print('\ncombo train',combo_train.shape)
 print('combo test',combo_test.shape)
 
-X_train2 = combo_train.reshape((combo_train.shape[0],(context_length*2+1),1,int(combo_train.shape[1]/(context_length*2+1))))
-X_test2 = combo_test.reshape((combo_test.shape[0],(context_length*2+1),1,int(combo_train.shape[1]/(context_length*2+1))))
-
-print('reshaped train',X_train2.shape)
-print('reshaped test',X_test2.shape)
+X_train2 = combo_train
+X_test2 = combo_test
 				 
 # Setup
 tm = MultiClassConvolutionalTsetlinMachine2D(CLAUSES, T, s, (motif_length, 1), weighted_clauses=weighting)
@@ -217,17 +206,11 @@ for i in range(RUNS):
 
 	stop_testing = time()
 
-	'''print("\n\n#%d Testing Accuracy: %.2f%% Training Accuracy: %.2f%% Training Time: %.2fs Testing Time: %.2fs" % (i+1, result_test, result_train, stop_training-start_training, stop_testing-start_testing))
-	print("\n#Testing PRF: %s%%\nTraining PRF: %s%%" % (prf_test, prf_train))'''
-	print("\nActual Testing Accuracy: %.2f%% Training Accuracy: %.2f%%" % (result_test2, result_train2))
+	print("\n\n#%d Testing Accuracy: %.2f%% Training Accuracy: %.2f%% Training Time: %.2fs Testing Time: %.2fs" % (i+1, result_test, result_train, stop_training-start_training, stop_testing-start_testing))
+	print("\n#Testing PRF: %s%%\nTraining PRF: %s%%" % (prf_test, prf_train))
+	#print("\nActual Testing Accuracy: %.2f%% Training Accuracy: %.2f%%" % (result_test2, result_train2))
 	acc.append(result_test2)
-	
-print('Max Acc:', max(acc))
-print('Min Acc:', min(acc))
-print('Avg Acc:', sum(acc)/len(acc))
-
-
-	
+vjhv	
 #########Combo##########
 print("\n\nCombo")
 
@@ -255,22 +238,9 @@ for run in range(RUNS):
 	res_test=tm.predict(X_test3)
 	res_train=tm.predict(X_train3) 
 	stop_testing = time()
-	
-	res_test_indx=np.where(res_test==1)
-	res_train_indx=np.where(res_train==1)	      
-	
-	result_test2=100*len(set(list(res_test_indx[0])).intersection(set(list(labels_test_indx[0]))))/len(list(labels_test_indx[0]))
-	result_train2=100*len(set(list(res_train_indx[0])).intersection(set(list(labels_train_indx[0]))))/len(list(labels_train_indx[0]))
-	
 
 	result_test = 100*(res_test == labels_test).mean()
 	result_train = 100*(res_train == labels_train).mean()
-	
-	'''if(sum(res_train)>0):
-		pz=list(zip(grammar_features_train['text'],grammar_features_train['label'],res_train))
-		for p in pz:
-			if p[2]==1 or p[1]==1:
-				print (p)'''
 
 	prf_test=precision_recall_fscore_support(res_test, labels_test, average='macro')
 	prf_train=precision_recall_fscore_support(res_train, labels_train, average='macro')
@@ -282,16 +252,12 @@ for run in range(RUNS):
 	prf_train=' '.join(prf_train)
 
 
-	'''print("\n\n#%d Convolutional Testing Accuracy: %.2f%% Training Accuracy: %.2f%% Training Time: %.2fs Testing Time: %.2fs" % (run+1, result_test, result_train, stop_training-start_training, stop_testing-start_testing))
-	print("\nActual Testing Accuracy: %.2f%% Training Accuracy: %.2f%%" % (result_test2, result_train2))
+	print("\n\n#%d Convolutional Testing Accuracy: %.2f%% Training Accuracy: %.2f%% Training Time: %.2fs Testing Time: %.2fs" % (run+1, result_test, result_train, stop_training-start_training, stop_testing-start_testing))
+	#print("\nActual Testing Accuracy: %.2f%% Training Accuracy: %.2f%%" % (result_test2, result_train2))
 	print("#Testing PRF: %s%%\nTraining PRF: %s%%" % (prf_test, prf_train))
 	print("#Classwise Testing  & Training PRFS:\n")
-	for clidx in range(len(oplabels)):
+	'''for clidx in range(len(oplabels)):
 		print(oplabels[clidx]+": "+str(prf_detail_test[0][clidx])+" ; "+str(prf_detail_test[1][clidx])+" ; "+str(prf_detail_test[2][clidx])+" ; "+str(prf_detail_test[3][clidx])+" || "+str(prf_detail_train[0][clidx])+" ; "+str(prf_detail_train[1][clidx])+" ; "+str(prf_detail_train[2][clidx])+" ; "+str(prf_detail_train[3][clidx])+'\n')
 	'''
-	print("\nActual Testing Accuracy: %.2f%% Training Accuracy: %.2f%%" % (result_test2, result_train2))
+	#print("\nActual Testing Accuracy: %.2f%% Training Accuracy: %.2f%%" % (result_test2, result_train2))
 	acc.append(result_test2)
-	
-print('Max Acc:', max(acc))
-print('Min Acc:', min(acc))
-print('Avg Acc:', sum(acc)/len(acc))
