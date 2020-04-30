@@ -161,7 +161,7 @@ for i in range(RUNS):
 print('Max Acc:', max(acc))
 print('Min Acc:', min(acc))
 print('Avg Acc:', sum(acc)/len(acc))
-
+jhgjng
 #########Glove##########
 print("\n\nGlove")
 
