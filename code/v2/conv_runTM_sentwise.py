@@ -117,7 +117,7 @@ print('reshaped test',X_test.shape)
 
 #np.save('x_train_conv', Xtrain)
 #np.save('x_test_conv', Xtest)
-				 
+kjn				 
 # Setup
 tm = MultiClassConvolutionalTsetlinMachine2D(CLAUSES, T, s, (motif_length, 1), weighted_clauses=weighting)
 labels_test_indx=np.where(labels_test==1)
