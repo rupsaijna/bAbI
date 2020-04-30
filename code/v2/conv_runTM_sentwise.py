@@ -74,8 +74,8 @@ with open('../../pickles/spacy/nonbinarized_features_sentence_test_labels.pkl','
 	labels_test=pickle.load(f)
 	
 label_set=list(set(labels_train+labels_test))
-labels_train=[label_set[ls] for ls in labels_train]
-labels_test=[label_set[ls] for ls in labels_test]
+labels_train=[label_set.index(ls) for ls in labels_train]
+labels_test=[label_set.index(ls) for ls in labels_test]
 
 
 grammar_features_train=np.asarray(grammar_features_train)
@@ -123,8 +123,8 @@ print('reshaped test',X_test.shape)
 
 # Setup
 tm = MultiClassConvolutionalTsetlinMachine2D(CLAUSES, T, s, (motif_length, 1), weighted_clauses=weighting)
-labels_test_indx=np.where(labels_test==1)
-labels_train_indx=np.where(labels_train==1)
+#labels_test_indx=np.where(labels_test==1)
+#labels_train_indx=np.where(labels_train==1)
 
 acc=[]
 
