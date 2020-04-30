@@ -21,7 +21,6 @@ context_length=4
 qr=['query_word']
 gram_base=["pos_", "tag_", "ent_type_", "is_alpha", "is_stop", "is_digit", "is_lower", "is_upper","is_punct", "is_left_punct", "is_right_punct", "is_bracket", "is_quote", "dep_", "head.pos_", "head.head.pos_"]
 gram_base+=qr
-addendum_context=['_wb'+str(l) for l in range(context_length,0,-1)]+['_wt']+['_wa'+str(l) for l in range(1,context_length+1)]
 exf=['text','word_idx','label']
 
 CLAUSES=160
@@ -109,8 +108,8 @@ Xtest=binarize(combo_test, list_of_uniques, gram_base)
 print('binarized train',Xtrain.shape)
 print('binarized test',Xtest.shape)
 
-X_train = Xtrain.reshape((Xtrain.shape[0],len(addendum_context),1,usum))
-X_test = Xtest.reshape((Xtest.shape[0],len(addendum_context),1,usum))
+X_train = Xtrain.reshape((Xtrain.shape[0],Xtrain.shape[1],1,usum))
+X_test = Xtest.reshape((Xtest.shape[0],Xtest.shape[0],1,usum))
 
 print('reshaped train',X_train.shape)
 print('reshaped test',X_test.shape)
