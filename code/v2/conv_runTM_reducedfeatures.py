@@ -89,7 +89,7 @@ print('glove',glove_features_train.shape, len(labels_train))
 				 
 print('gram',grammar_features_test.shape, len(labels_test))
 print('glove',glove_features_test.shape, len(labels_test))
-
+jhj
 #########Grammar##########
 print("Grammar")
 
