@@ -151,7 +151,8 @@ colnames=[c for c in colnames if c not in remheaders ]
 SKB = SelectKBest(chi2, k=50)
 SKB.fit(combo_train_num, labels_train)
 selected_features = SKB.get_support(indices=True)
-print(colnames[selected_features])
+cs=[colnames[sf] for sf in selected_features]
+print(cs)
 
 addsaf
 Xtrain=binarize(combo_train, list_of_uniques, gram_base)
