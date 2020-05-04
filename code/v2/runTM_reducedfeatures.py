@@ -213,7 +213,7 @@ acc=[]
 for i in range(RUNS):
 	print(i)
 	start_training = time()
-	tm.fit(Xtrain, labels_train, epochs=5, incremental=True)
+	tm.fit(Xtrain, labels_train, epochs=50, incremental=True)
 	stop_training = time()
 
 	start_testing = time()
