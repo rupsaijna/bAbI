@@ -180,7 +180,7 @@ print(combo_test_num.shape)
 
 colnames=list(combo_train.columns)
 colnames=[c for c in colnames if c not in remheaders ]
-SKB = SelectKBest(chi2, k=50)
+SKB = SelectKBest(chi2, k=20)
 SKB.fit(combo_train_num, labels_train)
 selected_features = SKB.get_support(indices=True)
 cs=[colnames[sf] for sf in selected_features]
