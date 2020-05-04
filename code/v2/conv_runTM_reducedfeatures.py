@@ -98,7 +98,7 @@ combo_test=grammar_features_test
 
 remheaders=['text','label', 'word_idx']
 
-colnames=combo_train.columns()
+colnames=combo_train.columns
 print(colnames)
 dsf
 
