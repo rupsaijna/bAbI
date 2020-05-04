@@ -211,12 +211,12 @@ acc=[]
 for i in range(RUNS):
 	print(i)
 	start_training = time()
-	tm.fit(X_train, labels_train, epochs=1, incremental=True)
+	tm.fit(Xtrain, labels_train, epochs=1, incremental=True)
 	stop_training = time()
 
 	start_testing = time()
-	res_test=tm.predict(X_test)
-	res_train=tm.predict(X_train) 
+	res_test=tm.predict(Xtest)
+	res_train=tm.predict(Xtrain) 
 	
 	res_test_indx=np.where(res_test==1)
 	res_train_indx=np.where(res_train==1)	      
