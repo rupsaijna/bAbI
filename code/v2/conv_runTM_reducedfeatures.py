@@ -123,7 +123,7 @@ combo_test=grammar_features_test
 
 remheaders=['text','label', 'word_idx']
 
-colnames=list(combo_train.columns)
+'''colnames=list(combo_train.columns)
 colnames=[c for c in colnames if c not in remheaders ]
 combo_train_subset=combo_train[colnames]
 print('combo train subset',combo_train_subset.shape)
@@ -132,7 +132,7 @@ SKB.fit(combo_train_subset, labels_train)
 selected_features = SKB.get_support(indices=True)
 print(selected_features)
 x_train = SKB.transform(x_train)
-x_test = SKB.transform(x_test)
+x_test = SKB.transform(x_test)'''
 
 
 print('combo train',combo_train.shape)
@@ -146,6 +146,8 @@ list_of_uniques=find_uniques_length(combo_train, remheaders)
 usum=np.sum([len(s) for s in list_of_uniques])
 print('sum', usum)	
 
+Xtrain=numerize(combo_train, list_of_uniques, gram_base)
+addsaf
 Xtrain=binarize(combo_train, list_of_uniques, gram_base)
 Xtest=binarize(combo_test, list_of_uniques, gram_base)
 
