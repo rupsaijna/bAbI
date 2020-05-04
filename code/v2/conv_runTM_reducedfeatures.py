@@ -141,8 +141,12 @@ list_of_uniques=find_uniques_length(combo_train, remheaders)
 usum=np.sum([len(s) for s in list_of_uniques])
 print('sum', usum)	
 
-Xtrain=numerize(combo_train, list_of_uniques, gram_base)
-print(Xtrain.shape)
+combo_train_num=numerize(combo_train, list_of_uniques, gram_base)
+combo_test_num=binarize(combo_test, list_of_uniques, gram_base)
+
+print(combo_train_num.shape)
+print(combo_test_num.shape)
+
 addsaf
 Xtrain=binarize(combo_train, list_of_uniques, gram_base)
 Xtest=binarize(combo_test, list_of_uniques, gram_base)
