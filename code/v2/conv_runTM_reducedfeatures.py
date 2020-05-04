@@ -48,7 +48,7 @@ def find_uniques_length(df, ignoreheaders):
 
 def numerize(df, list_uniques, list_columns):
 	temp_cols=[]
-	newX=np.zeros((df.shape[0], df.shape[1]), dtype=np.int32)
+	newX=np.zeros((df.shape[0], len(gram_base)*len(addendum_context)), dtype=np.int32)
 	startind=0
 	for contextid in addendum_context:
 		for colname_base in gram_base:
