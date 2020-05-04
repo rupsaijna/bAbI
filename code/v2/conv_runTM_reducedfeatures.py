@@ -55,10 +55,10 @@ def numerize(df, list_uniques, list_columns):
 			colname=colname_base+contextid
 			ul=list(list_uniques[gram_base.index(colname_base)])
 			arr=df[colname].tolist()
-			print(arr[10])
+			print(arr[:10])
 			print(ul)
 			tempx=[ul.index(arr[pos]) for pos in range(len(arr))]
-			print(tempx[10])
+			print(tempx[:10])
 			fsa
 								   
 			temp_cols.append(colname)
