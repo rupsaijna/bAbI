@@ -91,6 +91,37 @@ def binarize(df, list_uniques, list_columns):
 	print(t)'''
 	return newX	
 
+def binarize_selected(df, list_uniques, list_columns):
+	temp_cols=[]
+	sum_size=np.sum([len(s) for s in list_uniques])
+	newX=np.zeros((df.shape[0], sum_size*len(addendum_context)), dtype=np.int32)
+	startind=0
+	for contextid in addendum_context:
+		for colname_base in gram_base:
+			colname=colname_base+contextid
+			if colname in list_columns:
+				ul=list(list_uniques[gram_base.index(colname_base)])
+				tempx=np.zeros((df.shape[0], len(ul)), dtype=np.int32)
+				arr=df[colname].tolist()
+				tempx=[[1]*(ul.index(arr[pos])+1)+[0]*(len(ul)-(ul.index(arr[pos])+1)) for pos in range(len(arr))]
+				tempx=np.reshape(tempx,(df.shape[0], len(ul)))
+				endind=startind+len(ul)
+				#print('name,s,e',colname,startind,endind)
+				temp_cols.append(colname)
+				newX[:,startind:endind]=tempx
+				startind=endind
+	'''temp_cols=np.array(temp_cols)
+	print(temp_cols.shape)
+	t=temp_cols.reshape(len(addendum_context),1,len(gram_base))
+	print(t.shape)
+	print(t)'''
+	print(newX.shape)
+	print('Final indx',startind)
+	newX=newX[:,startind]
+	print(newX.shape)
+	return newX	
+
+
 glove_features_train=pd.read_pickle('../../pickles/spacy/nonbinarized_features_context'+str(context_length)+'_train_glove.pkl')
 grammar_features_train=pd.read_pickle('../../pickles/spacy/nonbinarized_features_context'+str(context_length)+'_train_gram.pkl')
 
@@ -152,11 +183,9 @@ SKB = SelectKBest(chi2, k=50)
 SKB.fit(combo_train_num, labels_train)
 selected_features = SKB.get_support(indices=True)
 cs=[colnames[sf] for sf in selected_features]
-print(cs)
 
-addsaf
-Xtrain=binarize(combo_train, list_of_uniques, gram_base)
-Xtest=binarize(combo_test, list_of_uniques, gram_base)
+Xtrain=binarize_selected(combo_train, list_of_uniques, cs)
+#Xtest=binarize(combo_test, list_of_uniques, gram_base)
 
 print('binarized train',Xtrain.shape)
 print('binarized test',Xtest.shape)
