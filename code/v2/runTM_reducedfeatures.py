@@ -201,7 +201,7 @@ print('binarized test',Xtest.shape)
 #np.save('x_test_conv', Xtest)
 				 
 # Setup
-tm = MultiClasslTsetlinMachine(CLAUSES, T, s, weighted_clauses=weighting)
+tm = MultiClassTsetlinMachine(CLAUSES, T, s, weighted_clauses=weighting)
 labels_test_indx=np.where(labels_test==1)
 labels_train_indx=np.where(labels_train==1)
 
