@@ -30,7 +30,7 @@ s=2.7
 weighting = True
 motif_length=7
 training_epoch=35
-RUNS=2000
+RUNS=10000
 
 
 def find_uniques_length(df, ignoreheaders):
@@ -211,7 +211,7 @@ acc=[]
 for i in range(RUNS):
 	print(i)
 	start_training = time()
-	tm.fit(Xtrain, labels_train, epochs=1, incremental=True)
+	tm.fit(Xtrain, labels_train, epochs=5, incremental=True)
 	stop_training = time()
 
 	start_testing = time()
