@@ -98,7 +98,8 @@ combo_test=grammar_features_test
 
 remheaders=['text','label', 'word_idx']
 
-colnames=combo_train.columns
+colnames=list(combo_train.columns)
+colnames=[c if c not in remheaders for c in colnames]
 print(colnames)
 dsf
 
