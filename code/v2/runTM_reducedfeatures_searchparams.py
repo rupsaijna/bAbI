@@ -113,15 +113,8 @@ def binarize_selected(df, list_uniques, list_columns):
 				temp_cols.append(colname)
 				newX[:,startind:endind]=tempx
 				startind=endind
-	'''temp_cols=np.array(temp_cols)
-	print(temp_cols.shape)
-	t=temp_cols.reshape(len(addendum_context),1,len(gram_base))
-	print(t.shape)
-	print(t)'''
-	print('shape',newX.shape)
-	print('Final indx',startind)
+	
 	newX=newX[:,:startind]
-	print('final shape',newX.shape)
 	return newX	
 
 
