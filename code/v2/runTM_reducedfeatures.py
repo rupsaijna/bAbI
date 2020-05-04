@@ -152,17 +152,6 @@ combo_test=grammar_features_test
 
 remheaders=['text','label', 'word_idx']
 
-'''
-combo_train_subset=combo_train[colnames]
-print('combo train subset',combo_train_subset.shape)
-SKB = SelectKBest(chi2, k=50)
-SKB.fit(combo_train_subset, labels_train)
-selected_features = SKB.get_support(indices=True)
-print(selected_features)
-x_train = SKB.transform(x_train)
-x_test = SKB.transform(x_test)'''
-
-
 print('combo train',combo_train.shape)
 print('combo test',combo_test.shape)
 
@@ -182,7 +171,7 @@ print(combo_test_num.shape)
 
 colnames=list(combo_train.columns)
 colnames=[c for c in colnames if c not in remheaders ]
-SKB = SelectKBest(chi2, k=20)
+SKB = SelectKBest(chi2, k=10)
 SKB.fit(combo_train_num, labels_train)
 selected_features = SKB.get_support(indices=True)
 cs=[colnames[sf] for sf in selected_features]
@@ -247,6 +236,9 @@ print('Min Acc:', min(acc))
 print('Avg Acc:', sum(acc)/len(acc))
 
 plt.plot(np.arange(1,len(acc)+1),acc)
+plt.grid(b=True, which='major', color='#666666', linestyle='-')
+plt.minorticks_on()
+plt.grid(b=True, which='minor', color='#999999', linestyle='-', alpha=0.2)
 plt.savefig('accuracy.png')
 kjbln
 #########Glove##########
