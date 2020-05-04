@@ -32,4 +32,5 @@ Above example can be seen in **data/tasks_1-20_v1-2/en/qa1_single-supporting-fac
 
 ## Requirements
 Spacy + en_core_web_sm
+
 Pandas 1.0.3
