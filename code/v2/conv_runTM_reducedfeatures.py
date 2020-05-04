@@ -147,12 +147,18 @@ combo_test_num=binarize(combo_test, list_of_uniques, gram_base)
 print(combo_train_num.shape)
 print(combo_test_num.shape)
 
+SKB = SelectKBest(chi2, k=50)
+SKB.fit(combo_train_num, labels_train)
+selected_features = SKB.get_support(indices=True)
+print(selected_features)
+
 addsaf
 Xtrain=binarize(combo_train, list_of_uniques, gram_base)
 Xtest=binarize(combo_test, list_of_uniques, gram_base)
 
 print('binarized train',Xtrain.shape)
 print('binarized test',Xtest.shape)
+
 hkjh
 X_train = Xtrain.reshape((Xtrain.shape[0],len(addendum_context),1,usum))
 X_test = Xtest.reshape((Xtest.shape[0],len(addendum_context),1,usum))
