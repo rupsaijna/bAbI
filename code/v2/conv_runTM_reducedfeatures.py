@@ -115,10 +115,10 @@ def binarize_selected(df, list_uniques, list_columns):
 	t=temp_cols.reshape(len(addendum_context),1,len(gram_base))
 	print(t.shape)
 	print(t)'''
-	print(newX.shape)
+	print('shape',newX.shape)
 	print('Final indx',startind)
-	newX=newX[:,startind]
-	print(newX.shape)
+	newX=newX[:,:startind]
+	print('final shape',newX.shape)
 	return newX	
 
 
@@ -188,7 +188,7 @@ Xtrain=binarize_selected(combo_train, list_of_uniques, cs)
 #Xtest=binarize(combo_test, list_of_uniques, gram_base)
 
 print('binarized train',Xtrain.shape)
-print('binarized test',Xtest.shape)
+#print('binarized test',Xtest.shape)
 
 hkjh
 X_train = Xtrain.reshape((Xtrain.shape[0],len(addendum_context),1,usum))
