@@ -31,4 +31,5 @@ Each sentence is provided with an ID. The IDs for a given “story” start at 1
 Above example can be seen in **data/tasks_1-20_v1-2/en/qa1_single-supporting-fact_train.txt**
 
 ## Requirements
+Spacy + en_core_web_sm
 Pandas 1.0.3
