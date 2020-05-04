@@ -15,6 +15,8 @@ import csv
 from sklearn.metrics import precision_recall_fscore_support
 from sklearn.model_selection import train_test_split
 from time import time
+import matplotlib.pyplot as plt
+
 
 oplabels=['0','1']
 context_length=4
@@ -244,6 +246,8 @@ print('Max Acc:', max(acc))
 print('Min Acc:', min(acc))
 print('Avg Acc:', sum(acc)/len(acc))
 
+plt.plot(np.arange(1,len(acc)),acc)
+plt.savefig('accuracy.png')
 kjbln
 #########Glove##########
 print("\n\nGlove")
