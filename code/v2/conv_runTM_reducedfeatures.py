@@ -89,7 +89,7 @@ print('glove',glove_features_train.shape, len(labels_train))
 				 
 print('gram',grammar_features_test.shape, len(labels_test))
 print('glove',glove_features_test.shape, len(labels_test))
-jhj
+
 #########Grammar##########
 print("Grammar")
 
@@ -125,7 +125,7 @@ Xtest=binarize(combo_test, list_of_uniques, gram_base)
 
 print('binarized train',Xtrain.shape)
 print('binarized test',Xtest.shape)
-
+hkjh
 X_train = Xtrain.reshape((Xtrain.shape[0],len(addendum_context),1,usum))
 X_test = Xtest.reshape((Xtest.shape[0],len(addendum_context),1,usum))
 
