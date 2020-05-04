@@ -55,12 +55,7 @@ def numerize(df, list_uniques, list_columns):
 			colname=colname_base+contextid
 			ul=list(list_uniques[gram_base.index(colname_base)])
 			arr=df[colname].tolist()
-			print(arr[:10])
-			print(ul)
-			tempx=[ul.index(arr[pos]) for pos in range(len(arr))]
-			print(tempx[:10])
-			fsa
-								   
+			tempx=[ul.index(arr[pos]) for pos in range(len(arr))]				   
 			temp_cols.append(colname)
 			newX[:,startind]=tempx
 			startind+=1
@@ -147,6 +142,8 @@ usum=np.sum([len(s) for s in list_of_uniques])
 print('sum', usum)	
 
 Xtrain=numerize(combo_train, list_of_uniques, gram_base)
+print(combo_train)
+print(Xtrain)
 addsaf
 Xtrain=binarize(combo_train, list_of_uniques, gram_base)
 Xtest=binarize(combo_test, list_of_uniques, gram_base)
