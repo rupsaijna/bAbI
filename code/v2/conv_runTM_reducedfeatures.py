@@ -100,11 +100,13 @@ remheaders=['text','label', 'word_idx']
 
 colnames=list(combo_train.columns)
 colnames=[c for c in colnames if c not in remheaders ]
-print(colnames)
-dsf
+
+combo_train_subset=combo_train[colnames]
+print('combo train subset',combo_train_subset.shape)
+
 
 SKB = SelectKBest(chi2, k=50)
-SKB.fit(combo_train, labels_train)
+SKB.fit(combo_train_subset, labels_train)
 selected_features = SKB.get_support(indices=True)
 print(selected_features)
 jbmb
