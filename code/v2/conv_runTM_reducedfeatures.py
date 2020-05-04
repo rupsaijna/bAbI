@@ -46,6 +46,31 @@ def find_uniques_length(df, ignoreheaders):
 			uniques.append(uset)
 	return uniques
 
+def numerize(df, list_uniques, list_columns):
+	temp_cols=[]
+	newX=np.zeros((df.shape[0], df.shape[1]), dtype=np.int32)
+	startind=0
+	for contextid in addendum_context:
+		for colname_base in gram_base:
+			colname=colname_base+contextid
+			ul=list(list_uniques[gram_base.index(colname_base)])
+			arr=df[colname].tolist()
+			print(arr)
+			print(ul)
+			tempx=[ul.index(arr[pos]) for pos in range(len(arr))]
+			print(tempx)
+			fsa
+								   
+			temp_cols.append(colname)
+			newX[:,startind]=tempx
+			startind+=1
+	'''temp_cols=np.array(temp_cols)
+	print(temp_cols.shape)
+	t=temp_cols.reshape(len(addendum_context),1,len(gram_base))
+	print(t.shape)
+	print(t)'''
+	return newX	
+
 def binarize(df, list_uniques, list_columns):
 	temp_cols=[]
 	sum_size=np.sum([len(s) for s in list_uniques])
@@ -100,16 +125,12 @@ remheaders=['text','label', 'word_idx']
 
 colnames=list(combo_train.columns)
 colnames=[c for c in colnames if c not in remheaders ]
-
 combo_train_subset=combo_train[colnames]
 print('combo train subset',combo_train_subset.shape)
-
-
 SKB = SelectKBest(chi2, k=50)
 SKB.fit(combo_train_subset, labels_train)
 selected_features = SKB.get_support(indices=True)
 print(selected_features)
-jbmb
 x_train = SKB.transform(x_train)
 x_test = SKB.transform(x_test)
 
