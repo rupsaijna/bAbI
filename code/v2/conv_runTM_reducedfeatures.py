@@ -98,6 +98,10 @@ combo_test=grammar_features_test
 
 remheaders=['text','label', 'word_idx']
 
+colnames=combo_train.columns()
+print(colnames)
+dsf
+
 SKB = SelectKBest(chi2, k=50)
 SKB.fit(combo_train, labels_train)
 selected_features = SKB.get_support(indices=True)
