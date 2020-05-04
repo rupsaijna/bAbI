@@ -246,7 +246,7 @@ print('Max Acc:', max(acc))
 print('Min Acc:', min(acc))
 print('Avg Acc:', sum(acc)/len(acc))
 
-plt.plot(np.arange(1,len(acc)),acc)
+plt.plot(np.arange(1,len(acc)+1),acc)
 plt.savefig('accuracy.png')
 kjbln
 #########Glove##########
