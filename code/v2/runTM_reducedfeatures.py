@@ -5,7 +5,8 @@ import sys
 import os
 import time
 sys.path.append('../../pyTsetlinMachineParallel/')
-from tm import MultiClassConvolutionalTsetlinMachine2D
+#from tm import MultiClassConvolutionalTsetlinMachine2D
+from tm import MultiClassTsetlinMachine
 import numpy as np
 import re
 import string
@@ -185,10 +186,10 @@ selected_features = SKB.get_support(indices=True)
 cs=[colnames[sf] for sf in selected_features]
 
 Xtrain=binarize_selected(combo_train, list_of_uniques, cs)
-#Xtest=binarize(combo_test, list_of_uniques, gram_base)
+Xtest=binarize(combo_test, list_of_uniques, cs)
 
 print('binarized train',Xtrain.shape)
-#print('binarized test',Xtest.shape)
+print('binarized test',Xtest.shape)
 
 hkjh
 X_train = Xtrain.reshape((Xtrain.shape[0],len(addendum_context),1,usum))
