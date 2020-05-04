@@ -186,23 +186,22 @@ selected_features = SKB.get_support(indices=True)
 cs=[colnames[sf] for sf in selected_features]
 
 Xtrain=binarize_selected(combo_train, list_of_uniques, cs)
-Xtest=binarize(combo_test, list_of_uniques, cs)
+Xtest=binarize_selected(combo_test, list_of_uniques, cs)
 
 print('binarized train',Xtrain.shape)
 print('binarized test',Xtest.shape)
 
-hkjh
-X_train = Xtrain.reshape((Xtrain.shape[0],len(addendum_context),1,usum))
-X_test = Xtest.reshape((Xtest.shape[0],len(addendum_context),1,usum))
+#X_train = Xtrain.reshape((Xtrain.shape[0],len(addendum_context),1,usum))
+#X_test = Xtest.reshape((Xtest.shape[0],len(addendum_context),1,usum))
 
-print('reshaped train',X_train.shape)
-print('reshaped test',X_test.shape)
+#print('reshaped train',X_train.shape)
+#print('reshaped test',X_test.shape)
 
 #np.save('x_train_conv', Xtrain)
 #np.save('x_test_conv', Xtest)
 				 
 # Setup
-tm = MultiClassConvolutionalTsetlinMachine2D(CLAUSES, T, s, (motif_length, 1), weighted_clauses=weighting)
+tm = MultiClasslTsetlinMachine(CLAUSES, T, s, weighted_clauses=weighting)
 labels_test_indx=np.where(labels_test==1)
 labels_train_indx=np.where(labels_train==1)
 
@@ -245,6 +244,7 @@ print('Max Acc:', max(acc))
 print('Min Acc:', min(acc))
 print('Avg Acc:', sum(acc)/len(acc))
 
+kjbln
 #########Glove##########
 print("\n\nGlove")
 
