@@ -142,8 +142,7 @@ usum=np.sum([len(s) for s in list_of_uniques])
 print('sum', usum)	
 
 Xtrain=numerize(combo_train, list_of_uniques, gram_base)
-print(combo_train)
-print(Xtrain)
+print(Xtrain.shape)
 addsaf
 Xtrain=binarize(combo_train, list_of_uniques, gram_base)
 Xtest=binarize(combo_test, list_of_uniques, gram_base)
