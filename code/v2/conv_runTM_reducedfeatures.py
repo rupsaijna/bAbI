@@ -95,19 +95,17 @@ print("Grammar")
 
 combo_train=grammar_features_train
 combo_test=grammar_features_test
-				 
-#combo_train= pd.concat([grammar_features_train, glove_features_train], axis=1, join='inner')
-#combo_test= pd.concat([grammar_features_test, glove_features_test], axis=1, join='inner')
-#combo_train = combo_train.loc[:,~combo_train.columns.duplicated()]
-#combo_test = combo_test.loc[:,~combo_test.columns.duplicated()]
-#combo_train=combo_train.drop(columns=[ 'info2_wa2'])
-#combo_test=combo_test.drop(columns=[ 'info2_wa2'])
 
 remheaders=['text','label', 'word_idx']
 
-a=set(combo_train.columns.tolist())
-b=set(combo_test.columns.tolist())
-combo_headers=list(a.intersection(b))
+SKB = SelectKBest(chi2, k=50)
+SKB.fit(combo_train, labels_train)
+selected_features = SKB.get_support(indices=True)
+print(selected_features)
+jbmb
+x_train = SKB.transform(x_train)
+x_test = SKB.transform(x_test)
+
 
 print('combo train',combo_train.shape)
 print('combo test',combo_test.shape)
