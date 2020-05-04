@@ -118,7 +118,7 @@ list_of_uniques=find_uniques_length(combo_train, remheaders)
 #print('len col',len(baselist_gram))
 
 usum=np.sum([len(s) for s in list_of_uniques])
-#print('sum', usum, 'totsum', usum*5)	
+print('sum', usum)	
 
 Xtrain=binarize(combo_train, list_of_uniques, gram_base)
 Xtest=binarize(combo_test, list_of_uniques, gram_base)
