@@ -197,7 +197,7 @@ labels_test_indx=np.where(labels_test==1)
 labels_train_indx=np.where(labels_train==1)
 
 acc=[]
-
+acc_train=[]
 # Training
 for i in range(RUNS):
 	print(i)
@@ -230,17 +230,20 @@ for i in range(RUNS):
 	print("\n#Testing PRF: %s%%\nTraining PRF: %s%%" % (prf_test, prf_train))'''
 	print("\nActual Testing Accuracy: %.2f%% Training Accuracy: %.2f%%" % (result_test2, result_train2))
 	acc.append(result_test2)
+	acc_train.append(result_train2)
 	
 print('Max Acc:', max(acc))
 print('Min Acc:', min(acc))
 print('Avg Acc:', sum(acc)/len(acc))
 
-plt.plot(np.arange(1,len(acc)+1),acc)
+plt.plot(np.arange(1,len(acc)+1),acc, label = "Test")
+plt.plot(np.arange(1,len(acc)+1),acc_train, label = "Test")
 plt.grid(b=True, which='major', color='#666666', linestyle='-')
 plt.minorticks_on()
 plt.grid(b=True, which='minor', color='#999999', linestyle='-', alpha=0.2)
 plt.savefig('accuracy.png')
-kjbln
+
+'''
 #########Glove##########
 print("\n\nGlove")
 
@@ -304,8 +307,7 @@ for i in range(RUNS):
 
 	stop_testing = time()
 
-	'''print("\n\n#%d Testing Accuracy: %.2f%% Training Accuracy: %.2f%% Training Time: %.2fs Testing Time: %.2fs" % (i+1, result_test, result_train, stop_training-start_training, stop_testing-start_testing))
-	print("\n#Testing PRF: %s%%\nTraining PRF: %s%%" % (prf_test, prf_train))'''
+
 	print("\nActual Testing Accuracy: %.2f%% Training Accuracy: %.2f%%" % (result_test2, result_train2))
 	acc.append(result_test2)
 	
@@ -352,12 +354,7 @@ for run in range(RUNS):
 
 	result_test = 100*(res_test == labels_test).mean()
 	result_train = 100*(res_train == labels_train).mean()
-	
-	'''if(sum(res_train)>0):
-		pz=list(zip(grammar_features_train['text'],grammar_features_train['label'],res_train))
-		for p in pz:
-			if p[2]==1 or p[1]==1:
-				print (p)'''
+
 
 	prf_test=precision_recall_fscore_support(res_test, labels_test, average='macro')
 	prf_train=precision_recall_fscore_support(res_train, labels_train, average='macro')
@@ -368,19 +365,11 @@ for run in range(RUNS):
 	prf_train=[str(p) for p in prf_train]
 	prf_train=' '.join(prf_train)
 
-
-	'''print("\n\n#%d Convolutional Testing Accuracy: %.2f%% Training Accuracy: %.2f%% Training Time: %.2fs Testing Time: %.2fs" % (run+1, result_test, result_train, stop_training-start_training, stop_testing-start_testing))
-	print("\nActual Testing Accuracy: %.2f%% Training Accuracy: %.2f%%" % (result_test2, result_train2))
-	print("#Testing PRF: %s%%\nTraining PRF: %s%%" % (prf_test, prf_train))
-	print("#Classwise Testing  & Training PRFS:\n")
-	for clidx in range(len(oplabels)):
-		print(oplabels[clidx]+": "+str(prf_detail_test[0][clidx])+" ; "+str(prf_detail_test[1][clidx])+" ; "+str(prf_detail_test[2][clidx])+" ; "+str(prf_detail_test[3][clidx])+" || "+str(prf_detail_train[0][clidx])+" ; "+str(prf_detail_train[1][clidx])+" ; "+str(prf_detail_train[2][clidx])+" ; "+str(prf_detail_train[3][clidx])+'\n')
-	'''
 	print("\nActual Testing Accuracy: %.2f%% Training Accuracy: %.2f%%" % (result_test2, result_train2))
 	acc.append(result_test2)
 	
 print('Max Acc:', max(acc))
 print('Min Acc:', min(acc))
 print('Avg Acc:', sum(acc)/len(acc))
-	
+'''	
 	
