@@ -16,7 +16,7 @@ from sklearn.model_selection import train_test_split
 from time import time
 
 oplabels=['0','1']
-context_length=4
+context_length=5
 qr=['query_word']
 gram_base=["pos_", "tag_", "ent_type_", "is_alpha", "is_stop", "is_digit", "is_lower", "is_upper","is_punct", "is_left_punct", "is_right_punct", "is_bracket", "is_quote", "dep_", "head.pos_", "head.head.pos_"]
 gram_base+=qr
