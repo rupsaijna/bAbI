@@ -77,12 +77,15 @@ def generate(num_sentences,names,locs,verbs,num_examples):
 		for i in range(num_sentences):
 			temp_sentence=temp_names[i]+' '+temp_verbs[i]+' '+temp_locs[i]+'. '
 			temp_example+=temp_sentence
-		temp_qs='Where is '+random.sample(temp_names, k=1)[0]+'?'
+		qs_num=random.randint(0,num_sentences-1)
+		temp_qs='Where is '+temp_names[qs_num]+'?'
 		temp_example+=temp_qs
+		temp_ans=temp_locs[qs_num]+'\t'+str(qs_num+1)
+		temp_example+='\t'+temp_ans
 		if temp_example not in examples:
 			examples.append(temp_example)
 			
-	return examples		
+	return examples	
 	
 ######################################################################				
 			
@@ -106,6 +109,12 @@ verbs=[v.replace('\n','') for v in verbs]
 random.shuffle(verbs)
 
 ##input
+opfileans=raw_input("\n>Output: generated_data.txt Y/N? ")
+if opfileans.lower()=='y':
+	opfile='generated_data.txt'
+else:
+	opfileans=str(raw_input("\n>Enter output file name: "))
+
 num_sentences=raw_input("\n>How many sentences per example? [2-10] ") 
 num_sentences=int(num_sentences)
 ##confirm numbers to be generated
