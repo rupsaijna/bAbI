@@ -7,7 +7,7 @@ import numpy as np
 
 fname='../generated/generated1.txt'
 CLAUSES=20
-T=30
+T=15
 s=2.5
 weighting = True
 training_epoch=1
