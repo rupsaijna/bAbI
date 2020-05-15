@@ -28,6 +28,8 @@ for i in range(RUNS):
 	tm.fit(X_train, y_train, epochs=training_epoch, incremental=True)
 	res_test=tm.predict(X_test)
 	
+	print(res_test)
+	print(y_test)
 	acc_test = 100*(res_test == y_test).mean()
 	
 	prf_test_macro=precision_recall_fscore_support(res_test, y_test, average='macro')
