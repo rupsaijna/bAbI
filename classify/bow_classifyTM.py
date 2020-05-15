@@ -1,3 +1,4 @@
+import sys
 sys.path.append('../../pyTsetlinMachineParallel/')
 from tm import MultiClassTsetlinMachine
 from sklearn.metrics import precision_recall_fscore_support
