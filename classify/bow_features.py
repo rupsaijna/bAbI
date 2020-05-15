@@ -8,7 +8,7 @@ f.close()
 f=open(fname.replace('../generated/','../generated/meta_'),'r')
 labels_set=f.readlines()[1]
 f.close()
-labels_set=[ls.replace('the ') for ls in labels_set]
+labels_set=[ls.replace('the ','') for ls in labels_set]
 data=[d.replace('\n','') for d in data]
 
 data=[d.split('\t') for d in data]
