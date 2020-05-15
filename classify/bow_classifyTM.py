@@ -40,4 +40,4 @@ for i in range(RUNS):
 	#print("\n#Testing PRF Macro: " + ', '.join(prf_test_macro))
 	#print("\nTesting PRF Micro: " + ', '.join(prf_test_micro))
 
-print(np.mean(allacc, axis=0)+' +/- '+np.std(allacc, axis=0))
+print(np.mean(allacc, axis=0),' +/- ',np.std(allacc, axis=0))
