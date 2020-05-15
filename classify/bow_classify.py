@@ -1,6 +1,7 @@
 import numpy as np
 
-f=open('../generated/generated1.txt','r')
+fname='../generated/generated1.txt'
+f=open(fname,'r')
 data=f.readlines()
 f.close()
 
@@ -54,6 +55,6 @@ for nt in newtext:
 	textind+=1
 	
 	
-np.save('featureset.npy', featureset)
+np.save(fname.replace('.txt','')+'_featureset.npy', featureset)
 
 #fs=np.load('featureset.npy')
