@@ -39,5 +39,5 @@ for i in range(RUNS):
 	
 	print("\n\n#%d Testing Accuracy: %.2f%% " % (i+1, acc_test))
 	print("\n#Testing PRF Macro: " + ', '.join(prf_test_macro))
-	print("\nTesting PRF Micro: " + ', '.join(prf_test_macro))
+	print("\nTesting PRF Micro: " + ', '.join(prf_test_micro))
 
