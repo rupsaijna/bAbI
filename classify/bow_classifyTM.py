@@ -11,7 +11,7 @@ T=30
 s=2.5
 weighting = True
 training_epoch=1
-RUNS=10
+RUNS=100
 
 featureset=np.load(fname.replace('.txt','')+'_featureset.npy')
 
