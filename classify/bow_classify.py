@@ -1,6 +1,6 @@
 import numpy as np
 
-f=open('../generated1.txt','r')
+f=open('../generated/generated1.txt','r')
 data=f.readlines()
 f.close()
 
