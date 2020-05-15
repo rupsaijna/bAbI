@@ -23,14 +23,14 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.30, random
 
 tm = MultiClassTsetlinMachine(CLAUSES, T, s, weighted_clauses=weighting)
 
-
+allacc=[]
 for i in range(RUNS):
 	print(i)
 	tm.fit(X_train, y_train, epochs=training_epoch, incremental=True)
 	res_test=tm.predict(X_test)
 	
 	acc_test = 100*(res_test == y_test).mean()
-	
+	allacc.append(acc_test)
 	prf_test_macro=precision_recall_fscore_support(res_test, y_test, average='macro')
 	prf_test_macro=[str(round(p,2)) for p in prf_test_macro[:-1]]
 	
@@ -38,6 +38,7 @@ for i in range(RUNS):
 	prf_test_micro=[str(round(p,2)) for p in prf_test_micro[:-1]]
 	
 	print("\n\n#%d Testing Accuracy: %.2f%% " % (i+1, acc_test))
-	print("\n#Testing PRF Macro: " + ', '.join(prf_test_macro))
-	print("\nTesting PRF Micro: " + ', '.join(prf_test_micro))
+	#print("\n#Testing PRF Macro: " + ', '.join(prf_test_macro))
+	#print("\nTesting PRF Micro: " + ', '.join(prf_test_micro))
 
+print(np.mean(allacc, axis=0)+' +/- '+np.std(allacc, axis=0))
