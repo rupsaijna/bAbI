@@ -136,9 +136,15 @@ examples=generate(num_sentences,names,locs,verbs,num_examples)
 fo=open(opfile,'w')
 for e in examples:
 	fo.write(e+'\n')
-
-print('Output written to '+opfile)
 fo.close()
+	
+fo=open('meta_'+opfile,'w')	
+fo.write(','.join(names)+'\n')
+fo.write(','.join(locs)+'\n')
+fo.write(','.join(verbs)+'\n')
+fo.close()
+print('Output written to '+opfile)
+
 
 		
 		
