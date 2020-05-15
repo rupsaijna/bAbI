@@ -30,10 +30,10 @@ for i in range(RUNS):
 	
 	acc_test = 100*(res_test == y_test).mean()
 	
-	prf_test_macro=precision_recall_fscore_support(res_test, labels_test, average='macro')
+	prf_test_macro=precision_recall_fscore_support(res_test, y_test, average='macro')
 	prf_test_macro=[str(round(p,2)) for p in prf_test_macro]
 	
-	prf_test_micro=precision_recall_fscore_support(res_test, labels_test, average='micro')
+	prf_test_micro=precision_recall_fscore_support(res_test, y_test, average='micro')
 	prf_test_micro=[str(round(p,2)) for p in prf_test_micro]
 	
 	print("\n\n#%d Testing Accuracy: %.2f%% " % (i+1, result_test))
