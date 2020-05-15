@@ -5,13 +5,17 @@ f=open(fname,'r')
 data=f.readlines()
 f.close()
 
+f=open(fname.replace('../generated/','../generated/meta_'),'r')
+labels_set=f.readlines()[1]
+f.close()
+labels_set=[ls.replace('the ') for ls in labels_set]
 data=[d.replace('\n','') for d in data]
 
 data=[d.split('\t') for d in data]
 
 text=[d[0] for d in data]
 labels=[d[1] for d in data]
-labels_set=list(set(labels))
+#labels_set=list(set(labels))
 
 word_set_sentences= set()
 word_set_questions= set()
