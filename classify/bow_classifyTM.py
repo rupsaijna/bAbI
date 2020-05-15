@@ -25,7 +25,6 @@ tm = MultiClassTsetlinMachine(CLAUSES, T, s, weighted_clauses=weighting)
 
 allacc=[]
 for i in range(RUNS):
-	print(i)
 	tm.fit(X_train, y_train, epochs=training_epoch, incremental=True)
 	res_test=tm.predict(X_test)
 	
