@@ -6,7 +6,7 @@ from sklearn.model_selection import train_test_split
 import numpy as np
 
 fname='../generated/generated1.txt'
-CLAUSES=30
+CLAUSES=20
 T=30
 s=2.5
 weighting = True
