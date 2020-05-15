@@ -37,7 +37,7 @@ for i in range(RUNS):
 	prf_test_micro=precision_recall_fscore_support(res_test, y_test, average='micro')
 	prf_test_micro=[str(round(p,2)) for p in prf_test_micro[:-1]]
 	
-	print("\n\n#%d Testing Accuracy: %.2f%% " % (i+1, result_test))
+	print("\n\n#%d Testing Accuracy: %.2f%% " % (i+1, acc_test))
 	print("\n#Testing PRF Macro: " + ', '.join(prf_test_macro))
 	print("\nTesting PRF Micro: " + ', '.join(prf_test_macro))
 
