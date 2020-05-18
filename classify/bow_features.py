@@ -1,6 +1,6 @@
 import numpy as np
 
-fname='../generated/generated1.txt'
+fname='../generated/generated2.txt'
 f=open(fname,'r')
 data=f.readlines()
 f.close()
