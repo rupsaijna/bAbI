@@ -121,7 +121,7 @@ opfileans=input("\n>Output file is: generated_data.txt Y/N? ")
 if opfileans.lower()=='y':
 	opfile='generated_data.txt'
 else:
-	opfileans=str(input("\n>Enter output file name: "))
+	opfile=str(input("\n>Enter output file name: "))
 
 num_sentences=input("\n>How many sentences per example? e.g. 2 ") 
 num_sentences=int(num_sentences)
