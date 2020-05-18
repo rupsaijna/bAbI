@@ -13,6 +13,11 @@ weighting = True
 training_epoch=1
 RUNS=100
 
+f=open(fname.replace('../generated/','../generated/meta_'),'r')
+labels_set=f.readlines()[1].replace('\n','').split(',')
+f.close()
+labels_set=[ls.replace('the ','') for ls in labels_set]
+
 featureset=np.load(fname.replace('.txt','')+'_featureset.npy')
 
 X=featureset[:,:-1]
@@ -36,8 +41,12 @@ for i in range(RUNS):
 	prf_test_micro=precision_recall_fscore_support(res_test, y_test, average='micro')
 	prf_test_micro=[str(round(p,2)) for p in prf_test_micro[:-1]]
 	
+	prf_test_class=precision_recall_fscore_support(res_test, y_test, average=None, labels=labels_set)
+	
 	print("\n\n#%d Testing Accuracy: %.2f%% " % (i+1, acc_test))
 	#print("\n#Testing PRF Macro: " + ', '.join(prf_test_macro))
 	#print("\nTesting PRF Micro: " + ', '.join(prf_test_micro))
+	for ls in range(len(labels_set)):
+		print(labels_set[ls]+' : '+str(round(prf_test_class[0][ls],2))+', '+str(round(prf_test_class[1][ls],2))+', '+str(round(prf_test_class[2][ls],2))+', '+str(round(prf_test_class[3][ls],2)))
 
 print(np.mean(allacc, axis=0),' +/- ',np.std(allacc, axis=0))
