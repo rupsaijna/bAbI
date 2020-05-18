@@ -5,7 +5,7 @@ from sklearn.metrics import precision_recall_fscore_support
 from sklearn.model_selection import train_test_split
 import numpy as np
 
-fname='../generated/generated1.txt'
+fname='../generated/generated2.txt'
 CLAUSES=40
 T=25
 s=2.5
