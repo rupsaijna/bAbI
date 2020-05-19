@@ -8,7 +8,7 @@ import numpy as np
 #fname='../generated/generated2.txt'
 fname=sys.argv[1]
 CLAUSES=40
-T=35
+T=45
 s=2.5
 weighting = True
 training_epoch=1
