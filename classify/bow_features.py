@@ -55,15 +55,17 @@ print(word_set_sentences)
 print(word_set_questions)
 print(labels_set)
 featureheaders=[]
+for n in range(numsentences):
+	featureheaders+=['s_'+str(n)+w for w in word_set_sentences]
+featureheaders+=['q_'+w for w in word_set_questions]
+
 textind=0
 for nt in newtext:
 	startind=0
 	for sentence in nt[:-1]:
-		featureheaders+=word_set_sentences
 		tempfeature=[1 if word_set_sentences[i] in sentence else 0 for i in range(sentfeaturelen)]
 		featureset[textind,startind:startind+sentfeaturelen]=tempfeature
 		startind=startind+sentfeaturelen
-	featureheaders+=['s_'+str(textind)+w for w in word_set_questions]
 	tempfeature=[1 if word_set_questions[i] in nt[-1] else 0 for i in range(qsfeaturelen) ]
 	featureset[textind,startind:-1]=tempfeature
 	featureset[textind,-1]=labels_set.index(labels[textind])
