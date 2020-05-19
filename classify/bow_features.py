@@ -54,14 +54,16 @@ qsfeaturelen=len(word_set_questions)
 print(word_set_sentences)
 print(word_set_questions)
 print(labels_set)
-
+featureheaders=[]
 textind=0
 for nt in newtext:
 	startind=0
 	for sentence in nt[:-1]:
+		featureheaders+=word_set_sentences
 		tempfeature=[1 if word_set_sentences[i] in sentence else 0 for i in range(sentfeaturelen)]
 		featureset[textind,startind:startind+sentfeaturelen]=tempfeature
 		startind=startind+sentfeaturelen
+	featureheaders+=word_set_questions
 	tempfeature=[1 if word_set_questions[i] in nt[-1] else 0 for i in range(qsfeaturelen) ]
 	featureset[textind,startind:-1]=tempfeature
 	featureset[textind,-1]=labels_set.index(labels[textind])
@@ -71,6 +73,6 @@ for nt in newtext:
 np.save(fname.replace('.txt','')+'_featureset.npy', featureset)
 f=open(fname.replace('_sentenceleveltransform','').replace('.txt','_meta.txt'),'a+')
 f.write('\n'+','.join(labels_set)+'\n')
-f.write('\n'+','.join(word_set_sentences)+','+','.join(word_set_questions)+'\n')
+f.write('\n'+','.join(featureheaders)+'\n')
 f.close()
 #fs=np.load('featureset.npy')
