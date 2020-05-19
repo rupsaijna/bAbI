@@ -23,7 +23,9 @@ if 'sentenceleveltransform' not in fname:
 	training_epoch=5
 	RUNS=100
 else:
-	labels_set=['LOC1','LOC2']
+	f=open(fname.replace('_sentenceleveltransform','').replace('.txt','_meta.txt'),'r')
+	labels_set=f.readlines()[4].replace('\n','').split(',')
+	featureset=f.readlines()[6].replace('\n','').split(',')
 	
 	CLAUSES=10
 	T=15
@@ -70,7 +72,7 @@ print('Over '+str(RUNS)+' runs: '+str(np.mean(allacc, axis=0))+' +/- '+str(np.st
 lastruns=int(RUNS/3)
 print('Last '+str(lastruns)+' runs: '+str(np.mean(allacc[-lastruns:], axis=0))+' +/- '+str(np.std(allacc[-lastruns:], axis=0)))
 
-'''fout_c=open(clause_file,'w')
+fout_c=open(clause_file,'w')
 NUM_FEATURES=X.shape[1]
 fout_c.write('Run\tClause\tp/n\tclass\tcount\n')
 feature_vector=np.zeros(NUM_FEATURES*2)
@@ -87,9 +89,11 @@ for cur_cls in labels_set:
 			feature_vector[f]=action_plain
 			feature_vector[f+NUM_FEATURES]=action_negated
 			if action_plain==1:
-				this_clause+=str(f)+';'
+				this_clause+=featureset[f]+';'
 			if action_negated==1:
-				this_clause+=' #'+str(f)+';'
+				this_clause+=' #'+featureset[f]+';'
 		this_clause+='\t'+clause_type+'\t'+str(cur_cls)	
 		fout_c.write(str(r)+'\t'+str(this_clause)+'\n')
-'''
+fout_c.close()
+
+print('Clauses written at :'+ fout_c)
