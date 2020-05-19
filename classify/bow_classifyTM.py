@@ -76,7 +76,7 @@ fout_c=open(clause_file,'w')
 NUM_FEATURES=X.shape[1]
 fout_c.write('Run\tClause\tp/n\tclass\tcount\n')
 feature_vector=np.zeros(NUM_FEATURES*2)
-for cur_cls in labels_set:
+for cur_cls in range(len(CLASSES)):
 	for cur_clause in range(CLAUSES):
 		if cur_clause%2==0:
 			clause_type='positive'
