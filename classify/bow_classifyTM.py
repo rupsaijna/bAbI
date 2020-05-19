@@ -24,8 +24,9 @@ if 'sentenceleveltransform' not in fname:
 	RUNS=100
 else:
 	f=open(fname.replace('_sentenceleveltransform','').replace('.txt','_meta.txt'),'r')
-	labels_set=f.readlines()[4].replace('\n','').split(',')
-	featureset=f.readlines()[6].replace('\n','').split(',')
+	lines=f.readlines()
+	labels_set=lines[4].replace('\n','').split(',')
+	featureset=lines[6].replace('\n','').split(',')
 	
 	CLAUSES=10
 	T=15
