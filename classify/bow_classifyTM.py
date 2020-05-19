@@ -28,8 +28,8 @@ else:
 	labels_set=lines[4].replace('\n','').split(',')
 	featureheaderset=lines[6].replace('\n','').split(',')
 	
-	CLAUSES=10
-	T=15
+	CLAUSES=5
+	T=10
 	s=2.5
 	weighting = True
 	training_epoch=1
