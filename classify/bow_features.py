@@ -1,6 +1,8 @@
 import numpy as np
+import sys
 
-fname='../generated/generated2.txt'
+#fname='../generated/generated2.txt'
+fname=sys.argv[1]
 f=open(fname,'r')
 data=f.readlines()
 f.close()
