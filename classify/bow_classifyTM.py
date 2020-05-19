@@ -93,7 +93,7 @@ for cur_cls in range(len(labels_set)):
 			if action_negated==1:
 				this_clause+=' #'+featureheaderset[f]+';'
 		this_clause+='\t'+clause_type+'\t'+str(cur_cls)	
-		fout_c.write(str(r)+'\t'+str(this_clause)+'\n')
+		fout_c.write(str(this_clause)+'\n')
 fout_c.close()
 
 print('Clauses written at :'+ fout_c)
