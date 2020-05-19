@@ -11,7 +11,7 @@ CLAUSES=40
 T=55
 s=2.5
 weighting = True
-training_epoch=1
+training_epoch=5
 RUNS=100
 
 f=open(fname.replace('.txt','_meta.txt'),'r')
