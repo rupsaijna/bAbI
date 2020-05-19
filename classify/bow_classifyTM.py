@@ -96,4 +96,4 @@ for cur_cls in range(len(labels_set)):
 		fout_c.write(str(this_clause)+'\n')
 fout_c.close()
 
-print('Clauses written at :'+ fout_c)
+print('Clauses written at :'+ clause_file)
