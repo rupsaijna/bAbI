@@ -37,7 +37,8 @@ y=featureset[:,-1]
 y=[int(yy) for yy in y]
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.30, random_state=42, shuffle=True)
-
+print(X_train.shape)
+ad
 tm = MultiClassTsetlinMachine(CLAUSES, T, s, weighted_clauses=weighting)
 
 allacc=[]
@@ -67,3 +68,37 @@ print('Over '+str(RUNS)+' runs: '+str(np.mean(allacc, axis=0))+' +/- '+str(np.st
 lastruns=int(RUNS/3)
 print('Last '+str(lastruns)+' runs: '+str(np.mean(allacc[-lastruns:], axis=0))+' +/- '+str(np.std(allacc[-lastruns:], axis=0)))
 
+fout_c=open(clause_file,'w')
+NUM_FEATURES=X.shape[]
+fout_c.write('Run\tClause\tp/n\tclass\tcount\n')
+feature_vector=np.zeros(NUM_FEATURES*2)
+for cur_cls in labels_set:
+	for cur_clause in range(NUM_CLAUSES):
+		if cur_clause%2==0:
+			clause_type='positive'
+		else:
+			clause_type='negative'
+		this_clause=''
+		for f in range(0,NUM_FEATURES):
+			action_plain = tm.ta_action(int(cur_cls), cur_clause, f)
+			action_negated = tm.ta_action(int(cur_cls), cur_clause, f+NUM_FEATURES)
+			feature_vector[f]=action_plain
+			feature_vector[f+NUM_FEATURES]=action_negated
+			feature_count_plain[f]+=action_plain
+			feature_count_negated[f]+=action_negated
+			if action_plain==0 and action_negated==0:
+				feature_count_ignore += 1
+			feature_count_contradiction += action_plain and action_negated
+			if (cur_cls % 2 == 0):
+				feature_count_plain_positive[f] += action_plain
+				feature_count_negated_positive[f] += action_negated
+			else:
+				feature_count_plain_negative[f] += action_plain
+				feature_count_negated_negative[f] += action_negated
+
+			if action_plain==1:
+				this_clause+=str(f)+';'
+			if action_negated==1:
+				this_clause+=' #'+str(f)+';'
+		this_clause+='\t'+clause_type+'\t'+str(cur_cls)	
+		fout_c.write(str(r)+'\t'+str(this_clause)+'\n')
