@@ -74,7 +74,7 @@ print('Last '+str(lastruns)+' runs: '+str(np.mean(allacc[-lastruns:], axis=0))+'
 
 fout_c=open(clause_file,'w')
 NUM_FEATURES=X.shape[1]
-fout_c.write('Run\tClause\tp/n\tclass\tcount\n')
+fout_c.write('Clause\tp/n\tclass\n')
 feature_vector=np.zeros(NUM_FEATURES*2)
 for cur_cls in range(len(labels_set)):
 	for cur_clause in range(CLAUSES):
