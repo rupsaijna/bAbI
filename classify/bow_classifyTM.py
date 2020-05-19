@@ -7,20 +7,28 @@ import numpy as np
 
 #fname='../generated/generated2.txt'
 fname=sys.argv[1]
-CLAUSES=40
-T=55
-s=2.5
-weighting = True
-training_epoch=5
-RUNS=100
 
 if 'sentenceleveltransform' not in fname:
 	f=open(fname.replace('.txt','_meta.txt'),'r')
 	labels_set=f.readlines()[1].replace('\n','').split(',')
 	f.close()
 	labels_set=[ls.replace('the ','') for ls in labels_set]
+	
+	CLAUSES=40
+	T=55
+	s=2.5
+	weighting = True
+	training_epoch=5
+	RUNS=100
 else:
 	labels_set=['LOC1','LOC2']
+	
+	CLAUSES=20
+	T=15
+	s=2.5
+	weighting = True
+	training_epoch=1
+	RUNS=100
 
 featureset=np.load(fname.replace('.txt','')+'_featureset.npy')
 
@@ -38,8 +46,6 @@ for i in range(RUNS):
 	res_test=tm.predict(X_test)
 	
 	acc_test = 100*(res_test == y_test).mean()
-	print(res_test[:10])
-	print(y_test[:10])
 
 	allacc.append(acc_test)
 	prf_test_macro=precision_recall_fscore_support(res_test, y_test, average='macro')
