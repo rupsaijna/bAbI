@@ -26,7 +26,7 @@ else:
 	f=open(fname.replace('_sentenceleveltransform','').replace('.txt','_meta.txt'),'r')
 	lines=f.readlines()
 	labels_set=lines[4].replace('\n','').split(',')
-	featureset=lines[6].replace('\n','').split(',')
+	featureheaderset=lines[6].replace('\n','').split(',')
 	
 	CLAUSES=10
 	T=15
@@ -89,9 +89,9 @@ for cur_cls in range(len(labels_set)):
 			feature_vector[f]=action_plain
 			feature_vector[f+NUM_FEATURES]=action_negated
 			if action_plain==1:
-				this_clause+=featureset[f]+';'
+				this_clause+=featureheaderset[f]+';'
 			if action_negated==1:
-				this_clause+=' #'+featureset[f]+';'
+				this_clause+=' #'+featureheaderset[f]+';'
 		this_clause+='\t'+clause_type+'\t'+str(cur_cls)	
 		fout_c.write(str(r)+'\t'+str(this_clause)+'\n')
 fout_c.close()
