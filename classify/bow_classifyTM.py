@@ -50,4 +50,8 @@ for i in range(RUNS):
 	for ls in range(len(labels_set)):
 		print(labels_set[ls]+' : '+str(round(prf_test_class[0][ls],2))+', '+str(round(prf_test_class[1][ls],2))+', '+str(round(prf_test_class[2][ls],2))+', '+str(round(prf_test_class[3][ls],2)))
 
-print(np.mean(allacc, axis=0),' +/- ',np.std(allacc, axis=0))
+print('Over '+str(RUNS)+' runs: '+np.mean(allacc, axis=0),' +/- ',np.std(allacc, axis=0))
+
+lastruns=int(RUNS/3)
+print('Last '+str(lastruns)+' runs: '+np.mean(allacc[-lastruns:], axis=0),' +/- ',np.std(allacc[-lastruns:], axis=0))
+
