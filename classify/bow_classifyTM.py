@@ -23,7 +23,7 @@ if 'sentenceleveltransform' not in fname:
 else:
 	labels_set=['LOC1','LOC2']
 	
-	CLAUSES=20
+	CLAUSES=10
 	T=15
 	s=2.5
 	weighting = True
