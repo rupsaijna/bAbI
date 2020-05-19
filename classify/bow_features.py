@@ -63,7 +63,7 @@ for nt in newtext:
 		tempfeature=[1 if word_set_sentences[i] in sentence else 0 for i in range(sentfeaturelen)]
 		featureset[textind,startind:startind+sentfeaturelen]=tempfeature
 		startind=startind+sentfeaturelen
-	featureheaders+=word_set_questions
+	featureheaders+=['s_'+str(textind)+w for w in word_set_questions]
 	tempfeature=[1 if word_set_questions[i] in nt[-1] else 0 for i in range(qsfeaturelen) ]
 	featureset[textind,startind:-1]=tempfeature
 	featureset[textind,-1]=labels_set.index(labels[textind])
