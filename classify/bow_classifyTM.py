@@ -14,10 +14,13 @@ weighting = True
 training_epoch=5
 RUNS=100
 
-f=open(fname.replace('.txt','_meta.txt'),'r')
-labels_set=f.readlines()[1].replace('\n','').split(',')
-f.close()
-labels_set=[ls.replace('the ','') for ls in labels_set]
+if 'sentenceleveltransform' not in fname:
+	f=open(fname.replace('.txt','_meta.txt'),'r')
+	labels_set=f.readlines()[1].replace('\n','').split(',')
+	f.close()
+	labels_set=[ls.replace('the ','') for ls in labels_set]
+else:
+	labels_set=['LOC1','LOC2']
 
 featureset=np.load(fname.replace('.txt','')+'_featureset.npy')
 
