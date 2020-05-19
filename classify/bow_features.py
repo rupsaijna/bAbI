@@ -56,7 +56,7 @@ print(word_set_questions)
 print(labels_set)
 featureheaders=[]
 for n in range(numsentences):
-	featureheaders+=['s_'+str(n)+w for w in word_set_sentences]
+	featureheaders+=['s_'+str(n)+'_'+w for w in word_set_sentences]
 featureheaders+=['q_'+w for w in word_set_questions]
 
 textind=0
