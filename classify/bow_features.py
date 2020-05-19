@@ -7,7 +7,7 @@ f=open(fname,'r')
 data=f.readlines()
 f.close()
 
-f=open(fname.replace('../generated/','../generated/meta_'),'r')
+f=open(fname.replace('.txt','_meta.txt'),'r')
 labels_set=f.readlines()[1].replace('\n','').split(',')
 f.close()
 labels_set=[ls.replace('the ','') for ls in labels_set]
