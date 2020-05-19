@@ -7,10 +7,14 @@ f=open(fname,'r')
 data=f.readlines()
 f.close()
 
-f=open(fname.replace('.txt','_meta.txt'),'r')
-labels_set=f.readlines()[1].replace('\n','').split(',')
-f.close()
-labels_set=[ls.replace('the ','') for ls in labels_set]
+if 'sentenceleveltransform' not in fname:
+	f=open(fname.replace('.txt','_meta.txt'),'r')
+	labels_set=f.readlines()[1].replace('\n','').split(',')
+	f.close()
+	labels_set=[ls.replace('the ','') for ls in labels_set]
+else:
+	labels_set=[]
+	
 data=[d.replace('\n','') for d in data]
 
 data=[d.split('\t') for d in data]
@@ -37,6 +41,9 @@ word_set_sentences=list(word_set_sentences)
 word_set_questions=list(word_set_questions)
 numsentences=len(newtext[0])-1
 
+if 'sentenceleveltransform' in fname:
+	for nn in range(1,numsentences+1):
+		labels_set.append('LOC'+str(nn))
 
 featureset=np.zeros((len(newtext),len(word_set_sentences)*numsentences+len(word_set_questions)+1))
 
