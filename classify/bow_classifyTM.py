@@ -68,7 +68,7 @@ print('Over '+str(RUNS)+' runs: '+str(np.mean(allacc, axis=0))+' +/- '+str(np.st
 lastruns=int(RUNS/3)
 print('Last '+str(lastruns)+' runs: '+str(np.mean(allacc[-lastruns:], axis=0))+' +/- '+str(np.std(allacc[-lastruns:], axis=0)))
 
-fout_c=open(clause_file,'w')
+'''fout_c=open(clause_file,'w')
 NUM_FEATURES=X.shape[]
 fout_c.write('Run\tClause\tp/n\tclass\tcount\n')
 feature_vector=np.zeros(NUM_FEATURES*2)
@@ -102,3 +102,4 @@ for cur_cls in labels_set:
 				this_clause+=' #'+str(f)+';'
 		this_clause+='\t'+clause_type+'\t'+str(cur_cls)	
 		fout_c.write(str(r)+'\t'+str(this_clause)+'\n')
+'''
