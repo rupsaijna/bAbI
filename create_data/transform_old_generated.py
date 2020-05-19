@@ -1,4 +1,4 @@
-old_fname='../generated/generated1.txt'
+old_fname='../generated/generated3.txt'
 f=open(old_fname,'r')
 
 fout=open(old_fname.replace('.txt','_sentenceleveltransform.txt'),'w')
