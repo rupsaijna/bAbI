@@ -69,5 +69,7 @@ for nt in newtext:
 	
 	
 np.save(fname.replace('.txt','')+'_featureset.npy', featureset)
-
+f=open(fname.replace('.txt','_meta.txt'),'a+')
+f.write('\n'+','.join(word_set_sentences)+','+','.join(word_set_questions)+'\n')
+f.close()
 #fs=np.load('featureset.npy')
