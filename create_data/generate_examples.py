@@ -121,7 +121,7 @@ opfileans=input("\n>Output file is: generated_data.txt Y/N? ")
 if opfileans.lower()=='y':
 	opfile='generated_data.txt'
 else:
-	opfile=str(input("\n>Enter output file name: "))
+	opfile=str(input("\n>Enter output file name (.txt only): "))
 
 num_sentences=input("\n>How many sentences per example? e.g. 2 ") 
 num_sentences=int(num_sentences)
@@ -138,7 +138,8 @@ for e in examples:
 	fo.write(e+'\n')
 fo.close()
 	
-fo=open('meta_'+opfile,'w')	
+opfile=opfile.replace('.txt','_meta.txt')	
+fo=open(opfile,'w')	
 fo.write(','.join(names)+'\n')
 fo.write(','.join(locs)+'\n')
 fo.write(','.join(verbs)+'\n')
