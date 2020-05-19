@@ -38,6 +38,9 @@ for i in range(RUNS):
 	res_test=tm.predict(X_test)
 	
 	acc_test = 100*(res_test == y_test).mean()
+	print(res_test[:10])
+	print(y_test[:10])
+
 	allacc.append(acc_test)
 	prf_test_macro=precision_recall_fscore_support(res_test, y_test, average='macro')
 	prf_test_macro=[str(round(p,2)) for p in prf_test_macro[:-1]]
