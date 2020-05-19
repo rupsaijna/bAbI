@@ -69,7 +69,7 @@ for nt in newtext:
 	
 	
 np.save(fname.replace('.txt','')+'_featureset.npy', featureset)
-f=open(fname.replace('.txt','_meta.txt'),'a+')
+f=open(fname.replace('_sentenceleveltransform','').replace('.txt','_meta.txt'),'a+')
 f.write('\n'+','.join(labels_set)+'\n')
 f.write('\n'+','.join(word_set_sentences)+','+','.join(word_set_questions)+'\n')
 f.close()
