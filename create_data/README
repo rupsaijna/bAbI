@@ -1,0 +1,24 @@
+run generate_examples.py
+
+sample run:
+
+$python generate_examples.py
+
+>Output file is: generated_data.txt Y/N? y
+
+>How many sentences per example? [2-10] 2
+
+>Do you want to limit number of names/locations/verbs? Y/N : y
+20 names available. How many do you want to use? Type 0 to use all. 3
+27 locations available. How many do you want to use? Type 0 to use all. 3
+52 verbs available. How many do you want to use? Type 0 to use all. 4
+
+
+>Do you want to limit number of generated examples? Y/N : y
+How many examples?[1-1152] 10
+
+
+>Proceed to generate? Y/N : y
+Proceeding....
+100%|██████████████████████████████████████████████████████████████████████████████████████████| 10/10 [00:00<?, ?it/s]
+Output written to generated_data.txt
