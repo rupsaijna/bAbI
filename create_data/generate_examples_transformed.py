@@ -85,7 +85,7 @@ def generate(num_sentences,names,locs,verbs,num_examples):
 		temp_example_transformed=''
 		for i in range(num_sentences):
 			temp_sentence=temp_names[i]+' '+temp_verbs[i]+' '+temp_locs[i]+'. '
-			temp_sentence_transformed='PER'+str(i+1)+' '+temp_verbs[i+!]+' '+'LOC'+str(i+!)+'. '
+			temp_sentence_transformed='PER'+str(i+1)+' '+temp_verbs[i]+' '+'LOC'+str(i+1)+'. '
 			temp_example+=temp_sentence
 			temp_example_transformed+=temp_sentence_transformed
 		qs_num=random.randint(0,num_sentences-1)
@@ -102,7 +102,7 @@ def generate(num_sentences,names,locs,verbs,num_examples):
 			examples_transformed.append(temp_example_transformed)
 			pbar.update(1)
 	pbar.close()		
-	return examples	
+	return examples, examples_transformed
 	
 ######################################################################				
 			
@@ -146,11 +146,18 @@ fo=open(opfile,'w')
 for e in examples:
 	fo.write(e+'\n')
 fo.close()
+
+opfile2=opfile.replace('.txt','_transformed.txt')
+fo=open(opfile2,'w')
+for e in examples_transformed:
+	fo.write(e+'\n')
+fo.close()
 	
 opfile=opfile.replace('.txt','_meta.txt')	
 fo=open(opfile,'w')	
 fo.write(','.join(names)+'\n')
 fo.write(','.join(locs)+'\n')
 fo.write(','.join(verbs)+'\n')
+
 fo.close()
 print('Output written to '+opfile)
