@@ -147,7 +147,7 @@ for e in examples:
 	fo.write(e+'\n')
 fo.close()
 
-opfile2=opfile.replace('.txt','_transformed.txt')
+opfile2=opfile.replace('.txt','_sentenceleveltransform.txt')
 fo=open(opfile2,'w')
 for e in examples_transformed:
 	fo.write(e+'\n')
