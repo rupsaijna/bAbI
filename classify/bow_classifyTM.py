@@ -18,9 +18,7 @@ for l in lines[3:]:
 	if len(lt)>1 and lt[0]==fname:
 		labels_set=lt[1].split(',')
 		featureheaderset=lt[2].replace('\n','').split(',')
-print(labels_set)
-print(featureheaderset)
-fdS
+
 if 'sentenceleveltransform' not in fname:
 	CLAUSES=40
 	T=55
@@ -29,9 +27,9 @@ if 'sentenceleveltransform' not in fname:
 	training_epoch=5
 	RUNS=100
 else:
-	CLAUSES=5
-	T=10
-	s=2.5
+	CLAUSES=2
+	T=5
+	s=0.5
 	weighting = True
 	training_epoch=1
 	RUNS=100
