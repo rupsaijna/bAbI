@@ -10,12 +10,18 @@ fname=sys.argv[1]
 
 clause_file=fname.replace('.txt','_clauses.txt')
 
+f=open(fname.replace('_sentenceleveltransform','').replace('.txt','_meta.txt'),'r')
+lines=f.readlines()
+
+for l in lines[3:]:
+	lt=l.split('\t')
+	if len(lt)>1 and lt[0]==fname:
+		labels_set=lt[1].split(',')
+		featureheaderset=lt[2].replace('\n','').split(',')
+print(labels_set)
+print(featureheaderset)
+fdS
 if 'sentenceleveltransform' not in fname:
-	f=open(fname.replace('.txt','_meta.txt'),'r')
-	labels_set=f.readlines()[1].replace('\n','').split(',')
-	f.close()
-	labels_set=[ls.replace('the ','') for ls in labels_set]
-	
 	CLAUSES=40
 	T=55
 	s=2.5
@@ -23,11 +29,6 @@ if 'sentenceleveltransform' not in fname:
 	training_epoch=5
 	RUNS=100
 else:
-	f=open(fname.replace('_sentenceleveltransform','').replace('.txt','_meta.txt'),'r')
-	lines=f.readlines()
-	labels_set=lines[4].replace('\n','').split(',')
-	featureheaderset=lines[6].replace('\n','').split(',')
-	
 	CLAUSES=5
 	T=10
 	s=2.5
