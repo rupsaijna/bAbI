@@ -74,7 +74,7 @@ for nt in newtext:
 	
 np.save(fname.replace('.txt','')+'_featureset.npy', featureset)
 f=open(fname.replace('_sentenceleveltransform','').replace('.txt','_meta.txt'),'a+')
-f.write('\n'+','.join(labels_set)+'\n')
-f.write('\n'+','.join(featureheaders)+'\n')
+f.write('\n'+fname+'\t'+','.join(labels_set)+'\t')
+f.write(','.join(featureheaders)+'\n')
 f.close()
 #fs=np.load('featureset.npy')
