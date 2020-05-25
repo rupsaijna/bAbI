@@ -95,8 +95,8 @@ for cur_cls in range(len(labels_set)):
 			feature_vector[f+NUM_FEATURES]=action_negated
 			if action_plain==1:
 				this_clause+=featureheaderset[f]+';'
-			if action_negated==1:
-				this_clause+='#'+featureheaderset[f]+';'
+			#if action_negated==1:
+			#	this_clause+='#'+featureheaderset[f]+';'
 		this_clause+='\t'+clause_type+'\t'+str(labels_set[cur_cls])	
 		fout_c.write(str(this_clause)+'\n')
 fout_c.close()
