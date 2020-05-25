@@ -26,8 +26,8 @@ if 'sentenceleveltransform' not in fname:
 	weighting = True
 	training_epoch=5
 	RUNS=100'''
-	CLAUSES=400
-	T=550
+	CLAUSES=40
+	T=55
 	s=53.75
 	weighting = True
 	training_epoch=5
