@@ -8,7 +8,7 @@ import numpy as np
 #fname='../generated/generated2.txt'
 fname=sys.argv[1]
 
-clause_file=fname.replace('.txt','_clauses.txt')
+clause_file=fname.replace('.txt','_clauses_pos.txt')
 
 f=open(fname.replace('_sentenceleveltransform','').replace('.txt','_meta.txt'),'r')
 lines=f.readlines()
