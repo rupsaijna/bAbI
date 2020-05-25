@@ -20,18 +20,18 @@ for l in lines[3:]:
 		featureheaderset=lt[2].replace('\n','').split(',')
 
 if 'sentenceleveltransform' not in fname:
-	'''CLAUSES=20
+	CLAUSES=20
 	T=55
 	s=1.75
 	weighting = True
 	training_epoch=5
-	RUNS=100'''
-	CLAUSES=19
+	RUNS=100
+	'''CLAUSES=19
 	T=10
 	s=13
 	weighting = True
 	training_epoch=5
-	RUNS=100
+	RUNS=100'''
 else:
 	CLAUSES=2
 	T=4
@@ -48,7 +48,7 @@ y=[int(yy) for yy in y]
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.30, random_state=42, shuffle=True)
 
-tm = MultiClassTsetlinMachine(CLAUSES, T, s, weighted_clauses=weighting,append_negated=False)
+tm = MultiClassTsetlinMachine(CLAUSES, T, s, weighted_clauses=weighting,append_negated=True)
 
 allacc=[]
 for i in range(RUNS):
