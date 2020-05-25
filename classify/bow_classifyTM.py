@@ -8,7 +8,7 @@ import numpy as np
 #fname='../generated/generated2.txt'
 fname=sys.argv[1]
 
-clause_file=fname.replace('.txt','_clauses_pos.txt')
+clause_file=fname.replace('.txt','_clauses.txt')
 
 f=open(fname.replace('_sentenceleveltransform','').replace('.txt','_meta.txt'),'r')
 lines=f.readlines()
@@ -95,8 +95,8 @@ for cur_cls in range(len(labels_set)):
 			feature_vector[f+NUM_FEATURES]=action_negated
 			if action_plain==1:
 				this_clause+=featureheaderset[f]+';'
-			#if action_negated==1:
-			#	this_clause+='#'+featureheaderset[f]+';'
+			if action_negated==1:
+				this_clause+='#'+featureheaderset[f]+';'
 		this_clause+='\t'+clause_type+'\t'+str(labels_set[cur_cls])	
 		fout_c.write(str(this_clause)+'\n')
 fout_c.close()
