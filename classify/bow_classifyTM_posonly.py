@@ -29,7 +29,7 @@ if 'sentenceleveltransform' not in fname:
 else:
 	CLAUSES=200
 	T=4000
-	s=1.5
+	s=13.5
 	weighting = True
 	training_epoch=1
 	RUNS=100
