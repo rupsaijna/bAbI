@@ -17,3 +17,8 @@ git pull origin master
 python setupegg.py develop
 
 ```
+
+```python
+s = "Python syntax highlighting"
+print s
+```
