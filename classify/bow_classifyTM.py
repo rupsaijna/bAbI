@@ -20,15 +20,15 @@ for l in lines[3:]:
 		featureheaderset=lt[2].replace('\n','').split(',')
 
 if 'sentenceleveltransform' not in fname:
-	CLAUSES=25
-	T=19
-	s=1.75
+	CLAUSES=250
+	T=190
+	s=17.5
 	weighting = True
 	training_epoch=5
 	RUNS=100
-	'''CLAUSES=19
-	T=10
-	s=13
+	'''CLAUSES=25
+	T=19
+	s=1.75
 	weighting = True
 	training_epoch=5
 	RUNS=100'''
