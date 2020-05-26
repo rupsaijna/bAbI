@@ -9,9 +9,9 @@ python process_clauses.py ../generated/generated1.txt   ##uses _posonly output b
 ###############
 process_clauses requires package Sympy
 
-'''Python
+```python
 git clone https://github.com/sympy/sympy.git
 cd sympy
 git pull origin master
 python setupegg.py develop
-'''
+```
