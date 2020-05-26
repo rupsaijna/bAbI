@@ -30,7 +30,7 @@ else:
 	CLAUSES=3
 	T=90
 	s=1
-	weighting = True
+	weighting = False
 	training_epoch=5
 	RUNS=100
 	'''CLAUSES=2
