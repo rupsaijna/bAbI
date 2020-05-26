@@ -1,12 +1,13 @@
 python bow_features.py ../generated/generated1.txt
 
-python bow_classifyTM.py ../generated/generated1.txt  AND/OR python bow_classifyTM_posonly.py ../generated/generated1.txt 
+python bow_classifyTM.py ../generated/generated1.txt [AND/OR] python bow_classifyTM_posonly.py ../generated/generated1.txt 
 
 python process_clauses.py ../generated/generated1.txt   ##uses _posonly output by default
 
 
 
 ###############
+
 process_clauses requires package Sympy
 
 ```python
@@ -18,7 +19,3 @@ python setupegg.py develop
 
 ```
 
-```python
-s = "Python syntax highlighting"
-print s
-```
