@@ -1,7 +1,8 @@
 import pandas as pd
 from sympy import *
 
-fname='generated/generated1.txt'
+#fname='generated/generated1.txt'
+fname=sys.argv[1]
 
 metaname=fname.replace('.txt','_meta.txt')
 clausename=fname.replace('.txt','_clauses_pos.txt')
