@@ -1,5 +1,6 @@
 import pandas as pd
 from sympy import *
+import sys
 
 #fname='generated/generated1.txt'
 fname=sys.argv[1]
