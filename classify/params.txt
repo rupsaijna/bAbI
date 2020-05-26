@@ -1,0 +1,17 @@
+bow_classifyTM.py
+without sentencetransform:
+sentences =3 , names =5, locations =5
+CLAUSES=30
+T=25
+s=19.5
+weighting = True
+training_epoch=5
+RUNS=100
+
+sentences =2 , names =5, locations =5
+CLAUSES=25
+T=19
+s=1.75
+weighting = True
+training_epoch=5
+RUNS=100
