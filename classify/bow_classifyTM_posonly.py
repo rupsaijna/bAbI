@@ -27,18 +27,12 @@ if 'sentenceleveltransform' not in fname:
 	training_epoch=5
 	RUNS=100
 else:
-	CLAUSES=3000
-	T=5700
-	s=584.7
-	weighting = False
-	training_epoch=5
-	RUNS=100
-	'''CLAUSES=2
+	CLAUSES=2
 	T=4
 	s=1
 	weighting = True
 	training_epoch=1
-	RUNS=100'''
+	RUNS=100
 	
 featureset=np.load(fname.replace('.txt','')+'_featureset.npy')
 
@@ -48,7 +42,7 @@ y=[int(yy) for yy in y]
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.30, random_state=42, shuffle=False)
 
-tm = MultiClassTsetlinMachine(CLAUSES, T, s, weighted_clauses=weighting,append_negated=True)
+tm = MultiClassTsetlinMachine(CLAUSES, T, s, weighted_clauses=weighting,append_negated=False)
 
 allacc=[]
 for i in range(RUNS):
