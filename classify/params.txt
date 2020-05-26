@@ -17,3 +17,16 @@ weighting = True
 training_epoch=5
 RUNS=100
 Avg. Acc: 99.38
+
+
+
+
+with sentencetransform:
+sentences =2 , names =5, locations =5
+CLAUSES=2
+T=4
+s=1
+weighting = True
+training_epoch=1
+RUNS=100
+Avg. Acc: 99.59
