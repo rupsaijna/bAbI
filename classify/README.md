@@ -4,11 +4,11 @@
 
 >python bow_classifyTM_posonly.py ../generated/generated1.txt 
 
->python process_clauses.py ../generated/generated1.txt   ##uses _posonly output by default
+>python process_clauses.py ../generated/generated1.txt   *uses _posonly output by default*
 
 
 
-###############
+## ---------------------------------
 
 process_clauses requires package Sympy
 
