@@ -226,7 +226,7 @@ static inline int sum_up_class_votes_print(struct TsetlinMachine *tm)
 		}
 		else {
 			temp_neg= tm->clause_weights[j] * ((tm->clause_output[clause_chunk] & (1 << clause_pos)) > 0);
-			if (temp_pos==1){
+			if (temp_neg==1){
 				fprintf(f, "%d,%s",j,"NEG;");
 			}
 		}
