@@ -210,7 +210,7 @@ static inline int sum_up_class_votes(struct TsetlinMachine *tm)
 static inline int sum_up_class_votes_print(struct TsetlinMachine *tm)
 {
 	int class_sum = 0;
-	FILE *f;
+	//FILE *f;
 	for (int j = 0; j < tm->number_of_clauses; j++) {
 		int clause_chunk = j / 32;
 		int clause_pos = j % 32;
