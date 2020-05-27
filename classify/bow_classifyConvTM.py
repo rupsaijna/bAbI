@@ -40,8 +40,9 @@ featureset=np.load(fname.replace('.txt','')+'_featureset.npy')
 def convert_to_convolutional(dataset, featureheaders):
 	quearyheaders=[h for h in featureheaders if 'q_' in h]
 	wordheaders=[h for h in featureheaders if h not in quearyheaders]
-	numsentences=len([h for h in featureheaders if 's_1_' in h])
-	print(quearyheaders,wordheaders, numsentences)
+	sentlength=len([h for h in featureheaders if 's_1_' in h])
+	numsentences=len(wordheaders)/sentlength
+	print(quearyheaders,wordheaders, sentlength,numsentences)
 		
 	
 
