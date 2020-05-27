@@ -106,7 +106,7 @@ for l in range(len(temp_X_test)):
 	line=temp_X_test[l]
 	for ft in range(len(line)):
 		if line[ft]==1:
-			temp_sent+=featureheaderset[ft]
+			temp_sent.append(featureheaderset[ft])
 	print(temp_sent, temp_y_test[l])
 
 #res=tm.predict_and_printlocal(temp_X_test)
