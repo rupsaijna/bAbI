@@ -72,7 +72,7 @@ for nt in newtext:
 	textind+=1
 
 	
-print(featureset.shape)	
+print(featureset.shape, labels_set, numsentences)	
 '''	
 np.save(fname.replace('.txt','')+'_featureset.npy', featureset)
 f=open(fname.replace('_sentenceleveltransform','').replace('.txt','_meta.txt'),'a+')
