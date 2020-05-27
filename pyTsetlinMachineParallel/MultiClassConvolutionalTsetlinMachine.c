@@ -146,7 +146,7 @@ void mc_tm_predict_clauseprint(struct MultiClassTsetlinMachine *mc_tm, unsigned 
 
 		unsigned int pos = l*step_size;
 		f = fopen("local_clauses.csv", "a");
-		fprintf(f, "%s%d","\n\nExample",l);
+		fprintf(f, "%s%d","\n\nExample ",l);
 		// Identify class with largest output
 		fprintf(f, "%s%d%s","\nClass ",0," : ");
 		fclose(f);
