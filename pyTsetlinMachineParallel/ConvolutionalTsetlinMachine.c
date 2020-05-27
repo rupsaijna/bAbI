@@ -35,7 +35,6 @@ https://arxiv.org/abs/1905.09688
 #include "fast_rand.h"
 
 #include "ConvolutionalTsetlinMachine.h"
-int clause_activation_index=0;
 struct TsetlinMachine *CreateTsetlinMachine(int number_of_clauses, int number_of_features, int number_of_patches, int number_of_ta_chunks, int number_of_state_bits, int T, double s, double s_range, int boost_true_positive_feedback, int weighted_clauses)
 {
 	/* Set up the Tsetlin Machine structure */
@@ -211,6 +210,7 @@ static inline int sum_up_class_votes(struct TsetlinMachine *tm)
 static inline int sum_up_class_votes_print(struct TsetlinMachine *tm)
 {
 	int class_sum = 0;
+	FILE *f;
 	f = fopen("local_clauses.csv", "a");
 	for (int j = 0; j < tm->number_of_clauses; j++) {
 		int clause_chunk = j / 32;
