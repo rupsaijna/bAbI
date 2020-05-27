@@ -1,6 +1,6 @@
 import sys
 sys.path.append('../pyTsetlinMachineParallel/')
-from tm import MultiClassTsetlinMachine
+from tm import MultiClassConvolutionalTsetlinMachine2D
 from sklearn.metrics import precision_recall_fscore_support
 from sklearn.model_selection import train_test_split
 import numpy as np
@@ -38,36 +38,34 @@ else:
 featureset=np.load(fname.replace('.txt','')+'_featureset.npy')
 
 def convert_to_convolutional(dataset, featureheaders):
-	print(dataset[0])
 	quearyheaders=[h for h in featureheaders if 'q_' in h]
 	wordheaders=[h for h in featureheaders if h not in quearyheaders]
 	sentlength=len([h for h in featureheaders if 's_1_' in h])
 	numsentences=int(len(wordheaders)/sentlength)
-	newfeatureheaders=np.reshape(wordheaders, (1,numsentences,sentlength))
 	tempdataset=np.reshape(dataset[:,:len(wordheaders)], (dataset.shape[0],numsentences,sentlength))
 	newdataset=np.zeros((tempdataset.shape[0],tempdataset.shape[1],tempdataset.shape[2]+len(quearyheaders)))
-	print(tempdataset.shape)
 	lineindex=0
 	for l in range(newdataset.shape[0]):
 		qr=dataset[l][len(wordheaders):]
 		for s in range(newdataset.shape[1]):
 			newdataset[l][s]=np.append(tempdataset[l][s],qr)
-	print(newdataset.shape)
-	print(newdataset[0])	
+			
+	newdataset=newdataset.reshape((newdataset.shape[0], newdataset.shape[1], 1, newdataset.shape[2]))		
+	return newdataset	
 	
 
 X=featureset[:,:-1]
 y=featureset[:,-1]
 y=[int(yy) for yy in y]
 
-convert_to_convolutional(X, featureheaderset)
-
 print(X.shape)
+dfas
 
-bkjdbzkd
+X=convert_to_convolutional(X, featureheaderset)
+
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.30, random_state=42, shuffle=True)
 
-tm = MultiClassTsetlinMachine(CLAUSES, T, s, weighted_clauses=weighting,append_negated=True)
+tm = MultiClassTsetlinMachine(CLAUSES, T, s,(motif_length, 1), weighted_clauses=weighting)
 
 allacc=[]
 for i in range(RUNS):
