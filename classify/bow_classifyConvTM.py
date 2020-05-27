@@ -41,8 +41,9 @@ def convert_to_convolutional(dataset, featureheaders):
 	quearyheaders=[h for h in featureheaders if 'q_' in h]
 	wordheaders=[h for h in featureheaders if h not in quearyheaders]
 	sentlength=len([h for h in featureheaders if 's_1_' in h])
-	numsentences=len(wordheaders)/sentlength
-	print(quearyheaders,wordheaders, sentlength,numsentences)
+	numsentences=int(len(wordheaders)/sentlength)
+	newfeatureheaders=np.reshape(featureheaders, (1,numsentences,sentlength))
+	print(newfeatureheaders)
 		
 	
 
