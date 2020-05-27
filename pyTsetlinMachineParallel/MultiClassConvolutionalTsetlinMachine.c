@@ -121,7 +121,7 @@ void mc_tm_predict(struct MultiClassTsetlinMachine *mc_tm, unsigned int *X, int 
 	return;
 }
 
-
+/* Print local clauses --RUPSA*/
 void mc_tm_predict_clauseprint(struct MultiClassTsetlinMachine *mc_tm, unsigned int *X, int *y, int number_of_examples)
 {
 
@@ -169,6 +169,7 @@ void mc_tm_predict_clauseprint(struct MultiClassTsetlinMachine *mc_tm, unsigned 
 	
 	return;
 }
+/* Print local clauses --RUPSA*/
 
 /******************************************/
 /*** Online Training of Tsetlin Machine ***/
