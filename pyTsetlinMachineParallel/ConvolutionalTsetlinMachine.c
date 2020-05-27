@@ -215,7 +215,7 @@ static inline int sum_up_class_votes_print(struct TsetlinMachine *tm)
 		int clause_chunk = j / 32;
 		int clause_pos = j % 32;
 		
-		int temp=0;
+		/*int temp=0;
 		temp= tm->clause_weights[j] * ((tm->clause_output[clause_chunk] & (1 << clause_pos)) > 0);
 		if (temp==1){
 			f = fopen("local_clauses.csv", "a");
@@ -226,7 +226,7 @@ static inline int sum_up_class_votes_print(struct TsetlinMachine *tm)
 				fprintf(f, "%d,%s",j,"NEG;");
 			}
 			fclose(f);
-		}		
+		}*/		
 		
 		if (j % 2 == 0) {
 			class_sum += tm->clause_weights[j] * ((tm->clause_output[clause_chunk] & (1 << clause_pos)) > 0);
