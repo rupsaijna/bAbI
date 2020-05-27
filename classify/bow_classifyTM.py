@@ -97,3 +97,18 @@ for cur_cls in range(len(labels_set)):
 fout_c.close()
 
 print('Clauses written at :'+ clause_file)
+
+print(X_test[:2])
+temp_X_test=X_test[:2]
+temp_y_test=y_test[:2]
+for l in range(len(temp_X_test)):
+	temp_sent=[]
+	line=temp_X_test[l]
+	for ft in range(len(line)):
+		if line[ft]==1:
+			temp_sent+=featureheaderset[ft]
+	print(temp_sent, temp_y_test[l])
+
+#res=tm.predict_and_printlocal(temp_X_test)
+
+
