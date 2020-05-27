@@ -8,7 +8,7 @@ import numpy as np
 #fname='../generated/generated2.txt'
 fname=sys.argv[1]
 
-clause_file=fname.replace('.txt','_clauses.txt')
+clause_file=fname.replace('.txt','_conv_clauses.txt')
 
 f=open(fname.replace('_sentenceleveltransform','').replace('.txt','_meta.txt'),'r')
 lines=f.readlines()
@@ -40,7 +40,7 @@ featureset=np.load(fname.replace('.txt','')+'_featureset.npy')
 X=featureset[:,:-1]
 y=featureset[:,-1]
 y=[int(yy) for yy in y]
-
+bkjdbzkd
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.30, random_state=42, shuffle=True)
 
 tm = MultiClassTsetlinMachine(CLAUSES, T, s, weighted_clauses=weighting,append_negated=True)
