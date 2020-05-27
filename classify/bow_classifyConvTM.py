@@ -43,7 +43,8 @@ def convert_to_convolutional(dataset, featureheaders):
 	sentlength=len([h for h in featureheaders if 's_1_' in h])
 	numsentences=int(len(wordheaders)/sentlength)
 	newfeatureheaders=np.reshape(wordheaders, (1,numsentences,sentlength))
-	print(newfeatureheaders)
+	dataset=np.reshape(dataset, (dataset.shape[0],numsentences,sentlength))
+	print(dataset)
 		
 	
 
