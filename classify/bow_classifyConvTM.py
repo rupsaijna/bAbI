@@ -26,6 +26,7 @@ if 'sentenceleveltransform' not in fname:
 	weighting = True
 	training_epoch=5
 	RUNS=100
+	motif_length=2
 
 else:
 	CLAUSES=2
@@ -60,8 +61,6 @@ y=[int(yy) for yy in y]
 
 X=convert_to_convolutional(X, featureheaderset)
 
-print(X.shape)
-dfas
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.30, random_state=42, shuffle=True)
 
