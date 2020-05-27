@@ -62,3 +62,5 @@ void mc_tm_transform(struct MultiClassTsetlinMachine *mc_tm, unsigned int *X,  u
 
 void mc_tm_clause_configuration(struct MultiClassTsetlinMachine *mc_tm, int class, int clause, unsigned int *clause_configuration);
 
+
+void mc_tm_predict_clauseprint(struct MultiClassTsetlinMachine *mc_tm, unsigned int *X, int *y, int number_of_examples); /* Print local clauses --RUPSA*/
