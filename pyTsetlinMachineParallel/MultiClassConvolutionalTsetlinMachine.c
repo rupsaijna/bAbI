@@ -150,12 +150,12 @@ void mc_tm_predict_clauseprint(struct MultiClassTsetlinMachine *mc_tm, unsigned 
 		// Identify class with largest output
 		fprintf(f, "%s%d%s","\nClass ",0," : ");
 		fclose(f);
-		int max_class_sum = tm_score_printclause(mc_tm_thread[thread_id]->tsetlin_machines[0], &X[pos]);
+		int max_class_sum = tm_score(mc_tm_thread[thread_id]->tsetlin_machines[0], &X[pos]);
 		int max_class = 0;
 		for (int i = 1; i < mc_tm_thread[thread_id]->number_of_classes; i++) {	
 			fprintf(f, "%s%d%s","\nClass ",i," : ");
 			fclose(f);
-			int class_sum = tm_score_printclause(mc_tm_thread[thread_id]->tsetlin_machines[i], &X[pos]);
+			int class_sum = tm_score(mc_tm_thread[thread_id]->tsetlin_machines[i], &X[pos]);
 			if (max_class_sum < class_sum) {
 				max_class_sum = class_sum;
 				max_class = i;
