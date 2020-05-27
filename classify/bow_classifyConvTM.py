@@ -48,7 +48,7 @@ def convert_to_convolutional(dataset, featureheaders):
 	for l in range(newdataset.shape[0]):
 		qr=dataset[lineindex][len(wordheaders):]
 		for s in range(newdataset.shape[1]):
-			newdataset[l][s].append(qr)
+			np.append(newdataset[l][s],qr)
 	print(newdataset.shape)
 		
 	
