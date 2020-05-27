@@ -45,12 +45,11 @@ def convert_to_convolutional(dataset, featureheaders):
 	newfeatureheaders=np.reshape(wordheaders, (1,numsentences,sentlength))
 	newdataset=np.reshape(dataset[:,:len(wordheaders)], (dataset.shape[0],numsentences,sentlength))
 	lineindex=0
-	for l in newfeatureheaders:
-		#qr=dataset[lineindex][len(wordheaders):]
-		for s in newfeatureheaders[l]:
-			s.append(quearyheaders)
-	#print(newdataset.shape)
-	print(newfeatureheaders)
+	for l in range(newdataset.shape[0]):
+		qr=dataset[lineindex][len(wordheaders):]
+		for s in range(newdataset.shape[1]):
+			newdataset[l][s].append(qr)
+	print(newdataset.shape)
 		
 	
 
