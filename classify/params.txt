@@ -30,3 +30,17 @@ weighting = True
 training_epoch=1
 RUNS=100
 Avg. Acc: 99.59
+
+
+
+
+bow_classifyConvTM.py
+without sentencetransform:
+sentences =2/3/5 , names =5, locations =5
+CLAUSES=22
+T=19
+s=9.5
+weighting = True
+training_epoch=5
+RUNS=100
+motif_length=1
