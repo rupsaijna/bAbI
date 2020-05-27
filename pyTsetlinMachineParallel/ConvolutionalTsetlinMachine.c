@@ -209,12 +209,25 @@ static inline int sum_up_class_votes(struct TsetlinMachine *tm)
 /* Sum up the votes for each class and print clauses --RUPSA*/
 static inline int sum_up_class_votes_print(struct TsetlinMachine *tm)
 {
+	
 	int class_sum = 0;
-	//FILE *f;
+
 	for (int j = 0; j < tm->number_of_clauses; j++) {
 		int clause_chunk = j / 32;
 		int clause_pos = j % 32;
-		
+
+		if (j % 2 == 0) {
+			class_sum += tm->clause_weights[j] * ((tm->clause_output[clause_chunk] & (1 << clause_pos)) > 0);
+		} else {
+			class_sum -= tm->clause_weights[j] * ((tm->clause_output[clause_chunk] & (1 << clause_pos)) > 0);
+		}	
+	}
+
+	class_sum = (class_sum > (tm->T)) ? (tm->T) : class_sum;
+	class_sum = (class_sum < -(tm->T)) ? -(tm->T) : class_sum;
+
+	return class_sum;
+	//FILE *f;
 		/*int temp=0;
 		temp= tm->clause_weights[j] * ((tm->clause_output[clause_chunk] & (1 << clause_pos)) > 0);
 		if (temp==1){
@@ -227,18 +240,6 @@ static inline int sum_up_class_votes_print(struct TsetlinMachine *tm)
 			}
 			fclose(f);
 		}*/		
-		
-		if (j % 2 == 0) {
-			class_sum += tm->clause_weights[j] * ((tm->clause_output[clause_chunk] & (1 << clause_pos)) > 0);
-		} else {
-			class_sum -= tm->clause_weights[j] * ((tm->clause_output[clause_chunk] & (1 << clause_pos)) > 0);
-		}	
-	}
-	
-	class_sum = (class_sum > (tm->T)) ? (tm->T) : class_sum;
-	class_sum = (class_sum < -(tm->T)) ? -(tm->T) : class_sum;
-
-	return class_sum;
 }
 /* Sum up the votes for each class and print clauses --RUPSA*/
 
