@@ -124,7 +124,7 @@ void mc_tm_predict(struct MultiClassTsetlinMachine *mc_tm, unsigned int *X, int 
 /* Print local clauses --RUPSA*/
 void mc_tm_predict_clauseprint(struct MultiClassTsetlinMachine *mc_tm, unsigned int *X, int *y, int number_of_examples)
 {
-
+	FILE *f;
 	unsigned int step_size = mc_tm->number_of_patches * mc_tm->number_of_ta_chunks;
 
 	int max_threads = omp_get_max_threads();
@@ -141,7 +141,6 @@ void mc_tm_predict_clauseprint(struct MultiClassTsetlinMachine *mc_tm, unsigned 
 	}
 
 	#pragma omp parallel for
-	FILE *f;
 	for (int l = 0; l < number_of_examples; l++) {
 		int thread_id = omp_get_thread_num();
 
