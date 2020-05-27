@@ -64,7 +64,7 @@ X=convert_to_convolutional(X, featureheaderset)
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.30, random_state=42, shuffle=True)
 
-tm = MultiClassTsetlinMachine(CLAUSES, T, s,(motif_length, 1), weighted_clauses=weighting)
+tm = MultiClassConvolutionalTsetlinMachine2D(CLAUSES, T, s,(motif_length, 1), weighted_clauses=weighting)
 
 allacc=[]
 for i in range(RUNS):
