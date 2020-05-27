@@ -109,7 +109,7 @@ for l in range(len(temp_X_test)):
 			temp_sent.append(featureheaderset[ft])
 	print(temp_sent, temp_y_test[l], labels_set[temp_y_test[l]])
 
-res=tm.predict_and_printlocal(temp_X_test)
+res=tm.predict(temp_X_test)
 
 print(res)
 
