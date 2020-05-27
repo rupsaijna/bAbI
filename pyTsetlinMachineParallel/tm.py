@@ -84,6 +84,11 @@ _lib.mc_tm_transform.argtypes = [mc_ctm_pointer, array_1d_uint, array_1d_uint, C
 _lib.mc_tm_clause_configuration.restype = None                    
 _lib.mc_tm_clause_configuration.argtypes = [mc_ctm_pointer, C.c_int, C.c_int, array_1d_uint] 
 
+## Print local clauses --RUPSA ##
+_lib.mc_tm_predict_clauseprint.restype = None                    
+_lib.mc_tm_predict_clauseprint.argtypes = [mc_ctm_pointer, array_1d_uint, array_1d_uint, C.c_int] 
+## Print local clauses --RUPSA ##
+
 # Tsetlin Machine
 
 _lib.CreateTsetlinMachine.restype = ctm_pointer                    
@@ -175,6 +180,24 @@ class MultiClassConvolutionalTsetlinMachine2D():
 		Y = np.ascontiguousarray(np.zeros(number_of_examples, dtype=np.uint32))
 
 		_lib.mc_tm_predict(self.mc_ctm, self.encoded_X, Y, number_of_examples)
+
+		return Y
+	
+	def predict_and_printlocal(self, X):
+		number_of_examples = X.shape[0]
+		
+		self.encoded_X = np.ascontiguousarray(np.empty(int(number_of_examples * self.number_of_patches * self.number_of_ta_chunks), dtype=np.uint32))
+
+		Xm = np.ascontiguousarray(X.flatten()).astype(np.uint32)
+
+		if self.append_negated:
+			_lib.tm_encode(Xm, self.encoded_X, number_of_examples, self.dim_x, self.dim_y, self.dim_z, self.patch_dim[0], self.patch_dim[1], 1)
+		else:
+			_lib.tm_encode(Xm, self.encoded_X, number_of_examples, self.dim_x, self.dim_y, self.dim_z, self.patch_dim[0], self.patch_dim[1], 0)
+	
+		Y = np.ascontiguousarray(np.zeros(number_of_examples, dtype=np.uint32))
+
+		_lib.mc_tm_predict_clauseprint(self.mc_ctm, self.encoded_X, Y, number_of_examples)
 
 		return Y
 
@@ -291,6 +314,24 @@ class MultiClassTsetlinMachine():
 		Y = np.ascontiguousarray(np.zeros(number_of_examples, dtype=np.uint32))
 
 		_lib.mc_tm_predict(self.mc_tm, self.encoded_X, Y, number_of_examples)
+
+		return Y
+	
+	def predict_and_printlocal(self, X):
+		number_of_examples = X.shape[0]
+		
+		self.encoded_X = np.ascontiguousarray(np.empty(int(number_of_examples * self.number_of_patches * self.number_of_ta_chunks), dtype=np.uint32))
+
+		Xm = np.ascontiguousarray(X.flatten()).astype(np.uint32)
+
+		if self.append_negated:
+			_lib.tm_encode(Xm, self.encoded_X, number_of_examples, self.number_of_features//2, 1, 1, self.number_of_features//2, 1, 1)
+		else:
+			_lib.tm_encode(Xm, self.encoded_X, number_of_examples, self.number_of_features, 1, 1, self.number_of_features, 1, 0)
+	
+		Y = np.ascontiguousarray(np.zeros(number_of_examples, dtype=np.uint32))
+
+		_lib.mc_tm_predict_clauseprint(self.mc_tm, self.encoded_X, Y, number_of_examples)
 
 		return Y
 	
