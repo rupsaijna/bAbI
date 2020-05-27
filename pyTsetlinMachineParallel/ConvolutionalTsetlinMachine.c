@@ -219,7 +219,7 @@ static inline int sum_up_class_votes_print(struct TsetlinMachine *tm)
 		int temp=0;
 		temp= tm->clause_weights[j] * ((tm->clause_output[clause_chunk] & (1 << clause_pos)) > 0);
 		if (temp==1){
-			printf(j);
+			printf("%d",j);
 			f = fopen("local_clauses.csv", "a");
 			if (j % 2 == 0) {
 				fprintf(f, "%d,%s",j,"POS;");
