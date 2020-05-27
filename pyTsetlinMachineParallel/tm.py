@@ -333,7 +333,7 @@ class MultiClassTsetlinMachine():
 	
 		Y = np.ascontiguousarray(np.zeros(number_of_examples, dtype=np.uint32))
 
-		_lib.mc_tm_predict_clauseprint(self.mc_tm, self.encoded_X, Y, number_of_examples)
+		_lib.mc_tm_predict(self.mc_tm, self.encoded_X, Y, number_of_examples)
 
 		return Y
 	
