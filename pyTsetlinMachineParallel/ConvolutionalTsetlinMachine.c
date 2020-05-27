@@ -207,7 +207,7 @@ static inline int sum_up_class_votes(struct TsetlinMachine *tm)
 	return class_sum;
 }
 
-/* Sum up the votes for each class and print clauses*/
+/* Sum up the votes for each class and print clauses --RUPSA*/
 static inline int sum_up_class_votes_print(struct TsetlinMachine *tm)
 {
 	int class_sum = 0;
@@ -244,6 +244,7 @@ static inline int sum_up_class_votes_print(struct TsetlinMachine *tm)
 
 	return class_sum;
 }
+/* Sum up the votes for each class and print clauses --RUPSA*/
 
 /* Calculate the output of each clause using the actions of each Tsetline Automaton. */
 static inline void tm_calculate_clause_output(struct TsetlinMachine *tm, unsigned int *Xi, int predict)
@@ -415,6 +416,7 @@ int tm_score(struct TsetlinMachine *tm, unsigned int *Xi) {
 	return sum_up_class_votes(tm);
 }
 
+/*for printing local clauses--Rupsa*/
 int tm_score_printclause(struct TsetlinMachine *tm, unsigned int *Xi) {
 	/*******************************/
 	/*** Calculate Clause Output ***/
@@ -428,6 +430,8 @@ int tm_score_printclause(struct TsetlinMachine *tm, unsigned int *Xi) {
 
 	return sum_up_class_votes_print(tm);
 }
+/*for printing local clauses--Rupsa*/
+
 
 int tm_ta_state(struct TsetlinMachine *tm, int clause, int ta)
 {
