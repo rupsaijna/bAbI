@@ -121,6 +121,55 @@ void mc_tm_predict(struct MultiClassTsetlinMachine *mc_tm, unsigned int *X, int 
 	return;
 }
 
+
+void mc_tm_predict_clauseprint(struct MultiClassTsetlinMachine *mc_tm, unsigned int *X, int *y, int number_of_examples)
+{
+
+	unsigned int step_size = mc_tm->number_of_patches * mc_tm->number_of_ta_chunks;
+
+	int max_threads = omp_get_max_threads();
+	struct MultiClassTsetlinMachine **mc_tm_thread = (void *)malloc(sizeof(struct MultiClassTsetlinMachine *) * max_threads);
+	struct TsetlinMachine *tm = mc_tm->tsetlin_machines[0];
+	for (int t = 0; t < max_threads; t++) {
+		mc_tm_thread[t] = CreateMultiClassTsetlinMachine(mc_tm->number_of_classes, tm->number_of_clauses, tm->number_of_features, tm->number_of_patches, tm->number_of_ta_chunks, tm->number_of_state_bits, tm->T, tm->s, tm->s_range, tm->boost_true_positive_feedback, tm->weighted_clauses);
+		for (int i = 0; i < mc_tm->number_of_classes; i++) {
+			free(mc_tm_thread[t]->tsetlin_machines[i]->ta_state);
+			mc_tm_thread[t]->tsetlin_machines[i]->ta_state = mc_tm->tsetlin_machines[i]->ta_state;
+			free(mc_tm_thread[t]->tsetlin_machines[i]->clause_weights);
+			mc_tm_thread[t]->tsetlin_machines[i]->clause_weights = mc_tm->tsetlin_machines[i]->clause_weights;
+		}	
+	}
+
+	#pragma omp parallel for
+	for (int l = 0; l < number_of_examples; l++) {
+		int thread_id = omp_get_thread_num();
+
+		unsigned int pos = l*step_size;
+		f = fopen("local_clauses.csv", "a");
+		fprintf(f, "%s%d","\n\nExample",l);
+		// Identify class with largest output
+		fprintf(f, "%s%d","\nClass",0);
+		fclose(f);
+		int max_class_sum = tm_score_printclause(mc_tm_thread[thread_id]->tsetlin_machines[0], &X[pos]);
+		int max_class = 0;
+		for (int i = 1; i < mc_tm_thread[thread_id]->number_of_classes; i++) {	
+			fprintf(f, "%s%d","\nClass",i);
+			fclose(f);
+			int class_sum = tm_score_printclause(mc_tm_thread[thread_id]->tsetlin_machines[i], &X[pos]);
+			if (max_class_sum < class_sum) {
+				max_class_sum = class_sum;
+				max_class = i;
+			}
+		}
+
+		y[l] = max_class;
+	}
+
+	free(mc_tm_thread);
+	
+	return;
+}
+
 /******************************************/
 /*** Online Training of Tsetlin Machine ***/
 /******************************************/
