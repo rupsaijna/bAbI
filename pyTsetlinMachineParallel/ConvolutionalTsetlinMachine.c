@@ -35,7 +35,7 @@ https://arxiv.org/abs/1905.09688
 #include "fast_rand.h"
 
 #include "ConvolutionalTsetlinMachine.h"
-
+int clause_activation_index=0;
 struct TsetlinMachine *CreateTsetlinMachine(int number_of_clauses, int number_of_features, int number_of_patches, int number_of_ta_chunks, int number_of_state_bits, int T, double s, double s_range, int boost_true_positive_feedback, int weighted_clauses)
 {
 	/* Set up the Tsetlin Machine structure */
@@ -201,6 +201,44 @@ static inline int sum_up_class_votes(struct TsetlinMachine *tm)
 		}	
 	}
 
+	class_sum = (class_sum > (tm->T)) ? (tm->T) : class_sum;
+	class_sum = (class_sum < -(tm->T)) ? -(tm->T) : class_sum;
+
+	return class_sum;
+}
+
+/* Sum up the votes for each class and print clauses*/
+static inline int sum_up_class_votes_print(struct TsetlinMachine *tm)
+{
+	int class_sum = 0;
+	f = fopen("local_clauses.csv", "a");
+	for (int j = 0; j < tm->number_of_clauses; j++) {
+		int clause_chunk = j / 32;
+		int clause_pos = j % 32;
+		
+		int temp_pos=0;
+		int temp_neg=0;
+		if (j % 2 == 0) {
+			temp_pos= tm->clause_weights[j] * ((tm->clause_output[clause_chunk] & (1 << clause_pos)) > 0);
+			if (temp_pos==1){
+				fprintf(f, "%d,%s",j,"POS;");
+			}
+		}
+		else {
+			temp_neg= tm->clause_weights[j] * ((tm->clause_output[clause_chunk] & (1 << clause_pos)) > 0);
+			if (temp_pos==1){
+				fprintf(f, "%d,%s",j,"NEG;");
+			}
+		}
+		
+		
+		if (j % 2 == 0) {
+			class_sum += tm->clause_weights[j] * ((tm->clause_output[clause_chunk] & (1 << clause_pos)) > 0);
+		} else {
+			class_sum -= tm->clause_weights[j] * ((tm->clause_output[clause_chunk] & (1 << clause_pos)) > 0);
+		}	
+	}
+	fclose(f);
 	class_sum = (class_sum > (tm->T)) ? (tm->T) : class_sum;
 	class_sum = (class_sum < -(tm->T)) ? -(tm->T) : class_sum;
 
@@ -375,6 +413,20 @@ int tm_score(struct TsetlinMachine *tm, unsigned int *Xi) {
 	/***************************/
 
 	return sum_up_class_votes(tm);
+}
+
+int tm_score_printclause(struct TsetlinMachine *tm, unsigned int *Xi) {
+	/*******************************/
+	/*** Calculate Clause Output ***/
+	/*******************************/
+
+	tm_calculate_clause_output(tm, Xi, PREDICT);
+
+	/***************************/
+	/*** Sum up Clause Votes ***/
+	/***************************/
+
+	return sum_up_class_votes_print(tm);
 }
 
 int tm_ta_state(struct TsetlinMachine *tm, int clause, int ta)
