@@ -4,12 +4,13 @@ from tm import MultiClassTsetlinMachine
 from sklearn.metrics import precision_recall_fscore_support
 from sklearn.model_selection import train_test_split
 import numpy as np
+import os
 
 #fname='../generated/generated2.txt'
 fname=sys.argv[1]
 
 clause_file=fname.replace('.txt','_clauses_pos.txt')
-
+local_clause_file='local_clauses.csv'
 f=open(fname.replace('_sentenceleveltransform','').replace('.txt','_meta.txt'),'r')
 lines=f.readlines()
 
@@ -99,7 +100,6 @@ print('Clauses written at :'+ clause_file)
 
 
 ####LOCAL VIEW###
-print(X_test[:2])
 temp_X_test=X_test[:2]
 temp_y_test=y_test[:2]
 temp_X_test_sent=[]
