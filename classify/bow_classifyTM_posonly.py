@@ -142,6 +142,6 @@ for ind,row in local_clauses.iterrows():
 	local_clauses.loc[local_clauses.index[ind], 'CorrectLabel']=star
 	
 local_clauses=local_clauses.sort_values(by=['Example', 'Class'])
-print(local_clauses)
 
 local_clauses.to_csv(local_clause_file, sep='\t', index=False)
+print('Local Clauses written to:'+local_clause_file)
