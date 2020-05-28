@@ -183,10 +183,10 @@ class MultiClassConvolutionalTsetlinMachine2D():
 
 		return Y
 	
-	def predict_and_printlocal(self, X,fname):
+	def predict_and_printlocal(self, X,fnameorg):
 		#f=open("local_clauses.csv", "w")
 		#f.close()
-		fname=fname.encode('utf-8')
+		fname=fnameorg.encode('utf-8')
 		number_of_examples = X.shape[0]
 		
 		self.encoded_X = np.ascontiguousarray(np.empty(int(number_of_examples * self.number_of_patches * self.number_of_ta_chunks), dtype=np.uint32))
@@ -201,7 +201,7 @@ class MultiClassConvolutionalTsetlinMachine2D():
 		Y = np.ascontiguousarray(np.zeros(number_of_examples, dtype=np.uint32))
 
 		_lib.mc_tm_predict_clauseprint(self.mc_ctm, self.encoded_X, Y, number_of_examples, fname)
-		print("Check clauses at : "+fname)
+		print("Check clauses at : "+fnameorg)
 		return Y
 
 	def ta_state(self, mc_tm_class, clause, ta):
@@ -320,8 +320,8 @@ class MultiClassTsetlinMachine():
 
 		return Y
 	
-	def predict_and_printlocal(self, X, fname):
-		fname=fname.encode('utf-8')
+	def predict_and_printlocal(self, X, fnameorg):
+		fname=fnameorg.encode('utf-8')
 		number_of_examples = X.shape[0]
 		
 		self.encoded_X = np.ascontiguousarray(np.empty(int(number_of_examples * self.number_of_patches * self.number_of_ta_chunks), dtype=np.uint32))
@@ -336,7 +336,7 @@ class MultiClassTsetlinMachine():
 		Y = np.ascontiguousarray(np.zeros(number_of_examples, dtype=np.uint32))
 
 		_lib.mc_tm_predict_clauseprint(self.mc_tm, self.encoded_X, Y, number_of_examples, fname)
-		print("Check clauses at : "+fname)
+		print("Check clauses at : "+fnameorg)
 		return Y
 	
 	def ta_state(self, mc_tm_class, clause, ta):
