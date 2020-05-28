@@ -117,7 +117,7 @@ print(temp_X_test_sent)
 if os.path.exists('local_clauses.csv'):
     os.remove('local_clauses.csv')
 fo=open('local_clauses.csv','w')
-fo.write('Example Class CLause Cl.Val\n')
+fo.write('Example Class Clause Cl.Val\n')
 fo.close()
 res=tm.predict_and_printlocal(temp_X_test, 'local_clauses.csv')
 
@@ -129,7 +129,13 @@ for ts in range(len(temp_X_test_sent)):
 	for ind,row in local_clauses.iterrows():
 		if row['Example']==ts:
 			local_clauses.loc[local_clauses.index[ind], 'ex_bow']=temp_X_test_sent[ts]
-			
+
+all_clauses=pd.read_csv(clause_file,sep='\t')
+for ind,row in local_clauses.iterrows():
+	classname=labels_set[int(row['Class'])]
+	clauseid=int(row['Clause'])
+	clausetext=all_clauses[(all_clauses['ClauseNum']==clauseid) & (all_clauses['class']==classname) ]['Clause']
+	local_clauses.loc[local_clauses.index[ind], 'ClauseText']=clausetext
 print(local_clauses)
 
 
