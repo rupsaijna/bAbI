@@ -6,7 +6,7 @@ import sys
 fname=sys.argv[1]
 
 metaname=fname.replace('.txt','_meta.txt')
-clausename=fname.replace('.txt','_clauses_pos.txt')
+clausename=fname.replace('.txt','_clauses.txt')
 outname=clausename.replace('.txt','_processed.txt')
 
 mf=open(metaname,'r')
