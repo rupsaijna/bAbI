@@ -81,7 +81,7 @@ for cur_cls in range(len(labels_set)):
 			clause_type='positive'
 		else:
 			clause_type='negative'
-		this_clause=''
+		this_clause=str(cur_clause)
 		for f in range(0,NUM_FEATURES):
 			action_plain = tm.ta_action(int(cur_cls), cur_clause, f)
 			action_negated = tm.ta_action(int(cur_cls), cur_clause, f+NUM_FEATURES)
