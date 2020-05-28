@@ -110,7 +110,7 @@ for l in range(len(temp_X_test)):
 	for ft in range(len(line)):
 		if line[ft]==1:
 			temp_sent.append(featureheaderset[ft])
-	temp_X_test_sent.append(temp_sent)
+	temp_X_test_sent.append(' '.join(temp_sent))
 	print(temp_sent, temp_y_test[l], labels_set[temp_y_test[l]])
 
 print(temp_X_test_sent)	
