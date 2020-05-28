@@ -127,7 +127,7 @@ local_clauses=pd.read_csv('local_clauses.csv',sep=' ')
 for ts in range(len(temp_X_test_sent)):
 	for ind,row in local_clauses.iterrows():
 		if row['Example']==ts:
-			local_clauses.loc[local_clauses.index[ind], 'ex_bow']=temp_X_test_sent[ts]
+			local_clauses.loc[local_clauses.index[ind], 'Example_BoW']=temp_X_test_sent[ts]
 			local_clauses.loc[local_clauses.index[ind], 'ClassName']=labels_set[int(row['Class'])]
 all_clauses=pd.read_csv(clause_file,sep='\t')
 for ind,row in local_clauses.iterrows():
@@ -136,6 +136,12 @@ for ind,row in local_clauses.iterrows():
 	clausetext=all_clauses[(all_clauses['ClauseNum']==clauseid) & (all_clauses['class']==classname) ]['Clause'].values
 	print(clausetext)
 	local_clauses.loc[local_clauses.index[ind], 'ClauseText']=clausetext
+	star=''
+	if row['Class']==temp_y_test[row['Example']]:
+		star+='G'
+	if row['Class']==temp_y_test[row['Example']]:
+		star+='P'
+	local_clauses.loc[local_clauses.index[ind], 'CorrectLabel']=clausetext
 	
 print(local_clauses)
 local_clauses=local_clauses.sort_values(by=['Example', 'Class'])
