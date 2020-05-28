@@ -135,6 +135,7 @@ for ind,row in local_clauses.iterrows():
 	classname=labels_set[int(row['Class'])]
 	clauseid=int(row['Clause'])
 	clausetext=all_clauses[(all_clauses['ClauseNum']==clauseid) & (all_clauses['class']==classname) ]['Clause']
+	print(clausetext)
 	local_clauses.loc[local_clauses.index[ind], 'ClauseText']='hello'
 print(local_clauses)
 
