@@ -141,7 +141,7 @@ for ind,row in local_clauses.iterrows():
 		star+='G'
 	if row['Class']==temp_y_test[row['Example']]:
 		star+='P'
-	local_clauses.loc[local_clauses.index[ind], 'CorrectLabel']=clausetext
+	local_clauses.loc[local_clauses.index[ind], 'CorrectLabel']=star
 	
 print(local_clauses)
 local_clauses=local_clauses.sort_values(by=['Example', 'Class'])
