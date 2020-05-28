@@ -221,10 +221,11 @@ static inline int sum_up_class_votes_print(struct TsetlinMachine *tm, int classn
 		temp= tm->clause_weights[j] * ((tm->clause_output[clause_chunk] & (1 << clause_pos)) > 0);
 		printf("%d ",temp);
 		if (temp!=0){
-			printf("%s%d",":",j);
+			printf("%s%d%s",":",j," ");
 			fprintf(f, "%s%d","e",examplenum);
 			fprintf(f, "%s%d"," c",classnum);
 			fprintf(f, "%s%d"," CL",j);
+			fprintf(f, "%s%d"," v",temp);
 			fprintf(f, "%s","\n");
 		}
 		
