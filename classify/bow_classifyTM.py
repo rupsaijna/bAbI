@@ -112,7 +112,10 @@ for l in range(len(temp_X_test)):
 
 	
 if os.path.exists('local_clauses.csv'):
-    os.remove('local_clauses.csv')	
+    os.remove('local_clauses.csv')
+fo=open('local_clauses.csv','w')
+fo.write('Example Class CLause Cl.Val\n')
+fo.close()
 res=tm.predict_and_printlocal(temp_X_test, 'local_clauses.csv')
 
 print(res)
