@@ -5,6 +5,7 @@ from sklearn.metrics import precision_recall_fscore_support
 from sklearn.model_selection import train_test_split
 import numpy as np
 import os
+import pandas as pd
 
 #fname='../generated/generated2.txt'
 fname=sys.argv[1]
@@ -102,12 +103,14 @@ print('Clauses written at :'+ clause_file)
 print(X_test[:2])
 temp_X_test=X_test[:2]
 temp_y_test=y_test[:2]
+temp_X_test_sent=[]
 for l in range(len(temp_X_test)):
 	temp_sent=[]
 	line=temp_X_test[l]
 	for ft in range(len(line)):
 		if line[ft]==1:
 			temp_sent.append(featureheaderset[ft])
+	temp_X_test_sent.append(temp_sent)
 	print(temp_sent, temp_y_test[l], labels_set[temp_y_test[l]])
 
 	
@@ -118,5 +121,15 @@ fo.write('Example Class CLause Cl.Val\n')
 fo.close()
 res=tm.predict_and_printlocal(temp_X_test, 'local_clauses.csv')
 
-print(res)
+print('Result:',res)
+
+local_clauses=pd.read_csv('local_clauses.csv',sep=' ')
+print(local_clauses)
+for ts in range(len(temp_X_test_sent)):
+	for ind,row in local_clauses.iterrows():
+		if row['Example']==ts:
+			local_clauses.loc[ind,'ex_bow']=temp_X_test_sent[ts]
+			
+print(local_clauses)
+
 
