@@ -98,9 +98,9 @@ fout_c.close()
 
 print('Clauses written at :'+ clause_file)
 
-print(X_test[:2])
-temp_X_test=X_test[:2]
-temp_y_test=y_test[:2]
+print(X_test[:1])
+temp_X_test=X_test[:1]
+temp_y_test=y_test[:1]
 for l in range(len(temp_X_test)):
 	temp_sent=[]
 	line=temp_X_test[l]
