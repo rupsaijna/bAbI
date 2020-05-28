@@ -5,6 +5,7 @@ from sklearn.metrics import precision_recall_fscore_support
 from sklearn.model_selection import train_test_split
 import numpy as np
 import os
+import pandas as pd
 
 #fname='../generated/generated2.txt'
 fname=sys.argv[1]
