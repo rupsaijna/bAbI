@@ -226,14 +226,6 @@ static inline int sum_up_class_votes_print(struct TsetlinMachine *tm, int classn
 			fprintf(f, "%s%d"," c",classnum);
 			fprintf(f, "%s%d"," CL",j);
 			fprintf(f, "%s"," ];");
-			/*f = fopen("local_clauses.csv", "a");
-			if (j % 2 == 0) {
-				fprintf(f, "%d,%s",j,"POS;");
-			}
-			else {
-				fprintf(f, "%d,%s",j,"NEG;");
-			}
-			fclose(f);*/
 		}
 		
 		if (j % 2 == 0) {
