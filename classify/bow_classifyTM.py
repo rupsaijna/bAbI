@@ -4,6 +4,7 @@ from tm import MultiClassTsetlinMachine
 from sklearn.metrics import precision_recall_fscore_support
 from sklearn.model_selection import train_test_split
 import numpy as np
+import os
 
 #fname='../generated/generated2.txt'
 fname=sys.argv[1]
@@ -109,6 +110,9 @@ for l in range(len(temp_X_test)):
 			temp_sent.append(featureheaderset[ft])
 	print(temp_sent, temp_y_test[l], labels_set[temp_y_test[l]])
 
+	
+if os.path.exists('local_clauses.csv'):
+    os.remove('local_clauses.csv')	
 res=tm.predict_and_printlocal(temp_X_test)
 
 print(res)
