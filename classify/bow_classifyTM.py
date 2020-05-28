@@ -101,6 +101,8 @@ fout_c.close()
 
 print('Clauses written at :'+ clause_file)
 
+
+####LOCAL VIEW###
 print(X_test[:2])
 temp_X_test=X_test[:2]
 temp_y_test=y_test[:2]
