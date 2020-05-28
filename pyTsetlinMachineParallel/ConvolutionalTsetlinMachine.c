@@ -207,11 +207,11 @@ static inline int sum_up_class_votes(struct TsetlinMachine *tm)
 }
 
 /* Sum up the votes for each class and print clauses --RUPSA*/
-static inline int sum_up_class_votes_print(struct TsetlinMachine *tm, int classnum, int examplenum)
+static inline int sum_up_class_votes_print(struct TsetlinMachine *tm, int classnum, int examplenum, char *fname)
 {
 	FILE *f;
 	int class_sum = 0;
-	f = fopen("local_clauses.csv", "a");
+	f = fopen(fname, "a");
 
 	for (int j = 0; j < tm->number_of_clauses; j++) {
 		int clause_chunk = j / 32;
@@ -414,7 +414,7 @@ int tm_score(struct TsetlinMachine *tm, unsigned int *Xi) {
 }
 
 /*for printing local clauses--Rupsa*/
-int tm_score_printclause(struct TsetlinMachine *tm, unsigned int *Xi, int classnum, int examplenum) {
+int tm_score_printclause(struct TsetlinMachine *tm, unsigned int *Xi, int classnum, int examplenum, char *fname) {
 	/*******************************/
 	/*** Calculate Clause Output ***/
 	/*******************************/
@@ -425,7 +425,7 @@ int tm_score_printclause(struct TsetlinMachine *tm, unsigned int *Xi, int classn
 	/*** Sum up Clause Votes ***/
 	/***************************/
 
-	return sum_up_class_votes_print(tm, classnum, examplenum);
+	return sum_up_class_votes_print(tm, classnum, examplenum, fname);
 }
 /*for printing local clauses--Rupsa*/
 
