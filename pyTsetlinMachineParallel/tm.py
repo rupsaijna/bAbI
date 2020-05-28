@@ -199,7 +199,7 @@ class MultiClassConvolutionalTsetlinMachine2D():
 	
 		Y = np.ascontiguousarray(np.zeros(number_of_examples, dtype=np.uint32))
 
-		_lib.mc_tm_predict_clauseprint(self.mc_ctm, self.encoded_X, Y, number_of_examples)
+		_lib.mc_tm_predict_clauseprint(self.mc_ctm, self.encoded_X, Y, number_of_examples, fname)
 		print("Check clauses at : "+fname)
 		return Y
 
