@@ -138,5 +138,5 @@ for ind,row in local_clauses.iterrows():
 	local_clauses.loc[local_clauses.index[ind], 'ClauseText']=clausetext
 	
 print(local_clauses)
-local_clauses.sort_values(by=['Example', 'Class'])
+local_clauses=local_clauses.sort_values(by=['Example', 'Class'])
 print(local_clauses)
