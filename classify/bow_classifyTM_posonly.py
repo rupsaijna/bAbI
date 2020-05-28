@@ -23,7 +23,7 @@ for l in lines[3:]:
 
 if 'sentenceleveltransform' not in fname:
 	CLAUSES=33
-	T=28
+	T=35
 	s=12.5
 	weighting = True
 	training_epoch=5
