@@ -209,7 +209,7 @@ static inline int sum_up_class_votes(struct TsetlinMachine *tm)
 /* Sum up the votes for each class and print clauses --RUPSA*/
 static inline int sum_up_class_votes_print(struct TsetlinMachine *tm)
 {
-	FILE *f;
+	//FILE *f;
 	int class_sum = 0;
 
 	for (int j = 0; j < tm->number_of_clauses; j++) {
@@ -218,7 +218,8 @@ static inline int sum_up_class_votes_print(struct TsetlinMachine *tm)
 
 		int temp=0;
 		temp= tm->clause_weights[j] * ((tm->clause_output[clause_chunk] & (1 << clause_pos)) > 0);
-		if (temp==1){
+		printf("%d",temp);
+		/*if (temp==1){
 			printf("%d",j);
 			f = fopen("local_clauses.csv", "a");
 			if (j % 2 == 0) {
@@ -228,7 +229,7 @@ static inline int sum_up_class_votes_print(struct TsetlinMachine *tm)
 				fprintf(f, "%d,%s",j,"NEG;");
 			}
 			fclose(f);
-		}
+		}*/
 		
 		if (j % 2 == 0) {
 			class_sum += tm->clause_weights[j] * ((tm->clause_output[clause_chunk] & (1 << clause_pos)) > 0);
