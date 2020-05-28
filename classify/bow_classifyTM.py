@@ -134,9 +134,9 @@ all_clauses=pd.read_csv(clause_file,sep='\t')
 for ind,row in local_clauses.iterrows():
 	classname=labels_set[int(row['Class'])]
 	clauseid=int(row['Clause'])
-	clausetext=all_clauses[(all_clauses['ClauseNum']==clauseid) & (all_clauses['class']==classname) ]['Clause'].values[0]
+	clausetext=all_clauses[(all_clauses['ClauseNum']==clauseid) & (all_clauses['class']==classname) ]['Clause'].values
 	print(clausetext)
-	local_clauses.loc[local_clauses.index[ind], 'ClauseText']='hello'
+	local_clauses.loc[local_clauses.index[ind], 'ClauseText']=clausetext
 print(local_clauses)
 
 
