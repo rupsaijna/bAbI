@@ -124,21 +124,19 @@ res=tm.predict_and_printlocal(temp_X_test, 'local_clauses.csv')
 print('Result:',res)
 
 local_clauses=pd.read_csv('local_clauses.csv',sep=' ')
-print(local_clauses)
 for ts in range(len(temp_X_test_sent)):
 	for ind,row in local_clauses.iterrows():
 		if row['Example']==ts:
 			local_clauses.loc[local_clauses.index[ind], 'ex_bow']=temp_X_test_sent[ts]
-			local_clauses.loc[local_clauses.index[ind], 'Class']=labels_set[int(row['Class'])]
-print(local_clauses)
+			local_clauses.loc[local_clauses.index[ind], 'ClassName']=labels_set[int(row['Class'])]
 all_clauses=pd.read_csv(clause_file,sep='\t')
 for ind,row in local_clauses.iterrows():
-	classname=row['Class']
+	classname=row['ClassName']
 	clauseid=int(row['Clause'])
 	clausetext=all_clauses[(all_clauses['ClauseNum']==clauseid) & (all_clauses['class']==classname) ]['Clause'].values
 	print(clausetext)
 	local_clauses.loc[local_clauses.index[ind], 'ClauseText']=clausetext
 	
 print(local_clauses)
-
-
+local_clauses.sort_values(by=['Example', 'Class'])
+print(local_clauses)
