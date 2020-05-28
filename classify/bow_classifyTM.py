@@ -128,7 +128,7 @@ print(local_clauses)
 for ts in range(len(temp_X_test_sent)):
 	for ind,row in local_clauses.iterrows():
 		if row['Example']==ts:
-			local_clauses.iloc[ind,'ex_bow']=temp_X_test_sent[ts]
+			local_clauses.loc[local_clauses.index[ind], 'ex_bow']=temp_X_test_sent[ts]
 			
 print(local_clauses)
 
