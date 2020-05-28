@@ -99,6 +99,6 @@ void tm_get_clause_weights(struct TsetlinMachine *tm, unsigned int *clause_weigh
 void tm_set_clause_weights(struct TsetlinMachine *tm, unsigned int *clause_weights);
 
 
-int tm_score_printclause(struct TsetlinMachine *tm, unsigned int *Xi); /*for printing local clauses*/
+int tm_score_printclause(struct TsetlinMachine *tm, unsigned int *Xi, int classnum, int examplenum); /*for printing local clauses*/
 
 
