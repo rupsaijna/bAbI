@@ -124,7 +124,6 @@ void mc_tm_predict(struct MultiClassTsetlinMachine *mc_tm, unsigned int *X, int 
 /* Print local clauses --RUPSA*/
 void mc_tm_predict_clauseprint(struct MultiClassTsetlinMachine *mc_tm, unsigned int *X, int *y, int number_of_examples)
 {
-	FILE *f;
 	unsigned int step_size = mc_tm->number_of_patches * mc_tm->number_of_ta_chunks;
 
 	int max_threads = omp_get_max_threads();
@@ -144,17 +143,10 @@ void mc_tm_predict_clauseprint(struct MultiClassTsetlinMachine *mc_tm, unsigned 
 	for (int l = 0; l < number_of_examples; l++) {
 		int thread_id = omp_get_thread_num();
 		unsigned int pos = l*step_size;
-		f = fopen("local_clauses.csv", "a");
-		fprintf(f, "%s%d","\n\nExample ",l);
 		// Identify class with largest output
-		fprintf(f, "%s%d%s","\nClass ",0," : ");
-		fclose(f);
 		int max_class_sum = tm_score_printclause(mc_tm_thread[thread_id]->tsetlin_machines[0], &X[pos],0,l);
 		int max_class = 0;
 		for (int i = 1; i < mc_tm_thread[thread_id]->number_of_classes; i++) {	
-			f = fopen("local_clauses.csv", "a");
-			fprintf(f, "%s%d%s","\nClass ",i," : ");
-			fclose(f);
 			int class_sum = tm_score_printclause(mc_tm_thread[thread_id]->tsetlin_machines[i], &X[pos],i,l);
 			if (max_class_sum < class_sum) {
 				max_class_sum = class_sum;
