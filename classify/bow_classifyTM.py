@@ -9,6 +9,7 @@ import pandas as pd
 
 #fname='../generated/generated2.txt'
 fname=sys.argv[1]
+local_clause_file='local_clauses.csv'
 
 clause_file=fname.replace('.txt','_clauses.txt')
 
@@ -113,17 +114,17 @@ for l in range(len(temp_X_test)):
 	temp_X_test_sent.append(' '.join(temp_sent))
 	print(temp_sent, temp_y_test[l], labels_set[temp_y_test[l]])
 
-print(temp_X_test_sent)	
-if os.path.exists('local_clauses.csv'):
-    os.remove('local_clauses.csv')
-fo=open('local_clauses.csv','w')
+if os.path.exists(local_clause_file):
+	print('overwirting previous '+local_clause_file)
+	os.remove(local_clause_file)
+fo=open(local_clause_file,'w')
 fo.write('Example Class Clause Cl.Val\n')
 fo.close()
-res=tm.predict_and_printlocal(temp_X_test, 'local_clauses.csv')
+res=tm.predict_and_printlocal(temp_X_test, local_clause_file)
 
 print('Result:',res)
 
-local_clauses=pd.read_csv('local_clauses.csv',sep=' ')
+local_clauses=pd.read_csv(local_clause_file,sep=' ')
 for ts in range(len(temp_X_test_sent)):
 	for ind,row in local_clauses.iterrows():
 		if row['Example']==ts:
@@ -134,7 +135,6 @@ for ind,row in local_clauses.iterrows():
 	classname=row['ClassName']
 	clauseid=int(row['Clause'])
 	clausetext=all_clauses[(all_clauses['ClauseNum']==clauseid) & (all_clauses['class']==classname) ]['Clause'].values
-	print(clausetext)
 	local_clauses.loc[local_clauses.index[ind], 'ClauseText']=clausetext
 	star=''
 	if row['Class']==temp_y_test[row['Example']]:
@@ -143,6 +143,8 @@ for ind,row in local_clauses.iterrows():
 		star+='P'
 	local_clauses.loc[local_clauses.index[ind], 'CorrectLabel']=star
 	
-print(local_clauses)
 local_clauses=local_clauses.sort_values(by=['Example', 'Class'])
 print(local_clauses)
+
+local_clauses.to_csv(local_clause_file, sep='\t', index=False)
+
