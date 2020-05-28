@@ -113,7 +113,7 @@ for l in range(len(temp_X_test)):
 	temp_X_test_sent.append(temp_sent)
 	print(temp_sent, temp_y_test[l], labels_set[temp_y_test[l]])
 
-	
+print(temp_X_test_sent)	
 if os.path.exists('local_clauses.csv'):
     os.remove('local_clauses.csv')
 fo=open('local_clauses.csv','w')
@@ -128,7 +128,7 @@ print(local_clauses)
 for ts in range(len(temp_X_test_sent)):
 	for ind,row in local_clauses.iterrows():
 		if row['Example']==ts:
-			local_clauses.loc[ind,'ex_bow']=temp_X_test_sent[ts]
+			local_clauses.ix[ind,'ex_bow']=temp_X_test_sent[ts]
 			
 print(local_clauses)
 
