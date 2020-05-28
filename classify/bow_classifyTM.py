@@ -113,7 +113,7 @@ for l in range(len(temp_X_test)):
 	
 if os.path.exists('local_clauses.csv'):
     os.remove('local_clauses.csv')	
-res=tm.predict_and_printlocal(temp_X_test)
+res=tm.predict_and_printlocal(temp_X_test, 'local_clauses.csv')
 
 print(res)
 
