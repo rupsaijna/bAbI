@@ -75,7 +75,7 @@ print('Last '+str(lastruns)+' runs: '+str(np.mean(allacc[-lastruns:], axis=0))+'
 
 fout_c=open(clause_file,'w')
 NUM_FEATURES=X.shape[1]
-fout_c.write('Clause\tp/n\tclass\n')
+fout_c.write('ClauseNum\tClause\tp/n\tclass\n')
 feature_vector=np.zeros(NUM_FEATURES*2)
 for cur_cls in range(len(labels_set)):
 	for cur_clause in range(CLAUSES):
@@ -83,7 +83,7 @@ for cur_cls in range(len(labels_set)):
 			clause_type='positive'
 		else:
 			clause_type='negative'
-		this_clause=str(cur_clause)
+		this_clause=str(cur_clause)+'\t'
 		for f in range(0,NUM_FEATURES):
 			action_plain = tm.ta_action(int(cur_cls), cur_clause, f)
 			action_negated = tm.ta_action(int(cur_cls), cur_clause, f+NUM_FEATURES)
