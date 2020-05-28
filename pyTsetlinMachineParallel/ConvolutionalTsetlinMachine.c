@@ -429,7 +429,7 @@ int tm_score_printclause(struct TsetlinMachine *tm, unsigned int *Xi, int classn
 	/*** Sum up Clause Votes ***/
 	/***************************/
 
-	return sum_up_class_votes_print(tm, int classnum, int examplenum);
+	return sum_up_class_votes_print(tm, classnum, examplenum);
 }
 /*for printing local clauses--Rupsa*/
 
