@@ -222,10 +222,10 @@ static inline int sum_up_class_votes_print(struct TsetlinMachine *tm, int classn
 		//printf("%d ",temp);
 		if (temp!=0){
 			//printf("%s%d%s",":",j," ");
-			fprintf(f, "%s%d","e",examplenum);
-			fprintf(f, "%s%d"," c",classnum);
-			fprintf(f, "%s%d"," CL",j);
-			fprintf(f, "%s%d"," v",temp);
+			fprintf(f, "%d",examplenum);
+			fprintf(f, "%s%d"," ",classnum);
+			fprintf(f, "%s%d"," ",j);
+			fprintf(f, "%s%d"," ",temp);
 			fprintf(f, "%s","\n");
 		}
 		
