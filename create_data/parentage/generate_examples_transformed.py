@@ -56,7 +56,6 @@ def confirm_numbers(num_sentences,len_names):
 
 def generate(num_sentences,names,num_examples):
 	temp_names=names.copy()
-	org_names=names.copy()
 	pbar = tqdm(total = num_examples)
 	relations=['Grandparent','Sibling','Unrelated']
 	examples=[]
