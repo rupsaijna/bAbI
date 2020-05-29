@@ -20,7 +20,6 @@ labels=[d[1] for d in data]
 #labels_set=list(set(labels))
 
 realtionships_set= set()
-newtext=[]
 for t in text:
 	sent=t.replace('\n','').split('.')
 	for s in sent[:-1]:
@@ -32,7 +31,7 @@ for t in text:
 realtionships_set=list(realtionships_set)
 numsentences=2
 
-featureset=np.zeros((len(newtext),len(realtionships_set)))
+featureset=np.zeros((len(text),len(realtionships_set)))
 
 print(realtionships_set)
 print(labels_set)
