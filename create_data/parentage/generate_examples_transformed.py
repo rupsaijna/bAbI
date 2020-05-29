@@ -55,8 +55,8 @@ def confirm_numbers(num_sentences,len_names):
 
 
 def generate(num_sentences,names,num_examples):
-	temp_names=names
-	org_names=names
+	temp_names=names.copy()
+	org_names=names.copy()
 	pbar = tqdm(total = num_examples)
 	relations=['Grandparent','Sibling','Unrelated']
 	examples=[]
@@ -70,7 +70,7 @@ def generate(num_sentences,names,num_examples):
 		
 		###
 		temp_names=org_names
-		print(temp_names,names, len(examples))
+		#print(temp_names,names, len(examples))
 		temp_names_first=random.sample(temp_names, k=2)
 		temp_example=temp_names_first[0]+' is the parent of '+temp_names_first[1]+'. '
 		temp_example_transformed='X is the parent of Y. '
