@@ -154,6 +154,7 @@ names=names[:len_names]
 examples, examples_transformed=generate(num_sentences,names,num_examples)
 fo=open(opfile,'w')
 for e in examples:
+	print(e)
 	fo.write(e+'\n')
 fo.close()
 
