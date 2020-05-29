@@ -13,7 +13,7 @@ def confirm_numbers(num_sentences,len_names):
 	global names
 	while True:
 		print_numbers(num_sentences,len_names)
-		num_examples=len_names*len_locs*len_verbs*(len_names-1)*(len_locs-1)*(len_verbs)*num_sentences
+		num_examples=(2*len_names*(len_names-1)*(len_names-2))+(len_names*(len_names-1)*(len_names-2)*(len_names-3))
 		
 		cnt_names=len_names
 
