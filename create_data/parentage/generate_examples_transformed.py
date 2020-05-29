@@ -111,7 +111,7 @@ def generate(num_sentences,names,num_examples):
 				pbar.update(3)
 	pbar.close()	
 	print(cnt_0,cnt_1,cnt_2)
-	return examples[:num_examples], examples_transformed[:num_examples]
+	return examples, examples_transformed
 	
 ######################################################################				
 			
