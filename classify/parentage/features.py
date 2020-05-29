@@ -17,6 +17,8 @@ data=[d.split('\t') for d in data]
 
 text=[d[0] for d in data]
 labels=[d[1] for d in data]
+print(set(labels))
+fd
 #labels_set=list(set(labels))
 
 realtionships_set= set()
