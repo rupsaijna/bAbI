@@ -5,7 +5,7 @@ relations=['Grandparent','Sibling','Unrelated']
 
 def print_numbers(num_sentences,len_names,num_examples=0):
 	print ("\nCurrently we can have:\nSentences per example:"+str(num_sentences)+"\n#Names:"+str(len_names))
-	print ("\n#Total possible generated examples: "+str((2*len_names*(len_names-1)*(len_names-2))+(len_names*(len_names-1)*(len_names-2)*(len_names-3))))
+	print ("\n#Total possible generated examples: "+str((3*len_names*(len_names-1)*(len_names-2)*(len_names-1)))
 	if num_examples!=0:
 		print ("\n#Examples to be generated:"+str(num_examples))
 	print("##########################")
@@ -15,7 +15,7 @@ def confirm_numbers(num_sentences,len_names):
 	global names
 	while True:
 		print_numbers(num_sentences,len_names)
-		num_examples=(2*len_names*(len_names-1)*(len_names-2))+(len_names*(len_names-1)*(len_names-2)*(len_names-3))
+		num_examples=(3*len_names*(len_names-1)*(len_names-2)*(len_names-1))
 		
 		cnt_names=len_names
 
