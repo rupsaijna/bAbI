@@ -143,8 +143,6 @@ fo.close()
 opfile=opfile.replace('.txt','_meta.txt')	
 fo=open(opfile,'w')	
 fo.write(','.join(names)+'\n')
-fo.write(','.join(locs)+'\n')
-fo.write(','.join(verbs)+'\n')
 
 fo.close()
 print('Output written to '+opfile)
