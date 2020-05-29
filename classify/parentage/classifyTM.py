@@ -105,9 +105,9 @@ print('Clauses written at :'+ clause_file)
 
 
 ####LOCAL VIEW###
-print(X_test[:20])
-temp_X_test=X_test[:20]
-temp_y_test=y_test[:20]
+print(X_test[:40])
+temp_X_test=X_test[:40]
+temp_y_test=y_test[:40]
 temp_X_test_sent=[]
 for l in range(len(temp_X_test)):
 	temp_sent=[]
