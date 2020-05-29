@@ -81,7 +81,7 @@ print('Over '+str(RUNS)+' runs: '+str(np.mean(allacc, axis=0))+' +/- '+str(np.st
 
 lastruns=int(RUNS/3)
 print('Last '+str(lastruns)+' runs: '+str(np.mean(allacc[-lastruns:], axis=0))+' +/- '+str(np.std(allacc[-lastruns:], axis=0)))
-asDNJK
+
 fout_c=open(clause_file,'w')
 NUM_FEATURES=X.shape[1]
 fout_c.write('ClauseNum\tClause\tp/n\tclass\n')
@@ -107,7 +107,7 @@ for cur_cls in range(len(labels_set)):
 fout_c.close()
 
 print('Clauses written at :'+ clause_file)
-hg
+
 
 ####LOCAL VIEW###
 print(X_test[:40])
