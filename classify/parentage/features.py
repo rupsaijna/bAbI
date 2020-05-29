@@ -36,6 +36,8 @@ featureset=np.zeros((len(text),len(realtionships_set)+1))
 
 print(realtionships_set)
 print(labels_set)
+print(set(labels))
+
 featureheaders=[]
 for n in realtionships_set:
 	featureheaders.append('isParent('+str(n)+')')
