@@ -23,8 +23,8 @@ for l in lines[3:]:
 		featureheaderset=lt[2].replace('\n','').split(',')
 
 if 'sentenceleveltransform' not in fname:
-	CLAUSES=95
-	T=70
+	CLAUSES=125
+	T=100
 	s=4.5
 	weighting = True
 	training_epoch=10
