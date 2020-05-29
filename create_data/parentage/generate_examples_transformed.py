@@ -88,6 +88,12 @@ def generate(num_sentences,names,num_examples):
 				temp_example_transformed=temp_example_transformed_fr+'Y is the parent of Z. '
 				temp_example_transformed+='How are X and Z related?'
 				cnt_0+=1
+				temp_example+='\t'+str(0)
+				temp_example_transformed+='\t'+str(0)
+				if temp_example not in examples:
+					examples.append(temp_example)
+					examples_transformed.append(temp_example_transformed)
+					pbar.update(1)
 			if rel==1:
 				temp_names_second=random.sample(temp_names, k=1)
 				temp_example=temp_example_fr+temp_names_first[0]+' is the parent of '+temp_names_second[0]+'. '
@@ -95,6 +101,12 @@ def generate(num_sentences,names,num_examples):
 				temp_example_transformed=temp_example_transformed_fr+'X is the parent of Z. '
 				temp_example_transformed+='How are X and Z related?'
 				cnt_1+=1
+				temp_example+='\t'+str(1)
+				temp_example_transformed+='\t'+str(1)
+				if temp_example not in examples:
+					examples.append(temp_example)
+					examples_transformed.append(temp_example_transformed)
+					pbar.update(1)
 			if rel==2:
 				temp_names_second=random.sample(temp_names, k=2)
 				temp_example=temp_example_fr+temp_names_second[0]+' is the parent of '+temp_names_second[1]+'. '
@@ -102,13 +114,14 @@ def generate(num_sentences,names,num_examples):
 				temp_example_transformed=temp_example_transformed_fr+'A is the parent of Z. '
 				temp_example_transformed+='How are X and Z related?'
 				cnt_2+=1
+				temp_example+='\t'+str(2)
+				temp_example_transformed+='\t'+str(2)
+				if temp_example not in examples:
+					examples.append(temp_example)
+					examples_transformed.append(temp_example_transformed)
+					pbar.update(1)
 		
-			temp_example+='\t'+str(rel)
-			temp_example_transformed+='\t'+str(rel)
-			if temp_example not in examples:
-				examples.append(temp_example)
-				examples_transformed.append(temp_example_transformed)
-				pbar.update(3)
+			
 	pbar.close()	
 	print(cnt_0,cnt_1,cnt_2)
 	return examples, examples_transformed
