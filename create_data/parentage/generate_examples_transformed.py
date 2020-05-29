@@ -126,6 +126,8 @@ num_sentences=2
 len_names,num_examples = confirm_numbers(num_sentences,len(names))
 
 names=names[:len_names]
+print(names)
+fdz
 
 examples, examples_transformed=generate(num_sentences,names,num_examples)
 fo=open(opfile,'w')
