@@ -1,6 +1,8 @@
 import random
 from tqdm import tqdm
 
+relations=['Grandparent','Sibling','Unrelated']
+
 def print_numbers(num_sentences,len_names,num_examples=0):
 	print ("\nCurrently we can have:\nSentences per example:"+str(num_sentences)+"\n#Names:"+str(len_names))
 	print ("\n#Total possible generated examples: "+str((2*len_names*(len_names-1)*(len_names-2))+(len_names*(len_names-1)*(len_names-2)*(len_names-3))))
@@ -57,7 +59,6 @@ def confirm_numbers(num_sentences,len_names):
 def generate(num_sentences,names,num_examples):
 	temp_names=names.copy()
 	pbar = tqdm(total = num_examples)
-	relations=['Grandparent','Sibling','Unrelated']
 	examples=[]
 	examples_transformed=[]
 	while len(examples) < num_examples:
@@ -143,6 +144,6 @@ fo.close()
 opfile=opfile.replace('.txt','_meta.txt')	
 fo=open(opfile,'w')	
 fo.write(','.join(names)+'\n')
-
+fo.write(','.join(relations)+'\n')
 fo.close()
 print('Output written to '+opfile)
