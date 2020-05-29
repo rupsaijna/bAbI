@@ -42,7 +42,7 @@ for n in realtionships_set:
 textind=0
 for t in text:
 	sent=t.replace('\n','').split('.')
-	temp_feature=np.zeros(len(realtionships_set)+!)
+	temp_feature=np.zeros(len(realtionships_set)+1)
 	for s in sent[:-1]:
 		s=s.strip().replace('.','').split(' ')
 		temp_rel=s[0]+'_'+s[-1]
