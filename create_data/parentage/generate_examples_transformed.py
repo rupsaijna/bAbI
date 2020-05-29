@@ -92,7 +92,7 @@ def generate(num_sentences,names,num_examples):
 				
 				temp_example+='\t'+str(0)
 				temp_example_transformed+='\t'+str(0)
-				if temp_example not in examples:
+				if temp_example not in examples and cnt_0<int(num_examples/3):
 					cnt_0+=1
 					fo.write(temp_example+'\n')
 					examples.append(temp_example)
@@ -106,7 +106,7 @@ def generate(num_sentences,names,num_examples):
 				temp_example_transformed+='How are X and Z related?'
 				temp_example+='\t'+str(1)
 				temp_example_transformed+='\t'+str(1)
-				if temp_example not in examples:
+				if temp_example not in examples and cnt_1<int(num_examples/3):
 					cnt_1+=1
 					fo.write(temp_example+'\n')
 					examples.append(temp_example)
@@ -120,7 +120,7 @@ def generate(num_sentences,names,num_examples):
 				temp_example_transformed+='How are X and Z related?'
 				temp_example+='\t'+str(2)
 				temp_example_transformed+='\t'+str(2)
-				if temp_example not in examples:
+				if temp_example not in examples and cnt_2<int(num_examples/3):
 					cnt_2+=1
 					fo.write(temp_example+'\n')
 					examples.append(temp_example)
