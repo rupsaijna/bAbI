@@ -7,7 +7,7 @@ f=open(fname,'r')
 data=f.readlines()
 f.close()
 
-f=open(fname.replace('.txt','_meta.txt'),'r')
+f=open(fname.replace('_sentenceleveltransform','').replace('.txt','_meta.txt'),'r')
 labels_set=f.readlines()[1].replace('\n','').split(',')
 f.close()
 
