@@ -65,7 +65,7 @@ def generate(num_sentences,names,num_examples):
 	cnt_1=0
 	cnt_2=0
 	
-	while len(examples) < num_examples:
+	while cnt_0 < int(num_examples/3):
 		#temp_names=random.sample(names, k=num_sentences) #without repeatation
 		#temp_locs=random.sample(locs, k=num_sentences) #without repeatation
 		#temp_verbs=random.choices(verbs, k=num_sentences) #with repeatation
@@ -80,7 +80,7 @@ def generate(num_sentences,names,num_examples):
 		temp_example_transformed_fr='X is the parent of Y. '
 		temp_names.remove(temp_names_first[0])
 		temp_names.remove(temp_names_first[1])
-		for rel in range(3):
+		for rel in [0,1,2]:
 			if rel==0:
 				temp_names_second=random.sample(temp_names, k=1)
 				temp_example=temp_example_fr+temp_names_first[1]+' is the parent of '+temp_names_second[0]+'. '
