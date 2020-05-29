@@ -50,7 +50,8 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.30, random
 
 print(list(y_train).count(0), list(y_train).count(1), list(y_train).count(2))
 print(list(y_test).count(0), list(y_test).count(1), list(y_test).count(2))
-
+print(X_train.shape)
+dkjsan
 tm = MultiClassTsetlinMachine(CLAUSES, T, s, weighted_clauses=weighting,append_negated=True)
 
 allacc=[]
@@ -105,7 +106,7 @@ for cur_cls in range(len(labels_set)):
 fout_c.close()
 
 print('Clauses written at :'+ clause_file)
-
+hg
 
 ####LOCAL VIEW###
 print(X_test[:40])
