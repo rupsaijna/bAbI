@@ -69,7 +69,7 @@ def generate(num_sentences,names,num_examples):
 		
 		###
 		names=org_names
-		printnames()
+		print(names)
 		temp_names_first=random.sample(names, k=2)
 		temp_example=temp_names_first[0]+' is the parent of '+temp_names_first[1]+'. '
 		temp_example_transformed='X is the parent of Y. '
