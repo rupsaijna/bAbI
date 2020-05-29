@@ -81,7 +81,7 @@ print('Over '+str(RUNS)+' runs: '+str(np.mean(allacc, axis=0))+' +/- '+str(np.st
 
 lastruns=int(RUNS/3)
 print('Last '+str(lastruns)+' runs: '+str(np.mean(allacc[-lastruns:], axis=0))+' +/- '+str(np.std(allacc[-lastruns:], axis=0)))
-
+asDNJK
 fout_c=open(clause_file,'w')
 NUM_FEATURES=X.shape[1]
 fout_c.write('ClauseNum\tClause\tp/n\tclass\n')
