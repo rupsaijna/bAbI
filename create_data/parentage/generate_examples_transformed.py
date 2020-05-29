@@ -9,7 +9,7 @@ def print_numbers(num_sentences,len_names,num_examples=0):
 	print("##########################")
 
 
-def confirm_numbers(num_sentences,len_names,len_locs,len_verbs):
+def confirm_numbers(num_sentences,len_names):
 	global names
 	while True:
 		print_numbers(num_sentences,len_names)
