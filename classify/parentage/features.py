@@ -18,7 +18,7 @@ data=[d.split('\t') for d in data]
 text=[d[0] for d in data]
 labels=[int(d[1]) for d in data]
 
-print(labels)
+print(len(labels))
 
 print(list(labels).count(0), list(labels).count(1), list(labels).count(2))
 dcA
