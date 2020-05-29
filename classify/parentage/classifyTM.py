@@ -44,8 +44,8 @@ np.random.shuffle(featureset)
 X=featureset[:,:-1]
 y=featureset[:,-1]
 y=[int(yy) for yy in y]
-
-
+print(set(y))
+saf
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.30, random_state=42, shuffle=True)
 
 print(list(y_train).count(0), list(y_train).count(1), list(y_train).count(2))
