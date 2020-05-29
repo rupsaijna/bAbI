@@ -38,7 +38,7 @@ print(realtionships_set)
 print(labels_set)
 featureheaders=[]
 for n in realtionships_set:
-	featureheaders+='isParent('+str(n)+')'
+	featureheaders.append('isParent('+str(n)+')')
 textind=0
 for t in text:
 	sent=t.replace('\n','').split('.')
