@@ -80,19 +80,19 @@ def generate(num_sentences,names,num_examples):
 		if rel==0:
 			temp_names_second=random.sample(temp_names, k=1)
 			temp_example+=temp_names_first[1]+' is the parent of '+temp_names_second[0]+'. '
-			temp_example+='How are '+temp_names_first[0]+' and '+temp_names_second[0]+'related?'
+			temp_example+='How are '+temp_names_first[0]+' and '+temp_names_second[0]+' related?'
 			temp_example_transformed+='Y is the parent of Z. '
 			temp_example_transformed+='How are X and Z related?'
 		if rel==1:
 			temp_names_second=random.sample(temp_names, k=1)
 			temp_example+=temp_names_first[0]+' is the parent of '+temp_names_second[0]+'. '
-			temp_example+='How are '+temp_names_first[0]+' and '+temp_names_second[0]+'related?'
+			temp_example+='How are '+temp_names_first[0]+' and '+temp_names_second[0]+' related?'
 			temp_example_transformed+='X is the parent of Z. '
 			temp_example_transformed+='How are X and Z related?'
 		if rel==2:
 			temp_names_second=random.sample(temp_names, k=2)
 			temp_example+=temp_names_second[0]+' is the parent of '+temp_names_second[1]+'. '
-			temp_example+='How are '+temp_names_first[0]+' and '+temp_names_second[1]+'related?'
+			temp_example+='How are '+temp_names_first[0]+' and '+temp_names_second[1]+' related?'
 			temp_example_transformed+='A is the parent of Z. '
 			temp_example_transformed+='How are X and Z related?'
 		
