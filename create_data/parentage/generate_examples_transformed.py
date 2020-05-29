@@ -93,12 +93,12 @@ def generate(num_sentences,names,num_examples):
 			temp_example_transformed+='A is the parent of Z. '
 			temp_example_transformed+='How are X and Z related?'
 		
-		temp_example+='\t'+str(rel)
-		temp_example_transformed+='\t'+str(rel)
-		if temp_example not in examples:
-			examples.append(temp_example)
-			examples_transformed.append(temp_example_transformed)
-			pbar.update(1)
+			temp_example+='\t'+str(rel)
+			temp_example_transformed+='\t'+str(rel)
+			if temp_example not in examples:
+				examples.append(temp_example)
+				examples_transformed.append(temp_example_transformed)
+				pbar.update(1)
 	pbar.close()		
 	return examples, examples_transformed
 	
