@@ -54,7 +54,7 @@ def confirm_numbers(num_sentences,len_names):
 			len_names=len(names)
 
 
-def generate(num_sentences,names,locs,verbs,num_examples):
+def generate(num_sentences,names,num_examples):
 	org_names=names
 	pbar = tqdm(total = num_examples)
 	relations=['Grandparent','Sibling','Unrelated']
