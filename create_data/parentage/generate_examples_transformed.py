@@ -112,7 +112,7 @@ names=[n.replace('\n','') for n in names]
 random.shuffle(names)
 
 ##input
-opfileans=input("\n>Output file is: generated_data.txt Y/N? ")
+opfileans=input("\n>Output file is: '../../generated/generated_parentage_data.txt' Y/N? ")
 if opfileans.lower()=='y':
 	opfile='../../generated/generated_parentage_data.txt'
 else:
@@ -127,7 +127,7 @@ len_names,num_examples = confirm_numbers(num_sentences,len(names))
 
 names=names[:len_names]
 
-examples, examples_transformed=generate(num_sentences,names,locs,verbs,num_examples)
+examples, examples_transformed=generate(num_sentences,names,num_examples)
 fo=open(opfile,'w')
 for e in examples:
 	fo.write(e+'\n')
