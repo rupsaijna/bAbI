@@ -108,10 +108,10 @@ def generate(num_sentences,names,num_examples):
 			if temp_example not in examples:
 				examples.append(temp_example)
 				examples_transformed.append(temp_example_transformed)
-				pbar.update(1)
+				pbar.update(3)
 	pbar.close()	
 	print(cnt_0,cnt_1,cnt_2)
-	return examples, examples_transformed
+	return examples[:num_examples], examples_transformed[:num_examples]
 	
 ######################################################################				
 			
