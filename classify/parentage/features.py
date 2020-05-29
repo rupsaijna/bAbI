@@ -47,7 +47,7 @@ for t in text:
 		temp_rel=s[0]+'_'+s[-1]
 		ind=realtionships_set.index(temp_rel)
 		temp_feature[ind]=1
-	featureset[textind]=temp_feature
+	featureset[textind][:-1]=temp_feature
 	featureset[-1]=labels[textind]
 	textind+=1
 		
