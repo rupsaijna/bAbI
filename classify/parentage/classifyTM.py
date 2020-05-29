@@ -68,7 +68,9 @@ for i in range(RUNS):
 	#print("\n#Testing PRF Macro: " + ', '.join(prf_test_macro))
 	#print("\nTesting PRF Micro: " + ', '.join(prf_test_micro))
 	for ls in range(len(labels_set)):
-		print(labels_set[ls]+' : '+str(round(prf_test_class[0][ls],2))+', '+str(round(prf_test_class[1][ls],2))+', '+str(round(prf_test_class[2][ls],2))+', '+str(round(prf_test_class[3][ls],2)))
+		print(labels_set[ls]+' : '+str(round(prf_test_class[0][ls],2))+', ')
+		print(str(round(prf_test_class[1][ls],2))+', '+str(round(prf_test_class[2][ls],2))+', ')
+		print(str(round(prf_test_class[3][ls],2)))
 
 print('Over '+str(RUNS)+' runs: '+str(np.mean(allacc, axis=0))+' +/- '+str(np.std(allacc, axis=0)))
 
