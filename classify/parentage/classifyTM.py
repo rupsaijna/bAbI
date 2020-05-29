@@ -47,7 +47,6 @@ y=[int(yy) for yy in y]
 
 print(list(y).count(0), list(y).count(1), list(y).count(2))
 
-fhgn
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.30, random_state=42, shuffle=True)
 
 print(list(y_train).count(0), list(y_train).count(1), list(y_train).count(2))
