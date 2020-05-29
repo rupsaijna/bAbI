@@ -33,7 +33,7 @@ def confirm_numbers(num_sentences,len_names):
 			print_numbers(num_sentences,cnt_names)
 			len_names=cnt_names
 
-			num_examples=(2*len_names*(len_names-1)*(len_names-2))+(len_names*(len_names-1)*(len_names-2)*(len_names-3))
+			num_examples=(3*len_names*(len_names-1)*(len_names-2))
 		
 		ans2 = input("\n>Do you want to limit number of generated examples? Y/N : ")
 		
