@@ -66,7 +66,7 @@ def generate(num_sentences,names,num_examples):
 	cnt_1=0
 	cnt_2=0
 	
-	while cnt_2 < int(num_examples/3):
+	while cnt_2 < int(num_examples/3) and cnt_1 < int(num_examples/3):
 		#temp_names=random.sample(names, k=num_sentences) #without repeatation
 		#temp_locs=random.sample(locs, k=num_sentences) #without repeatation
 		#temp_verbs=random.choices(verbs, k=num_sentences) #with repeatation
