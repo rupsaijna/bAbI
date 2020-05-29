@@ -69,6 +69,7 @@ def generate(num_sentences,names,num_examples):
 		
 		###
 		names=org_names
+		printnames()
 		temp_names_first=random.sample(names, k=2)
 		temp_example=temp_names_first[0]+' is the parent of '+temp_names_first[1]+'. '
 		temp_example_transformed='X is the parent of Y. '
@@ -126,8 +127,6 @@ num_sentences=2
 len_names,num_examples = confirm_numbers(num_sentences,len(names))
 
 names=names[:len_names]
-print(names)
-fdz
 
 examples, examples_transformed=generate(num_sentences,names,num_examples)
 fo=open(opfile,'w')
