@@ -19,7 +19,6 @@ fo.write('\nLocations:'+str(metadetails[2])+'\n\n')
 fo.close()
 labels=metadetails[1]
 labels=labels.replace('\n','').split(',')
-labels=[w.replace('the ','') for w in labels]
 
 for md in metadetails:
 	if fname in md:
@@ -46,7 +45,7 @@ for label in labels:
 	long_string_pos=''
 	for ind,row in sub_p.iterrows():
 		cl=row['Clause']
-		cl=cl.replace('#','~')
+		cl=cl.replace('#','~').replace('isParent(','f_').replace(')','')
 		cl=cl[:-1].replace(';',' & ')
 		cl=cl.replace('\n','')
 		if len(cl)>0:
