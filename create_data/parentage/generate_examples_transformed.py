@@ -57,6 +57,7 @@ def confirm_numbers(num_sentences,len_names):
 
 
 def generate(num_sentences,names,num_examples):
+	fo=open(opfile,'w')
 	temp_names=names.copy()
 	pbar = tqdm(total = num_examples)
 	examples=[]
@@ -92,6 +93,7 @@ def generate(num_sentences,names,num_examples):
 				temp_example+='\t'+str(0)
 				temp_example_transformed+='\t'+str(0)
 				if temp_example not in examples:
+					fo.write(temp_example+'\n')
 					examples.append(temp_example)
 					examples_transformed.append(temp_example_transformed)
 					pbar.update(1)
@@ -105,6 +107,7 @@ def generate(num_sentences,names,num_examples):
 				temp_example+='\t'+str(1)
 				temp_example_transformed+='\t'+str(1)
 				if temp_example not in examples:
+					fo.write(temp_example+'\n')
 					examples.append(temp_example)
 					examples_transformed.append(temp_example_transformed)
 					pbar.update(1)
@@ -118,12 +121,14 @@ def generate(num_sentences,names,num_examples):
 				temp_example+='\t'+str(2)
 				temp_example_transformed+='\t'+str(2)
 				if temp_example not in examples:
+					fo.write(temp_example+'\n')
 					examples.append(temp_example)
 					examples_transformed.append(temp_example_transformed)
 					pbar.update(1)
 		
 			
 	pbar.close()	
+	fo.close()
 	print(cnt_0,cnt_1,cnt_2)
 	return examples, examples_transformed
 	
@@ -152,11 +157,11 @@ len_names,num_examples = confirm_numbers(num_sentences,len(names))
 names=names[:len_names]
 
 examples, examples_transformed=generate(num_sentences,names,num_examples)
-fo=open(opfile,'w')
-for e in examples:
+
+'''for e in examples:
 	print(e)
 	fo.write(e+'\n')
-fo.close()
+fo.close()'''
 
 opfile2=opfile.replace('.txt','_sentenceleveltransform.txt')
 fo=open(opfile2,'w')
