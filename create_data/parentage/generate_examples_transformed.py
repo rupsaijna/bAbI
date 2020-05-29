@@ -82,7 +82,7 @@ def generate(num_sentences,names,num_examples):
 		temp_names.remove(temp_names_first[0])
 		temp_names.remove(temp_names_first[1])
 		for rel in [0,1,2]:
-			print(rel)
+			print(cnt_0,cnt_1,cnt_2)
 			if rel==0:
 				temp_names_second=random.sample(temp_names, k=1)
 				temp_example=temp_example_fr+temp_names_first[1]+' is the parent of '+temp_names_second[0]+'. '
