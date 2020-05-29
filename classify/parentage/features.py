@@ -21,7 +21,7 @@ labels=[int(d[1]) for d in data]
 print(len(labels))
 
 print(list(labels).count(0), list(labels).count(1), list(labels).count(2))
-dcA
+
 #labels_set=list(set(labels))
 
 realtionships_set= set()
