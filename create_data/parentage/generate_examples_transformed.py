@@ -49,7 +49,7 @@ def confirm_numbers(num_sentences,len_names):
 		
 		if ans3.lower()=='y':
 			print("Proceeding....")
-			return len_names,len_locs,len_verbs,num_examples
+			return len_names,num_examples
 		else:
 			len_names=len(names)
 
