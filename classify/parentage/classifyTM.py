@@ -1,5 +1,5 @@
 import sys
-sys.path.append('../pyTsetlinMachineParallel/')
+sys.path.append('../../pyTsetlinMachineParallel/')
 from tm import MultiClassTsetlinMachine
 from sklearn.metrics import precision_recall_fscore_support
 from sklearn.model_selection import train_test_split
