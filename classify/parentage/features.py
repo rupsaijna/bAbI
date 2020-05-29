@@ -31,7 +31,7 @@ for t in text:
 realtionships_set=list(realtionships_set)
 numsentences=2
 
-featureset=np.zeros((len(text),len(realtionships_set)))
+featureset=np.zeros((len(text),len(realtionships_set)+1))
 
 print(realtionships_set)
 print(labels_set)
@@ -48,6 +48,7 @@ for t in text:
 		ind=realtionships_set.index(temp_rel)
 		temp_feature[ind]=1
 	featureset[textind]=temp_feature
+	featureset[-1]=labels[textind]
 	textind+=1
 		
 	
