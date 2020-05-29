@@ -34,10 +34,6 @@ numsentences=2
 
 featureset=np.zeros((len(newtext),len(realtionships_set)))
 
-sentfeaturelen=len(word_set_sentences)
-qsfeaturelen=len(word_set_questions)
-
-
 print(realtionships_set)
 print(labels_set)
 featureheaders=[]
