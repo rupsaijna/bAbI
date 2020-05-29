@@ -17,8 +17,7 @@ data=[d.split('\t') for d in data]
 
 text=[d[0] for d in data]
 labels=[d[1] for d in data]
-print(set(labels))
-fd
+
 #labels_set=list(set(labels))
 
 realtionships_set= set()
@@ -43,14 +42,14 @@ for n in realtionships_set:
 textind=0
 for t in text:
 	sent=t.replace('\n','').split('.')
-	temp_feature=np.zeros(len(realtionships_set))
+	temp_feature=np.zeros(len(realtionships_set)+!)
 	for s in sent[:-1]:
 		s=s.strip().replace('.','').split(' ')
 		temp_rel=s[0]+'_'+s[-1]
 		ind=realtionships_set.index(temp_rel)
 		temp_feature[ind]=1
-	featureset[textind][:-1]=temp_feature
-	featureset[-1]=labels[textind]
+	temp_feature[-1]=labels[textind]
+	featureset[textind]=temp_feature
 	textind+=1
 		
 	
