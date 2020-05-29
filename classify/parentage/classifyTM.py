@@ -39,7 +39,7 @@ else:
 	RUNS=100
 	
 featureset=np.load(fname.replace('.txt','')+'_featureset.npy')
-
+featureset=featureset.sample(frac=1).reset_index(drop=True)
 X=featureset[:,:-1]
 y=featureset[:,-1]
 y=[int(yy) for yy in y]
