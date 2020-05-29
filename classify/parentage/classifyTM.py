@@ -23,8 +23,8 @@ for l in lines[3:]:
 		featureheaderset=lt[2].replace('\n','').split(',')
 
 if 'sentenceleveltransform' not in fname:
-	CLAUSES=500
-	T=700
+	CLAUSES=5000
+	T=7000
 	s=79.5
 	weighting = True
 	training_epoch=5
@@ -51,7 +51,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.30, random
 print(list(y_train).count(0), list(y_train).count(1), list(y_train).count(2))
 print(list(y_test).count(0), list(y_test).count(1), list(y_test).count(2))
 print(X_train.shape)
-dkjsan
+
 tm = MultiClassTsetlinMachine(CLAUSES, T, s, weighted_clauses=weighting,append_negated=True)
 
 allacc=[]
