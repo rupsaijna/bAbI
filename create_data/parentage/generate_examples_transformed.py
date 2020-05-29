@@ -65,35 +65,35 @@ def generate(num_sentences,names,num_examples):
 		#temp_names=random.sample(names, k=num_sentences) #without repeatation
 		#temp_locs=random.sample(locs, k=num_sentences) #without repeatation
 		#temp_verbs=random.choices(verbs, k=num_sentences) #with repeatation
-		temp_example=''
-		temp_example_transformed=''
+		temp_example_fr=''
+		temp_example_transformed_fr=''
 		
 		###
 		temp_names=names.copy()
 		#print(temp_names,names, len(examples))
 		temp_names_first=random.sample(temp_names, k=2)
-		temp_example=temp_names_first[0]+' is the parent of '+temp_names_first[1]+'. '
-		temp_example_transformed='X is the parent of Y. '
+		temp_example_fr=temp_names_first[0]+' is the parent of '+temp_names_first[1]+'. '
+		temp_example_transformed_fr='X is the parent of Y. '
 		temp_names.remove(temp_names_first[0])
 		temp_names.remove(temp_names_first[1])
 		for rel in range(3):
 			if rel==0:
 				temp_names_second=random.sample(temp_names, k=1)
-				temp_example+=temp_names_first[1]+' is the parent of '+temp_names_second[0]+'. '
+				temp_example=temp_example_fr+temp_names_first[1]+' is the parent of '+temp_names_second[0]+'. '
 				temp_example+='How are '+temp_names_first[0]+' and '+temp_names_second[0]+' related?'
-				temp_example_transformed+='Y is the parent of Z. '
+				temp_example_transformed=temp_example_transformed_fr+'Y is the parent of Z. '
 				temp_example_transformed+='How are X and Z related?'
 			if rel==1:
 				temp_names_second=random.sample(temp_names, k=1)
-				temp_example+=temp_names_first[0]+' is the parent of '+temp_names_second[0]+'. '
+				temp_example=temp_example_fr+temp_names_first[0]+' is the parent of '+temp_names_second[0]+'. '
 				temp_example+='How are '+temp_names_first[0]+' and '+temp_names_second[0]+' related?'
-				temp_example_transformed+='X is the parent of Z. '
+				temp_example_transformed=temp_example_transformed_fr+'X is the parent of Z. '
 				temp_example_transformed+='How are X and Z related?'
 			if rel==2:
 				temp_names_second=random.sample(temp_names, k=2)
-				temp_example+=temp_names_second[0]+' is the parent of '+temp_names_second[1]+'. '
+				temp_example=temp_example_fr+temp_names_second[0]+' is the parent of '+temp_names_second[1]+'. '
 				temp_example+='How are '+temp_names_first[0]+' and '+temp_names_second[1]+' related?'
-				temp_example_transformed+='A is the parent of Z. '
+				temp_example_transformed=temp_example_transformed_fr+'A is the parent of Z. '
 				temp_example_transformed+='How are X and Z related?'
 		
 			temp_example+='\t'+str(rel)
