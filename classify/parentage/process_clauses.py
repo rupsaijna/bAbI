@@ -57,7 +57,7 @@ for label in labels:
 	long_string_neg=''
 	for ind,row in sub_n.iterrows():
 		cl=row['Clause']
-		cl=cl.replace('#','~')
+		cl=cl.replace('#','~').replace('isParent(','f_').replace(')','')
 		cl=cl[:-1].replace(';',' & ')
 		cl=cl.replace('\n','')
 		if len(cl)>0:
