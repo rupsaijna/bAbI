@@ -31,8 +31,14 @@ training_epoch=1
 RUNS=100
 Avg. Acc: 99.59
 
-
-
+sentences =2 , names =5, locations =5, names repeated
+CLAUSES=15
+T=30
+s=10
+weighting = True
+training_epoch=1
+RUNS=100
+Avg. Acc: 100.0
 
 bow_classifyConvTM.py
 without sentencetransform:
