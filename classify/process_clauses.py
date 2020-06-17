@@ -5,7 +5,7 @@ import sys
 #fname='generated/generated1.txt'
 fname=sys.argv[1]
 
-metaname=fname.replace('.txt','_meta.txt')
+metaname=fname.replace('_sentenceleveltransform','').replace('.txt','_meta.txt')
 clausename=fname.replace('.txt','_clauses.txt')
 outname=clausename.replace('.txt','_processed.txt')
 
