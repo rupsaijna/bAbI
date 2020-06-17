@@ -31,7 +31,7 @@ if 'sentenceleveltransform' not in fname:
 	RUNS=100
 
 else:
-	CLAUSES=25
+	CLAUSES=40
 	T=4
 	s=1
 	weighting = True
