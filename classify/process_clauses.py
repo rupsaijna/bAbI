@@ -42,7 +42,8 @@ for label in labels:
 
 	sub_n = clauses.loc[(clauses['class']==label) & (clauses['p/n']=='negative')]
 
-
+	print(sub_p)
+	print(sub_n)
 	long_string_pos=''
 	for ind,row in sub_p.iterrows():
 		cl=row['Clause']
