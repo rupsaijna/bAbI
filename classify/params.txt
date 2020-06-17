@@ -1,5 +1,5 @@
-bow_classifyTM.py
-without sentencetransform:
+###bow_classifyTM.py
+##without sentencetransform:
 sentences =3 , names =5, locations =5
 CLAUSES=33
 T=28
@@ -29,7 +29,6 @@ Avg. Acc: 99.36
 
 
 
-
 ## with sentencetransform:
 sentences =2 , names =5, locations =5
 CLAUSES=2
@@ -49,7 +48,21 @@ training_epoch=1
 RUNS=100
 Avg. Acc: 100.0
 
-bow_classifyConvTM.py
+
+###bow_classifyTM_posonly.py
+##without sentencetransform:
+sentences =2 , names =5, locations =5, names repeated
+CLAUSES=40
+T=35
+s=30.5
+weighting = True
+training_epoch=5
+RUNS=100
+Avg. Acc: 98.69
+
+----------------------------------------------------------------------
+
+###bow_classifyConvTM.py
 without sentencetransform:
 sentences =2/3/5 , names =5, locations =5
 CLAUSES=22
