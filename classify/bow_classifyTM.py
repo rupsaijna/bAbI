@@ -31,11 +31,11 @@ if 'sentenceleveltransform' not in fname:
 	RUNS=100
 
 else:
-	CLAUSES=2
-	T=4
-	s=1
+	CLAUSES=20
+	T=40
+	s=10
 	weighting = True
-	training_epoch=5
+	training_epoch=1
 	RUNS=100
 	
 featureset=np.load(fname.replace('.txt','')+'_featureset.npy')
