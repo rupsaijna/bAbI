@@ -2,6 +2,7 @@
 
 import random
 from tqdm import tqdm
+import pandas as pd
 
 def print_numbers(num_sentences,len_names,len_locs,len_verbs,num_examples=0):
 	print ("\nCurrently we can have:\nSentences per example:"+str(num_sentences)+"\n#Names:"+str(len_names)+"\n#Locations:"+str(len_locs)+"\n#Verbs:"+str(len_verbs))
@@ -79,6 +80,13 @@ def generate(num_sentences,names,locs,verbs,num_examples):
 	pbar = tqdm(total = num_examples)
 	examples=[]
 	examples_transformed=[]
+	features=[]
+	all_possible_combinations=[n+';'+str(l) for n in names for l in locs]
+	df=pd.DataFrame(columns=all_possible_combinations)
+	transformed_names=['PER'+str(ix+1) for ix in range(num_sentences)]
+	transformed_locs=['LOC'+str(ix+1) for ix in range(num_sentences)]
+	all_possible_combinations_transformed=[n+';'+str(l) for n in transformed_names for l in transformed_locs]
+	df_transformed=pd.DataFrame(columns=all_possible_combinations_transformed)
 	while len(examples) < num_examples:
 		temp_names=random.sample(names, k=num_sentences) #without repeatation
 		temp_locs=random.sample(locs, k=num_sentences) #without repeatation
@@ -87,14 +95,19 @@ def generate(num_sentences,names,locs,verbs,num_examples):
 		temp_example_transformed=''
 		temp_answers={tn:'' for tn in temp_names}
 		temp_names_used=[]
+		temp_featured=[]
+		df = df.append(pd.Series(0, index=df.columns), ignore_index=True)
+		df_transformed = df_transformed.append(pd.Series(0, index=df_transformed.columns), ignore_index=True)
 		for i in range(num_sentences):
 			tempindx=random.randint(0,num_sentences-1)
 			temp_sentence=temp_names[tempindx]+' '+temp_verbs[i]+' '+temp_locs[i]+'. '
 			temp_answers[temp_names[tempindx]]=temp_locs[i]
 			temp_names_used.append(tempindx)
+			df.loc[df.index[-1],temp_names[tempindx]+';'+temp_locs[i]]=i+1
 			temp_sentence_transformed='PER'+str(tempindx+1)+' '+temp_verbs[i]+' '+'LOC'+str(i+1)+'. '
 			temp_example+=temp_sentence
 			temp_example_transformed+=temp_sentence_transformed
+			df_transformed.loc[df.index[-1],'PER'+str(tempindx+1)+';'+'LOC'+str(i+1)]=i+1
 		qs_num=random.randint(0,num_sentences-1)
 		temp_qs='Where is '+temp_names[temp_names_used[qs_num]]+'?'
 		temp_qs_transformed='Where is '+'PER'+str(temp_names_used[qs_num]+1)+'?'
@@ -109,7 +122,7 @@ def generate(num_sentences,names,locs,verbs,num_examples):
 			examples_transformed.append(temp_example_transformed)
 			pbar.update(1)
 	pbar.close()		
-	return examples, examples_transformed
+	return examples, examples_transformed,df, df_transformed
 	
 ######################################################################				
 			
@@ -148,7 +161,7 @@ names=names[:len_names]
 locs=locs[:len_locs]
 verbs=verbs[:len_verbs]
 
-examples, examples_transformed=generate(num_sentences,names,locs,verbs,num_examples)
+examples, examples_transformed, df, df_transformed=generate(num_sentences,names,locs,verbs,num_examples)
 fo=open(opfile,'w')
 for e in examples:
 	fo.write(e+'\n')
@@ -160,11 +173,20 @@ for e in examples_transformed:
 	fo.write(e+'\n')
 fo.close()
 	
-opfile=opfile.replace('.txt','_meta.txt')	
-fo=open(opfile,'w')	
+opfile_meta=opfile.replace('.txt','_meta.txt')	
+fo=open(opfile_meta,'w')	
 fo.write(','.join(names)+'\n')
 fo.write(','.join(locs)+'\n')
 fo.write(','.join(verbs)+'\n')
 
 fo.close()
+
+
 print('Output written to '+opfile)
+
+opfile_df=opfile.replace('.txt','_df.pkl')
+df.to_pickle(opfile_df)
+
+
+opfile_df_transformed=opfile.replace('.txt','_df_transformed.pkl')
+df_transformed.to_pickle(opfile_df_transformed)
