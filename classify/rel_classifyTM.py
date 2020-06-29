@@ -37,7 +37,7 @@ RUNS=100
 
 X_train, X_test, y_train, y_test = train_test_split(featureset_transformed_X, featureset_transformed_y, test_size=0.30, random_state=42, shuffle=True)
 
-tm = MultiClassTsetlinMachine(CLAUSES, T, s, weighted_clauses=weighting,append_negated=True)
+tm = MultiClassTsetlinMachine(CLAUSES, T, s, weighted_clauses=weighting,append_negated=False)
 
 allacc=[]
 for i in range(RUNS):
@@ -88,8 +88,8 @@ for cur_cls in range(len(labels_set)):
 			feature_vector[f+NUM_FEATURES]=action_negated
 			if action_plain==1:
 				this_clause+=featureheaderset[f]+';'
-			if action_negated==1:
-				this_clause+='#'+featureheaderset[f]+';'
+			#if action_negated==1:
+			#	this_clause+='#'+featureheaderset[f]+';'
 		this_clause+='\t'+clause_type+'\t'+str(labels_set[cur_cls])	
 		fout_c.write(str(this_clause)+'\n')
 fout_c.close()
@@ -98,10 +98,11 @@ print('Clauses written at :'+ clause_file)
 
 
 ####LOCAL VIEW###
-indx=random.randint(0,len(X_test))
+print("Going Local")
+indx=random.randint(2,len(X_test))
 print(X_test[:indx])
-temp_X_test=X_test[:indx]
-temp_y_test=y_test[:indx]
+temp_X_test=X_test[indx-2:indx]
+temp_y_test=y_test[indx-2:indx]
 temp_X_test_sent=[]
 for l in range(len(temp_X_test)):
 	temp_sent=[]
@@ -142,6 +143,6 @@ for ind,row in local_clauses.iterrows():
 	local_clauses.loc[local_clauses.index[ind], 'CorrectLabel']=star
 	
 local_clauses=local_clauses.sort_values(by=['Example', 'Class'])
-print(local_clauses)
 
 local_clauses.to_csv(local_clause_file, sep='\t', index=False)
+print('Local Clauses written to:'+local_clause_file)
