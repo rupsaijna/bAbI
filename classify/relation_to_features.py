@@ -69,4 +69,4 @@ f.write('\n'+fname+'\t'+fname.replace('.txt','')+'_relationalfeatureset.npy'+'\t
 f.write('\n'+fname+'\t'+fname.replace('.txt','')+'_transformed_relationalfeatureset.npy'+'\t'+','.join(newdf_transformed.columns)+'\n')
 f.close()
 
-print('Features ready at '+ fname.replace('.txt','')+'_relationalfeatureset.npy'+ '/ '+ fname.replace('.txt','')+'_transformed_relationalfeatureset.npy')
+print('Features ready at '+ fname.replace('.txt','')+'_relationalfeatureset.npy'+ ' and '+ fname.replace('.txt','')+'_transformed_relationalfeatureset.npy')
