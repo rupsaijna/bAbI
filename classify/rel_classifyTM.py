@@ -68,7 +68,7 @@ lastruns=int(RUNS/3)
 print('Last '+str(lastruns)+' runs: '+str(np.mean(allacc[-lastruns:], axis=0))+' +/- '+str(np.std(allacc[-lastruns:], axis=0)))
 
 fout_c=open(clause_file,'w')
-NUM_FEATURES=X.shape[1]
+NUM_FEATURES=df_transformed_X.shape[1]
 fout_c.write('ClauseNum\tClause\tp/n\tclass\n')
 feature_vector=np.zeros(NUM_FEATURES*2)
 for cur_cls in range(len(labels_set)):
