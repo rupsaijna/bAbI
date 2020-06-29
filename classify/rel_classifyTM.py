@@ -16,7 +16,7 @@ clause_file=fname.replace('.txt','_rel_clauses.txt')
 df_transformed = pd.read_pickle(fname.replace('.txt','')+'_transformed_relationalfeatureset.pkl')
 
 
-featureset_transformed_y = df_transformed['ANSWER'].values()
+featureset_transformed_y = df_transformed['ANSWER'].values
 df_transformed_X= df_transformed.drop(columns=['ANSWER'])
 featureset_transformed_X = df_transformed_X.to_numpy()
 
