@@ -82,10 +82,14 @@ def generate(num_sentences,names,locs,verbs,num_examples):
 	examples_transformed=[]
 	features=[]
 	all_possible_combinations=[n+';'+str(l) for n in names for l in locs]
+	all_possible_combinations+=['q_'+n for n in names]
+	all_possible_combinations+=['ANSWER']
 	df=pd.DataFrame(columns=all_possible_combinations)
-	transformed_names=['PER'+str(ix+1) for ix in range(num_sentences)]
-	transformed_locs=['LOC'+str(ix+1) for ix in range(num_sentences)]
+	transformed_names=['PER'+str(ix) for ix in range(num_sentences)]
+	transformed_locs=['LOC'+str(ix) for ix in range(num_sentences)]
 	all_possible_combinations_transformed=[n+';'+str(l) for n in transformed_names for l in transformed_locs]
+	all_possible_combinations_transformed+=['q_'+n for n in transformed_names]
+	all_possible_combinations_transformed+=['ANSWER']
 	df_transformed=pd.DataFrame(columns=all_possible_combinations_transformed)
 	while len(examples) < num_examples:
 		temp_names=random.sample(names, k=num_sentences) #without repeatation
@@ -96,25 +100,32 @@ def generate(num_sentences,names,locs,verbs,num_examples):
 		temp_answers={tn:'' for tn in temp_names}
 		temp_names_used=[]
 		temp_featured=[]
-		df = df.append(pd.Series(0, index=df.columns), ignore_index=True)
-		df_transformed = df_transformed.append(pd.Series(0, index=df_transformed.columns), ignore_index=True)
+		df = df.append(pd.Series(0, index=df.columns), ignore_index=True) ##relation
+		df_transformed = df_transformed.append(pd.Series(0, index=df_transformed.columns), ignore_index=True) ##relation
 		for i in range(num_sentences):
 			tempindx=random.randint(0,num_sentences-1)
 			temp_sentence=temp_names[tempindx]+' '+temp_verbs[i]+' '+temp_locs[i]+'. '
 			temp_answers[temp_names[tempindx]]=temp_locs[i]
 			temp_names_used.append(tempindx)
-			df.loc[df.index[-1],temp_names[tempindx]+';'+temp_locs[i]]=i+1
-			temp_sentence_transformed='PER'+str(tempindx+1)+' '+temp_verbs[i]+' '+'LOC'+str(i+1)+'. '
+			df.loc[df.index[-1],temp_names[tempindx]+';'+temp_locs[i]]=i+1 ##relation
+			temp_sentence_transformed='PER'+str(tempindx)+' '+temp_verbs[i]+' '+'LOC'+str(i)+'. '
 			temp_example+=temp_sentence
 			temp_example_transformed+=temp_sentence_transformed
-			df_transformed.loc[df.index[-1],'PER'+str(tempindx+1)+';'+'LOC'+str(i+1)]=i+1
+			df_transformed.loc[df.index[-1],'PER'+str(tempindx)+';'+'LOC'+str(i)]=i+1 ##relation
 		qs_num=random.randint(0,num_sentences-1)
 		temp_qs='Where is '+temp_names[temp_names_used[qs_num]]+'?'
-		temp_qs_transformed='Where is '+'PER'+str(temp_names_used[qs_num]+1)+'?'
+		temp_qs_transformed='Where is '+'PER'+str(temp_names_used[qs_num])+'?'
 		temp_example+=temp_qs
 		temp_example_transformed+=temp_qs_transformed
+		
+		df.loc[df.index[-1],'q_'+temp_names[temp_names_used[qs_num]]]=1 ##relation
+		df_transformed.loc[df.index[-1],'q_'+'PER'+str(temp_names_used[qs_num])]=1 ##relation
+
 		temp_ans=temp_answers[temp_names[temp_names_used[qs_num]]].replace('the ','')+'\t'+str(qs_num+1)
-		temp_ans_transformed='LOC'+str(temp_locs.index(temp_answers[temp_names[temp_names_used[qs_num]]])+1)+'\t'+str(qs_num+1)
+		temp_ans_transformed='LOC'+str(temp_locs.index(temp_answers[temp_names[temp_names_used[qs_num]]]))+'\t'+str(qs_num+1)
+
+		df.loc[df.index[-1],'ANSWER']=temp_answers[temp_names[temp_names_used[qs_num]]].replace('the ','') ##relation
+		df_transformed.loc[df.index[-1],'ANSWER']=int(temp_locs.index(temp_answers[temp_names[temp_names_used[qs_num]]])) ##relation
 		temp_example+='\t'+temp_ans
 		temp_example_transformed+='\t'+temp_ans_transformed
 		if temp_example not in examples:
@@ -181,12 +192,11 @@ fo.write(','.join(verbs)+'\n')
 
 fo.close()
 
-
-print('Output written to '+opfile)
-
 opfile_df=opfile.replace('.txt','_df.pkl')
 df.to_pickle(opfile_df)
 
 
 opfile_df_transformed=opfile.replace('.txt','_df_transformed.pkl')
 df_transformed.to_pickle(opfile_df_transformed)
+
+print('Output written to '+opfile)
