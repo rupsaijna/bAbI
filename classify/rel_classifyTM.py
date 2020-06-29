@@ -45,16 +45,16 @@ for i in range(RUNS):
 
 	allacc.append(acc_test)
 	
-	print(type(y_test), type(res_test), len(y_test), len(res_test))
+	#print(type(y_test), type(res_test), len(y_test), len(res_test))
 	prf_test_macro=precision_recall_fscore_support(list(res_test), list(y_test), average='macro')
-	adsjkhk
+	
 
 	prf_test_macro=[str(round(p,2)) for p in prf_test_macro[:-1]]
 	
-	prf_test_micro=precision_recall_fscore_support(res_test, y_test, average='micro')
+	prf_test_micro=precision_recall_fscore_support(list(res_test), list(y_test), average='micro')
 	prf_test_micro=[str(round(p,2)) for p in prf_test_micro[:-1]]
 	
-	prf_test_class=precision_recall_fscore_support(res_test, y_test, average=None)
+	prf_test_class=precision_recall_fscore_support(list(res_test), list(y_test), average=None)
 	
 	print("\n\n#%d Testing Accuracy: %.2f%% " % (i+1, acc_test))
 	#print("\n#Testing PRF Macro: " + ', '.join(prf_test_macro))
