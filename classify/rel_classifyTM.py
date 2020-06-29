@@ -29,7 +29,7 @@ training_epoch=1
 RUNS=100
 
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.30, random_state=42, shuffle=True)
+X_train, X_test, y_train, y_test = train_test_split(featureset_transformed_X, featureset_transformed_y, test_size=0.30, random_state=42, shuffle=True)
 
 tm = MultiClassTsetlinMachine(CLAUSES, T, s, weighted_clauses=weighting,append_negated=True)
 
