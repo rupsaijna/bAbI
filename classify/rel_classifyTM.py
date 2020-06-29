@@ -18,7 +18,7 @@ df_transformed = pd.read_pickle(fname.replace('.txt','')+'_transformed_relationa
 
 featureset_transformed_y = df_transformed['ANSWER'].values
 
-print(featureset_transformed_y)
+labels_set=list(set(featureset_transformed_y))
 
 df_transformed_X= df_transformed.drop(columns=['ANSWER'])
 featureset_transformed_X = df_transformed_X.to_numpy()
