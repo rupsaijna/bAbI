@@ -24,6 +24,7 @@ labels_set=list(set(featureset_transformed_y))
 
 df_transformed_X= df_transformed.drop(columns=['ANSWER'])
 featureheaderset=df_transformed_X.columns
+featureheaderset=[f.replace(';','_') for f in featureheaderset]
 featureset_transformed_X = df_transformed_X.to_numpy()
 
 
