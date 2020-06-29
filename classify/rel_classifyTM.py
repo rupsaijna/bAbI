@@ -40,10 +40,13 @@ allacc=[]
 for i in range(RUNS):
 	tm.fit(X_train, y_train, epochs=training_epoch, incremental=True)
 	res_test=tm.predict(X_test)
-	
+	print(res_test)
 	acc_test = 100*(res_test == y_test).mean()
 
 	allacc.append(acc_test)
+	
+	print(acc_test)
+	adsjkhk
 	prf_test_macro=precision_recall_fscore_support(res_test, y_test, average='macro')
 	prf_test_macro=[str(round(p,2)) for p in prf_test_macro[:-1]]
 	
