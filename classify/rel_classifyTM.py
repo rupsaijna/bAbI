@@ -45,8 +45,8 @@ for i in range(RUNS):
 
 	allacc.append(acc_test)
 	
-	print(type(y_test), type(res_test) )
-	prf_test_macro=precision_recall_fscore_support(res_test, y_test, average='macro')
+	print(type(y_test), type(res_test), len(y_test), len(res_test))
+	prf_test_macro=precision_recall_fscore_support(list(res_test), list(y_test), average='macro')
 	adsjkhk
 
 	prf_test_macro=[str(round(p,2)) for p in prf_test_macro[:-1]]
