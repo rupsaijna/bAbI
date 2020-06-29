@@ -6,6 +6,8 @@ from sklearn.model_selection import train_test_split
 import numpy as np
 import os
 import pandas as pd
+import random
+
 
 fname=sys.argv[1]
 local_clause_file='local_clauses_rel.csv'
