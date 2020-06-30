@@ -105,7 +105,7 @@ featureheaderset=[f.replace(';','_') for f in featureheaderset]
 featureset_transformed_X = df_transformed_X.to_numpy()
 
 
-CLAUSES=30
+CLAUSES=25
 T=30
 s=10
 weighting = True
