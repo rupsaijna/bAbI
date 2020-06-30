@@ -83,7 +83,7 @@ CLAUSES=15
 T=30
 s=10
 weighting = True
-training_epoch=1
+training_epoch=5
 RUNS=100
 
 
