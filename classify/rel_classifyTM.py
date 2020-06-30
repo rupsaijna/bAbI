@@ -150,7 +150,7 @@ print('Last '+str(lastruns)+' runs: '+str(np.mean(allacc[-lastruns:], axis=0))+'
 
 
 ####ALL CLAUSES###
-#wrote_clauses(clause_file, df_transformed_X, tm, featureheaderset, labels_set)
+wrote_clauses(clause_file, df_transformed_X, tm, featureheaderset, labels_set)
 
 ####LOCAL VIEW###
-#get_random_local_view(X_test, 5, local_clause_file, tm, clause_file)
+get_random_local_view(X_test, 5, local_clause_file, tm, clause_file)
