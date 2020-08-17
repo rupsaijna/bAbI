@@ -16,7 +16,13 @@ plt.savefig('plot.png')
 
 #############
 import seaborn as sns
-sns.set(font_scale =0.5)
-sp = sns.heatmap(correl, xticklabels=correl.columns, yticklabels=correl.columns)
+sns.set(font_scale =0.45)
+
+sp = sns.heatmap(correl, xticklabels=correl.columns, yticklabels=correl.columns, cmap="coolwarm", linewidths=0.5, linecolor='black')
+bottom, top = sp.get_ylim()
+sp.set_ylim(bottom + 0.5, top - 0.5)
+
+
+
 fig = sp.get_figure()
 fig.savefig("plot.png")
