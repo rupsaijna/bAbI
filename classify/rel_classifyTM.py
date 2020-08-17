@@ -107,7 +107,7 @@ featureset_transformed_X = df_transformed_X.to_numpy()
 
 CLAUSES=25
 T=30
-s=9#s=10
+s=8#s=10
 weighting = True
 training_epoch=5
 RUNS=100
