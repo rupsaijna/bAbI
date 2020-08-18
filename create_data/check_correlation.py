@@ -1,7 +1,8 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-#fname=sys.argv[1]
-fname = '../generated/generated2.txt'
+fname=sys.argv[1]
+oname=sys.argv[2]
+#fname = '../generated/generated2.txt'
 df_transformed = pd.read_pickle(fname.replace('.txt','')+'_transformed_relationalfeatureset.pkl')
 
 df_transformed_X= df_transformed.drop(columns=['ANSWER'])
@@ -10,8 +11,8 @@ df_transformed_X = df_transformed_X.astype('uint8')
 
 correl = df_transformed_X.corr()
 
-plt.matshow(correl)
-plt.savefig('plot2.png')
+#plt.matshow(correl)
+#plt.savefig('plot2.png')
 
 
 #############
@@ -25,4 +26,4 @@ sp.set_ylim(bottom + 0.5, top - 0.5)
 
 
 fig = sp.get_figure()
-fig.savefig("plot2.png")
+fig.savefig(oname)
