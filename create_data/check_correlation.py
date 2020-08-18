@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 #fname=sys.argv[1]
-fname = '../generated/generated2.txt'
+fname = '../generated/generated1.txt'
 df_transformed = pd.read_pickle(fname.replace('.txt','')+'_transformed_relationalfeatureset.pkl')
 
 df_transformed_X= df_transformed.drop(columns=['ANSWER'])
