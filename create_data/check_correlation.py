@@ -1,5 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import sys
 fname=sys.argv[1]
 oname=sys.argv[2]
 #fname = '../generated/generated2.txt'
