@@ -120,7 +120,7 @@ training_epoch=5
 RUNS=100
 '''
 
-CLAUSES=100
+CLAUSES=150
 T=60
 s=37
 weighting = True
