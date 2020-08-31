@@ -103,7 +103,7 @@ featureset_transformed_y = df_transformed['ANSWER'].values
 labels_set=list(set(featureset_transformed_y))
 
 if 'transformed' not in dfname:
-	featureset_transformed_y=[labels_Set.index(ft) for ft in featureset_transformed_y]
+	featureset_transformed_y=[labels_set.index(ft) for ft in featureset_transformed_y]
 
 df_transformed_X= df_transformed.drop(columns=['ANSWER'])
 featureheaderset=df_transformed_X.columns
