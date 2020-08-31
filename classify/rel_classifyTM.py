@@ -91,7 +91,8 @@ local_clause_file='local_clauses_rel.csv'
 
 clause_file=fname.replace('.txt','_rel_clauses.txt')
 
-#df = pd.read_pickle(fname.replace('.txt','')+'_relationalfeatureset.pkl')
+#df 
+df_transformed= pd.read_pickle(fname.replace('.txt','')+'_relationalfeatureset.pkl')
 df_transformed = pd.read_pickle(fname.replace('.txt','')+'_transformed_relationalfeatureset.pkl')
 
 
