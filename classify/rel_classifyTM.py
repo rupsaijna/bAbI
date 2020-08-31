@@ -110,14 +110,22 @@ featureheaderset=df_transformed_X.columns
 featureheaderset=[f.replace(';','_') for f in featureheaderset]
 featureset_transformed_X = df_transformed_X.to_numpy()
 
-
+'''
+rel_classify : _transformed_relationalfeatureset.pkl
 CLAUSES=25
 T=30
 s=3#s=10
 weighting = True
 training_epoch=5
 RUNS=100
+'''
 
+CLAUSES=100
+T=60
+s=37
+weighting = True
+training_epoch=5
+RUNS=100
 
 X_train, X_test, y_train, y_test = train_test_split(featureset_transformed_X, featureset_transformed_y, test_size=0.30, random_state=42, shuffle=True)
 
