@@ -1,5 +1,5 @@
 # bAbI
-Tsetlin Machine experiments on bAbI tasks
+Tsetlin Machine experiments on [bAbI](https://arxiv.org/pdf/1502.05698.pdf) tasks
 
 # Dataset
 ```
